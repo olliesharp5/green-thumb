@@ -2,5 +2,52 @@
 {% load static %}
 
 {% block content %}
-<h1 class="display-4 text-success">It works</h1>
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">Welcome to Green Thumb</h5>
+        <p class="card-text">Your one-stop shop for all your gardening needs.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        <div class="card bg-dark text-white">
+            <img src="{% static 'images/placeholder_image.png' %}" class="card-img" alt="Garden Plants">
+            <div class="card-img-overlay">
+                <h5 class="card-title">Garden Plants</h5>
+                <a href="#" class="btn btn-light">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="card bg-dark text-white">
+            <img src="{% static 'images/placeholder_image.png' %}" class="card-img" alt="House Plants">
+            <div class="card-img-overlay">
+                <h5 class="card-title">House Plants</h5>
+                <a href="#" class="btn btn-light">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="card bg-dark text-white">
+            <img src="{% static 'images/placeholder_image.png' %}" class="card-img" alt="Seeds">
+            <div class="card-img-overlay">
+                <h5 class="card-title">Seeds</h5>
+                <a href="#" class="btn btn-light">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="card bg-dark text-white">
+            <img src="{% static 'images/placeholder_image.png' %}" class="card-img" alt="Supplies">
+            <div class="card-img-overlay">
+                <h5 class="card-title">Supplies</h5>
+                <a href="#" class="btn btn-light">Shop Now</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

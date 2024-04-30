@@ -46,54 +46,55 @@
 </head>
 
 <body>
-    <div class="row">
-        {% include 'includes/top-nav.html' %}
-    </div>
-    <div class="row px-3">
-        <div class="col-8 my-auto py-1 py-lg-0">
-            <form method="GET" action="#">
-                <div class="input-group w-100">
-                    <input class="form-control border border-black rounded-0" type="text" name="q"
-                        placeholder="Search our site">
-                    <div class="input-group-append">
-                        <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                            <span class="icon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </form>
+    <main class="flex-shrink-0">
+        <div class="row">
+            {% include 'includes/top-nav.html' %}
         </div>
-    </div>
-    <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="mx-auto">
-                {% include 'includes/main-nav.html' %}
+        <div class="row px-3">
+            <div class="col-8 my-auto py-1 py-lg-0">
+                <form method="GET" action="#">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-0" type="text" name="q"
+                            placeholder="Search our site">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-black border border-black rounded-0" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </nav>
-    </div>
-    <div class="row">
-        {% include 'includes/carousel.html' %}
-    </div>
+        </div>
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="mx-auto">
+                    {% include 'includes/main-nav.html' %}
+                </div>
+            </nav>
+        </div>
+        <div class="row">
+            {% include 'includes/carousel.html' %}
+        </div>
 
-    {% if messages %}
-    <div class="message-container"></div>
-    {% endif %}
+        {% if messages %}
+        <div class="message-container"></div>
+        {% endif %}
 
-    {% block content %}
-    <!-- Content goes here -->
-    {% endblock %}
+        {% block content %}
+        <!-- Content goes here -->
+        {% endblock %}
 
-    {% block postloadjs %}
-    <!-- FontAwesome JS -->
-    <script src="https://kit.fontawesome.com/cd6b09716b.js" crossorigin="anonymous"></script>
-    {% endblock %}
-
+        {% block postloadjs %}
+        <!-- FontAwesome JS -->
+        <script src="https://kit.fontawesome.com/cd6b09716b.js" crossorigin="anonymous"></script>
+        {% endblock %}
+    </main>
 
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
