@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'products' %}" class="btn btn-sm btn-outline-secondary mb-3">Back to Search Results</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="#" class="img-fluid" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ product.name }}</h2>
+            <h4>${{ product.price }}</h4>
+            <p>{{ product.description }}</p>
+            <p>Category: {{ product.category.name }}</p>
+            <div>
+                <i class="fas fa-star"></i> {{ product.rating }}
+            </div>
+            <div class="input-group mb-3">
+                <input type="number" class="form-control" placeholder="Quantity" aria-label="Quantity"
+                    aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add to Cart</button>
+            </div>
+            <button class="btn btn-outline-secondary"><i class="fas fa-heart"></i> Add to Wishlist</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Reviews</h3>
+            {% if reviews %}
+            {% for review in reviews %}
+            <p>{{ review.user }}: {{ review.comment }}</p>
+            {% endfor %}
+            {% else %}
+            <p>Be the first to review this item!</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
