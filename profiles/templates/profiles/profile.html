@@ -28,6 +28,17 @@
         <div class="col-md-12">
             <h2>Wishlist</h2>
             <!-- Add wishlist here -->
+            {% for product in wishlist.products.all %}
+            <div class="product">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Price: {{ product.price }}</p>
+                <p>Rating: {{ product.rating }}</p>
+                <!-- Add more product details here -->
+            </div>
+            {% empty %}
+            <p>No products in wishlist.</p>
+            {% endfor %}
         </div>
     </div>
 </div>
