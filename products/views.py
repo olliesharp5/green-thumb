@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from profiles.models import Wishlist, UserProfile
 from .models import Product, Category
 from .forms import SortForm
 
@@ -26,8 +27,11 @@ def products_by_category(request, category_slug):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-
     context = {
         'product': product,
     }
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        wishlist, created = Wishlist.objects.get_or_create(user=user_profile)
+        context['wishlist'] = wishlist
     return render(request, 'products/product_detail.html', context)
