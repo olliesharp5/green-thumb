@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
 
+from products.models import Product
+
 
 # Create your models here.
 class UserProfile(models.Model):
@@ -28,3 +30,10 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
+
+    def __str__(self):
+        return self.user.user.username

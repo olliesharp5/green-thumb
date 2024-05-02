@@ -16,10 +16,12 @@ def all_products(request):
 
 
 def products_by_category(request, category_slug):
+    sort_by = request.GET.get('sort_by', 'name')  # Default is 'name'
     category = get_object_or_404(Category, slug=category_slug)
     subcategories = Category.objects.filter(parent=category)
-    products = Product.objects.filter(Q(category=category) | Q(category__in=subcategories))
-    return render(request, 'products/products.html', {'products': products, 'category_name': category.name,  'category': category})
+    products = Product.objects.filter(Q(category=category) | Q(category__in=subcategories)).order_by(sort_by)
+    form = SortForm(request.GET)
+    return render(request, 'products/products.html', {'products': products, 'category_name': category.name, 'category': category, 'form': form})
 
 
 def product_detail(request, product_id):

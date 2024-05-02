@@ -5,7 +5,7 @@ class SortForm(forms.Form):
         ('name', 'Product Name'),
         ('price', 'Price Low to High'),
         ('-price', 'Price High to Low'),
-        ('rating', 'Rating'),
+        ('-rating', 'Rating'),
     ]
 
-    sort_by = forms.ChoiceField(choices=SORT_CHOICES, widget=forms.Select(attrs={'onchange': 'this.form.submit();'}))
+    sort_by = forms.ChoiceField(choices=SORT_CHOICES, required=False, widget=forms.Select(attrs={'onchange': 'this.form.submit();'}))

@@ -26,7 +26,12 @@
                     aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add to Cart</button>
             </div>
-            <button class="btn btn-outline-secondary"><i class="fas fa-heart"></i> Add to Wishlist</button>
+            <a href="{% url 'profiles:add_to_wishlist' product.id %}">
+                <button class="btn btn-outline-secondary">
+                    <i class="fas fa-heart {% if product in wishlist.products.all %}text-danger{% endif %}"></i> 
+                    Add to Wishlist
+                </button>
+            </a>
         </div>
     </div>
     <div class="row">
