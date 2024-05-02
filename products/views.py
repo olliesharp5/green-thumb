@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from django.contrib import messages
+from django.db.models import Q
+from .models import Product, Category
 from .forms import SortForm
 
 def all_products(request):
@@ -11,6 +13,16 @@ def all_products(request):
         products = Product.objects.all().order_by(sort_by)
     form = SortForm(request.GET)
     return render(request, 'products/products.html', {'products': products, 'form': form})
+
+
+def products_by_category(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    subcategories = Category.objects.filter(parent=category)
+    products = Product.objects.filter(Q(category=category) | Q(category__in=subcategories))
+    if not products:
+        messages.info(request, 'No products in this category')
+    return render(request, 'products/products.html', {'products': products})
+
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

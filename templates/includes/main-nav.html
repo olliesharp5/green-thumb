@@ -1,66 +1,83 @@
 <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav me-auto">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Garden Plants
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="{% url 'products' %}">All Garden Plants</a></li>
-                <li><a class="dropdown-item" href="#">Perrenial Plants</a></li>
-                <li><a class="dropdown-item" href="#">Shrubs & Trees</a></li>
-                <li><a class="dropdown-item" href="#">Climbing Plants</a></li>
-                <li><a class="dropdown-item" href="#">Bedding Plants</a></li>
-                <li><a class="dropdown-item" href="#">Roses</a></li>
-                <li><a class="dropdown-item" href="#">Trees</a></li>
-                <li><a class="dropdown-item" href="#">Tropical & Exotic Plants</a></li>
-                <li><a class="dropdown-item" href="#">Pond Plants</a></li>
-                <!-- Add more categories as needed -->
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'garden-plants' %}">All Garden
+                        Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'perennial-plants' %}">Perennial
+                        Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'shrubs-trees' %}">Shrubs & Trees</a>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'climbing-plants' %}">Climbing
+                        Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'bedding-plants' %}">Bedding
+                        Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'roses' %}">Roses</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'trees' %}">Trees</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'tropical-exotic' %}">Tropical &
+                        Exotic Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'pond-plants' %}">Pond Plants</a>
+                </li>
             </ul>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 House Plants
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">All Houseplants</a></li>
-                <li><a class="dropdown-item" href="#">Foliage Plants</a></li>
-                <li><a class="dropdown-item" href="#">Flowering Plants</a></li>
-                <li><a class="dropdown-item" href="#">Carnivorous Plants</a></li>
-                <li><a class="dropdown-item" href="#">Large Houseplants</a></li>
-                <li><a class="dropdown-item" href="#">Pet-Friendly Houseplants</a></li>
-                <li><a class="dropdown-item" href="#">Easy-Care Houseplants</a></li>
-                <!-- Add more categories as needed -->
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'house-plants' %}">All
+                        House plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'foliage-plants' %}">Foliage
+                        Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'flowering-plants' %}">Flowering
+                        Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'carnivorous-plants' %}">Carnivorous
+                        Plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'large-houseplants' %}">Large
+                        House plants</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'pet-friendly' %}">Pet Friendly</a>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'easy-care' %}">Easy Care</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Seeds
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">All Seeds</a></li>
-                <li><a class="dropdown-item" href="#">Flowers</a></li>
-                <li><a class="dropdown-item" href="#">Vegetables</a></li>
-                <li><a class="dropdown-item" href="#">Herbs</a></li>
-                <!-- Add more categories as needed -->
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'seeds' %}">All Seeds</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'flowers' %}">Flowers</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'vegetables' %}">Vegetables</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'herbs' %}">Herbs</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Supplies
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">All Garden Supplies</a></li>
-                <li><a class="dropdown-item" href="#">Tools</a></li>
-                <li><a class="dropdown-item" href="#">Bird Care</a></li>
-                <li><a class="dropdown-item" href="#">Pest Control</a></li>
-                <li><a class="dropdown-item" href="#">Planters & Pots</a></li>
-                <li><a class="dropdown-item" href="#">Gloves</a></li>
-                <li><a class="dropdown-item" href="#">Furniture</a></li>
-                <!-- Add more categories as needed -->
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'supplies' %}">All Garden Supplies</a>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'tools' %}">Tools</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'bird-care' %}">Bird Care</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'pest-control' %}">Pest Control</a>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'planters-pots' %}">Planters & Pots</a>
+                </li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'clothing' %}">Clothing</a></li>
+                <li><a class="dropdown-item" href="{% url 'products_by_category' 'furniture' %}">Furniture</a></li>
             </ul>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Services
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -69,7 +86,6 @@
                 <li><a class="dropdown-item" href="#">Lawn Cutting</a></li>
                 <li><a class="dropdown-item" href="#">Holiday Cover</a></li>
                 <li><a class="dropdown-item" href="#">Seasonal Care</a></li>
-                <!-- Add more categories as needed -->
             </ul>
         </li>
     </ul>
