@@ -11,7 +11,7 @@
             </form>
         </div>
     </div>
-    <h1 class="mt-5 mb-5">Our Products</h1>
+    <h1 class="mt-5 mb-5">{% if not category.parent %}All {% endif %}{{ category_name }}</h1>
 
     <div class="row">
         {% if not products %}

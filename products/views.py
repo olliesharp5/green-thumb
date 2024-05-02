@@ -21,7 +21,7 @@ def products_by_category(request, category_slug):
     products = Product.objects.filter(Q(category=category) | Q(category__in=subcategories))
     if not products:
         messages.info(request, 'No products in this category')
-    return render(request, 'products/products.html', {'products': products})
+    return render(request, 'products/products.html', {'products': products, 'category_name': category.name,  'category': category})
 
 
 def product_detail(request, product_id):
