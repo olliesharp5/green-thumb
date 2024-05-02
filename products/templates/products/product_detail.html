@@ -26,16 +26,30 @@
                     aria-describedby="button-addon2">
                 <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add to Cart</button>
             </div>
+            {% if user.is_authenticated %}
             <a href="{% url 'profiles:add_to_wishlist' product.id %}" id="add_to_wishlist">
                 <button class="btn btn-outline-secondary">
-                    <i class="fas fa-heart {% if product in wishlist.products.all %}text-danger{% endif %}"></i> 
+                    <i class="fas fa-heart {% if product in wishlist.products.all %}text-danger{% endif %}"></i>
                     {% if product in wishlist.products.all %}
-                        <a href="{% url 'profiles:remove_from_wishlist' product.id %}" id="remove_from_wishlist">Remove from Wishlist</a>
+                    <a href="{% url 'profiles:remove_from_wishlist' product.id %}" id="remove_from_wishlist">Remove from
+                        Wishlist</a>
                     {% else %}
-                        Add to Wishlist
+                    Add to Wishlist
                     {% endif %}
                 </button>
             </a>
+            {% else %}
+            <div class="tooltip-wrapper" data-toggle="tooltip" data-placement="top">
+                <button class="btn btn-outline-secondary" disabled>
+                    <i class="fas fa-heart"></i>
+                    Add to Wishlist
+                </button>
+                <div class="tooltip-content">
+                    To use this feature please <a href="{% url 'account_login' %}">Log In</a> or <a
+                        href="{% url 'account_signup' %}">Register</a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="row">
