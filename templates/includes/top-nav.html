@@ -30,7 +30,7 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <!-- Check if user is authorized -->
                 {% if user.is_authenticated %}
-                <li><a class="dropdown-item" href="#">My Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'profiles:profile' %}">My Profile</a></li>
                 <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                 {% else %}
                 <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
