@@ -11,7 +11,15 @@
             </form>
         </div>
     </div>
-    <h1 class="mt-5 mb-5">{% if not category.parent %}All {% endif %}{{ category_name }}</h1>
+    <h1 class="mt-5 mb-5">
+        {% if request.GET.sort_by == 'recent' %}
+            Recently Added
+        {% elif request.GET.sort_by == 'highest_rating' %}
+            Highest Rated
+        {% else %}
+            {% if not category.parent %}All {% endif %}{{ category_name }}
+        {% endif %}
+    </h1>
 
     <div class="row">
         {% if not products %}

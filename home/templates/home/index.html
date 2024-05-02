@@ -21,7 +21,7 @@
                 <img src="{% static 'images/placeholder_image.png' %}" class="card-img" alt="Garden Plants">
                 <div class="card-img-overlay">
                     <h5 class="card-title">Recently Added</h5>
-                    <a href="#" class="btn btn-light">Shop Now</a>
+                    <a href="{% url 'products' %}?sort_by=recent" class="btn btn-light">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -30,8 +30,8 @@
             <div class="card bg-dark text-white">
                 <img src="{% static 'images/placeholder_image.png' %}" class="card-img" alt="House Plants">
                 <div class="card-img-overlay">
-                    <h5 class="card-title">Best Sellers</h5>
-                    <a href="#" class="btn btn-light">Shop Now</a>
+                    <h5 class="card-title">Highest Rated</h5>
+                    <a href="{% url 'products' %}?sort_by=highest_rating" class="btn btn-light">Shop Now</a>
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <div class="card bg-dark text-white">
                 <img src="{% static 'images/placeholder_image.png' %}" class="card-img" alt="Seeds">
                 <div class="card-img-overlay">
-                    <h5 class="card-title">Highest Rated</h5>
+                    <h5 class="card-title">Best Sellers</h5>
                     <a href="#" class="btn btn-light">Shop Now</a>
                 </div>
             </div>

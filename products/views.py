@@ -8,6 +8,10 @@ from .forms import SortForm
 def all_products(request):
     query = request.GET.get('q')
     sort_by = request.GET.get('sort_by', 'name')  # Default is 'name'
+    if sort_by == 'recent':
+        sort_by = '-date_added' 
+    elif sort_by == 'highest_rating':
+        sort_by = '-rating'  
     if query:
         products = Product.objects.filter(name__icontains=query).order_by(sort_by)
     else:
