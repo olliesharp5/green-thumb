@@ -31,6 +31,12 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+    def save(self, *args, **kwargs):
+        if self.role == 'GR':
+            if not all([self.display_name, self.location, self.about]):
+                raise ValueError("Gardener must have a display name, location, and about section.")
+        super().save(*args, **kwargs)
+
 class Wishlist(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
