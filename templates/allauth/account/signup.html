@@ -13,13 +13,11 @@
                     <h1 class="card-title">{% trans "Sign Up" %}</h1>
                     <p class="card-text">{% blocktrans %}Already have an account? Then please <a
                             href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-                    
                     <form class="form" method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-primary">{% trans "Sign Up" %}</button>
                     </form>
-                    
                 </div>
             </div>
         </div>
