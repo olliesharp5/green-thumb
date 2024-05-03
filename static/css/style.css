@@ -51,3 +51,9 @@ body {
     border-style: solid;
     border-color: #555 transparent transparent transparent;
 }
+
+.wishlist-image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
