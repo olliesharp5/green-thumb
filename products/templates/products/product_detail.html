@@ -21,11 +21,14 @@
             <div>
                 <i class="fas fa-star"></i> {{ product.rating }}
             </div>
-            <div class="input-group mb-3">
-                <input type="number" class="form-control" placeholder="Quantity" aria-label="Quantity"
-                    aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add to Cart</button>
-            </div>
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <input type="number" name="quantity" class="form-control" placeholder="Quantity" aria-label="Quantity"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add to Cart</button>
+                </div>
+            </form>
             {% if user.is_authenticated %}
             <a href="{% url 'profiles:add_to_wishlist' product.id %}" id="add_to_wishlist">
                 <button class="btn btn-outline-secondary">
