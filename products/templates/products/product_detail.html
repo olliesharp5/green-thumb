@@ -23,7 +23,7 @@
             </div>
             <form method="post" action="{% url 'add_to_cart' product.id %}">
                 {% csrf_token %}
-                {% with product.has_sizes as s %}
+                {% with product.has_size as s %}
                 {% if s %}
                 <div class="col-12">
                     <p><strong>Size:</strong></p>
