@@ -12,7 +12,10 @@
         </div>
     </div>
     <h1 class="mt-5 mb-5">
-        {% if request.GET.sort_by == 'recent' %}
+        {% url 'products' as products_url %}
+        {% if request.path == products_url %}
+            All Products
+        {% elif request.GET.sort_by == 'recent' %}
             Recently Added
         {% elif request.GET.sort_by == 'highest_rating' %}
             Highest Rated
