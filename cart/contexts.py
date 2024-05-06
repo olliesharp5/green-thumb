@@ -1,11 +1,26 @@
+from django.shortcuts import get_object_or_404
 from decimal import Decimal
 from django.conf import settings
+from products.models import Product
 
 def cart_contents(request):
+    cart = request.session.get('cart', {})
 
     cart_items = []
     total = 0
     product_count = 0
+
+    for product_id, quantity in cart.items():
+        product = get_object_or_404(Product, pk=product_id)
+        item_total = quantity * product.price
+        total += item_total
+        product_count += quantity
+        cart_items.append({
+            'product_id': product_id,
+            'quantity': quantity,
+            'product': product,
+            'total': item_total,
+        })
 
     if total < settings.FREE_DELIVERY_THRESHOLD:
         delivery = total * Decimal(settings.STANDARD_DELIVERY_PERCENTAGE / 100)
@@ -13,9 +28,9 @@ def cart_contents(request):
     else:
         delivery = 0
         free_delivery_delta = 0
-    
+
     grand_total = delivery + total
-    
+
     context = {
         'cart_items': cart_items,
         'total': total,
