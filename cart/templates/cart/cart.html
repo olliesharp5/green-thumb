@@ -30,7 +30,7 @@
                         <tr>
                             <td>
                                 <p><strong>{{ item.product.name }}</strong></p>
-                                <p><strong>Size: </strong>{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                <p><strong>Size: </strong>{% if item.product.has_size %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
                                 <p class="small text-muted">SKU: {{ item.product.sku|upper }}</p>
                             </td>
                             <td>{{ item.product.price }}</td>
