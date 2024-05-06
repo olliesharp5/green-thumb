@@ -23,9 +23,23 @@
             </div>
             <form method="post" action="{% url 'add_to_cart' product.id %}">
                 {% csrf_token %}
+                {% with product.has_sizes as s %}
+                {% if s %}
+                <div class="col-12">
+                    <p><strong>Size:</strong></p>
+                    <select class="form-control rounded-0 w-50" name="product_size" id='id_product_size'>
+                        <option value="xs">XS</option>
+                        <option value="s">S</option>
+                        <option value="m" selected>M</option>
+                        <option value="l">L</option>
+                        <option value="xl">XL</option>
+                    </select>
+                </div>
+                {% endif %}
+                {% endwith %}
                 <div class="input-group mb-3">
-                    <input type="number" name="quantity" class="form-control" placeholder="Quantity" aria-label="Quantity"
-                        aria-describedby="button-addon2">
+                    <input type="number" name="quantity" class="form-control" placeholder="Quantity"
+                        aria-label="Quantity" aria-describedby="button-addon2">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add to Cart</button>
                 </div>
             </form>
