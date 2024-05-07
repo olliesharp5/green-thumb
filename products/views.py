@@ -16,6 +16,8 @@ def all_products(request):
         products = Product.objects.filter(name__icontains=query).order_by(sort_by)
     else:
         products = Product.objects.all().order_by(sort_by)
+        if 'q' in request.GET:  # Check if 'q' parameter is in the request
+            messages.error(request, 'Please enter a search term.')  # Error message
     form = SortForm(request.GET)
     return render(request, 'products/products.html', {'products': products, 'form': form})
 
