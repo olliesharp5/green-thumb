@@ -49,3 +49,22 @@ def update_cart(request, product_id):
 
     request.session['cart'] = cart
     return redirect('cart_view')
+
+
+def remove_from_cart(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    size = request.POST.get('size')
+    cart = request.session.get('cart', {})
+
+    if str(product_id) in list(cart.keys()):
+        if isinstance(cart[str(product_id)], dict) and 'items_by_size' in cart[str(product_id)]:
+            if size in cart[str(product_id)]['items_by_size']:
+                del cart[str(product_id)]['items_by_size'][size]
+                # If there are no other sizes for this product, remove the product entry
+                if not cart[str(product_id)]['items_by_size']:
+                    del cart[str(product_id)]
+        else:
+            del cart[str(product_id)]
+
+    request.session['cart'] = cart
+    return redirect('cart_view')

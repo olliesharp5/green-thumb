@@ -53,9 +53,13 @@
                             </td>
                             <td>{{ item.total }}</td>
                             <td>
-                                <a href="#" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i>
-                                </a>
+                                <form method="POST" action="{% url 'remove_from_cart' item.product_id %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="size" value="{{ item.size }}">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                         {% endfor %}
