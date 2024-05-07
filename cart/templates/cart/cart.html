@@ -28,6 +28,9 @@
                     <tbody>
                         {% for item in cart_items %}
                         <tr>
+                            <td class="p-3 w-25">
+                                <img class="img-fluid rounded" src="{% static 'images/placeholder_image.png' %}">
+                            </td>
                             <td>
                                 <p><strong>{{ item.product.name }}</strong></p>
                                 <p><strong>Size: </strong>{% if item.product.has_size %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
