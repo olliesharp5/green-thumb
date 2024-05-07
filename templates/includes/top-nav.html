@@ -38,17 +38,15 @@
                 {% endif %}
             </ul>
         </div>
-        <div>
-            <div>
-            <a class="btn btn-black border border-black rounded-0 d-inline-block" href="{% url 'cart_view' %}"><i
-                    class="fas fa-shopping-bag"></i></a>
-            </div>
-            <p class="my-0">
-                {% if grand_total %}
-                    ${{ grand_total|floatformat:2 }}
-                {% else %}
-                    $0.00
-                {% endif %}
-            </p>
-        </div>
+        <a class="btn btn-black border border-black rounded-0 d-inline-block" href="{% url 'cart_view' %}">
+            <i class="fas fa-shopping-bag"></i>
+        </a>
+        <p class="my-0 d-inline-block">
+            {% if grand_total %}
+                ${{ grand_total|floatformat:2 }}
+            {% else %}
+                $0.00
+            {% endif %}
+        </p>
+    </div>
 </div>

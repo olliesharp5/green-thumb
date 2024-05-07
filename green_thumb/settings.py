@@ -31,11 +31,11 @@ SECRET_KEY = 'django-insecure-2z*klumny+il@n1+2ql!m)w+(myje0!$5zr@*^s0nv3u8_4&2l
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "8000-olliesharp5-greenthumb-3r3xyl1nu4v.ws-eu113.gitpod.io", 
+    ".gitpod.io", 
     ".herokuapp.com"
 ]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-olliesharp5-greenthumb-3r3xyl1nu4v.ws-eu113.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-olliesharp5-greenthumb-3r3xyl1nu4v.ws-eu111.gitpod.io']
 
 # Application definition
 
@@ -96,6 +96,8 @@ TEMPLATES = [
         },
     },
 ]
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`

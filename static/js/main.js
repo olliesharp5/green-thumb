@@ -1,3 +1,10 @@
+var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+var toastList = toastElList.map(function (toastEl) {
+  var toast = new bootstrap.Toast(toastEl);
+  toast.show();
+  return toast;
+})
+
 function goBack() {
     window.history.back();
   }

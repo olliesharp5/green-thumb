@@ -58,3 +58,13 @@ body {
     object-fit: contain;
 }
 
+.message-container {
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+    position: fixed;
+    top: 72px;
+    right: 15px;
+}
