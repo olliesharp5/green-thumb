@@ -22,18 +22,22 @@ def add_to_cart(request, product_id):
         if str(product_id) in list(cart.keys()):
             if size in cart[str(product_id)]['items_by_size'].keys():
                 cart[str(product_id)]['items_by_size'][size] += quantity
+                messages.success(request, f'Quantity of {product.name} size {size} in your cart has been updated!')
             else:
                 cart[str(product_id)]['items_by_size'][size] = quantity
+                messages.success(request, f'{product.name} size {size} has been added to your cart!')
         else:
             cart[str(product_id)] = {'items_by_size': {size: quantity}}
+            messages.success(request, f'{product.name} size {size} has been added to your cart!')
     else:
         if str(product_id) in list(cart.keys()):
             cart[str(product_id)] += quantity
+            messages.success(request, f'Quantity of {product.name} in your cart has been updated!')
         else:
             cart[str(product_id)] = quantity
+            messages.success(request, f'{product.name} has been added to your cart!')
 
     request.session['cart'] = cart
-    messages.success(request, f'{product.name} has been added to your cart!')
     return redirect('product_detail', product_id=product_id)
 
 
@@ -47,8 +51,10 @@ def update_cart(request, product_id):
         if isinstance(cart[str(product_id)], dict) and 'items_by_size' in cart[str(product_id)]:
             if size in cart[str(product_id)]['items_by_size']:
                 cart[str(product_id)]['items_by_size'][size] = quantity
+                messages.success(request, f'Quantity of {product.name} size {size} in your cart has been updated!')
         else:
             cart[str(product_id)] = quantity
+            messages.success(request, f'Quantity of {product.name} in your cart has been updated!')
 
     request.session['cart'] = cart
     return redirect('cart_view')
@@ -63,11 +69,13 @@ def remove_from_cart(request, product_id):
         if isinstance(cart[str(product_id)], dict) and 'items_by_size' in cart[str(product_id)]:
             if size in cart[str(product_id)]['items_by_size']:
                 del cart[str(product_id)]['items_by_size'][size]
+                messages.success(request, f'{product.name} size {size} has been removed from your cart!')
                 # If there are no other sizes for this product, remove the product entry
                 if not cart[str(product_id)]['items_by_size']:
                     del cart[str(product_id)]
         else:
             del cart[str(product_id)]
+            messages.success(request, f'{product.name} has been removed from your cart!')
 
     request.session['cart'] = cart
     return redirect('cart_view')
