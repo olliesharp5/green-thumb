@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+
 
 from products.models import Product
 
@@ -38,8 +40,10 @@ def add_to_cart(request, product_id):
             messages.success(request, f'{product.name} has been added to your cart!')
 
     request.session['cart'] = cart
-    return redirect('product_detail', product_id=product_id)
-
+    if request.POST.get('from_product_page') == 'true':
+        return redirect('product_detail', product_id=product_id)
+    else:
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 def update_cart(request, product_id):
     product = get_object_or_404(Product, pk=product_id)

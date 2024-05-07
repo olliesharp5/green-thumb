@@ -14,6 +14,7 @@ $('.dropdown').hover(function(){
 function goBack() {
     window.history.back();
   }
+  
 
   document.querySelectorAll('.button-plus').forEach(function(button) {
     button.addEventListener('click', incrementValue);
