@@ -66,20 +66,9 @@ body {
 }
 
 .custom-toast {
+    z-index: 99999999999;
     overflow: visible;
     position: fixed;
     top: 72px;
     right: 15px;
-}
-
-.wishlist-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.card:hover .wishlist-icon {
-    opacity: 1;
 }

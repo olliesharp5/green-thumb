@@ -30,7 +30,7 @@
                         <tr>
                             <td class="p-3 w-25">
                                 <img class="img-fluid rounded" src="{% static 'images/placeholder_image.png' %}">
-                                <p><strong>{{ item.product.name }}</strong></p>
+                                <a href="{% url 'product_detail' item.product.id %}"><strong>{{ item.product.name }}</strong></a>
                                 <p><strong>Size:
                                     </strong>{% if item.product.has_size %}{{ item.size|upper }}{% else %}N/A{% endif %}
                                 </p>
