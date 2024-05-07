@@ -30,14 +30,27 @@
                         <tr>
                             <td class="p-3 w-25">
                                 <img class="img-fluid rounded" src="{% static 'images/placeholder_image.png' %}">
-                            </td>
-                            <td>
                                 <p><strong>{{ item.product.name }}</strong></p>
-                                <p><strong>Size: </strong>{% if item.product.has_size %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                <p><strong>Size:
+                                    </strong>{% if item.product.has_size %}{{ item.size|upper }}{% else %}N/A{% endif %}
+                                </p>
                                 <p class="small text-muted">SKU: {{ item.product.sku|upper }}</p>
                             </td>
                             <td>{{ item.product.price }}</td>
-                            <td>{{ item.quantity }}</td>
+                            <td>
+                                <form method="POST" action="{% url 'update_cart' item.product_id %}">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <button class="btn btn-outline-secondary button-minus" type="button">-</button>
+                                        <input type="number" name="quantity" class="form-control quantity"
+                                            placeholder="Quantity" aria-label="Quantity"
+                                            aria-describedby="button-addon2" value="{{ item.quantity }}">
+                                        <button class="btn btn-outline-secondary button-plus" type="button">+</button>
+                                    </div>
+                                    <input type="hidden" name="size" value="{{ item.size }}">
+                                    <button type="submit" class="btn btn-primary mt-2">Update</button>
+                                </form>
+                            </td>
                             <td>{{ item.total }}</td>
                             <td>
                                 <a href="#" class="btn btn-danger btn-sm">
@@ -52,9 +65,10 @@
                                 <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
                                 <h4 class="mt-4"><strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong></h4>
                                 {% if free_delivery_delta > 0 %}
-                                    <p class="mb-1 text-danger">
-                                        You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong> more!
-                                    </p>
+                                <p class="mb-1 text-danger">
+                                    You could get free delivery by spending just
+                                    <strong>${{ free_delivery_delta }}</strong> more!
+                                </p>
                                 {% endif %}
                             </td>
                         </tr>

@@ -32,3 +32,20 @@ def add_to_cart(request, product_id):
 
     request.session['cart'] = cart
     return redirect('product_detail', product_id=product_id)
+
+
+def update_cart(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    quantity = int(request.POST.get('quantity'))
+    size = str(request.POST.get('size'))  # Convert size to string
+    cart = request.session.get('cart', {})
+
+    if str(product_id) in list(cart.keys()):
+        if isinstance(cart[str(product_id)], dict) and 'items_by_size' in cart[str(product_id)]:
+            if size in cart[str(product_id)]['items_by_size']:
+                cart[str(product_id)]['items_by_size'][size] = quantity
+        else:
+            cart[str(product_id)] = quantity
+
+    request.session['cart'] = cart
+    return redirect('cart_view')
