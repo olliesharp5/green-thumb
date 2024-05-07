@@ -5,6 +5,12 @@ var toastList = toastElList.map(function (toastEl) {
   return toast;
 })
 
+
+$('.dropdown').hover(function(){ 
+    $('.dropdown-toggle', this).trigger('click'); 
+  });
+
+
 function goBack() {
     window.history.back();
   }

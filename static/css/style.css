@@ -4,6 +4,9 @@ body {
   min-height: 100vh;
 }
 
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
 
 
 .carousel-item img {
@@ -67,4 +70,16 @@ body {
     position: fixed;
     top: 72px;
     right: 15px;
+}
+
+.wishlist-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .wishlist-icon {
+    opacity: 1;
 }
