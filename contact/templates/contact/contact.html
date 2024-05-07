@@ -2,9 +2,38 @@
 {% load static %}
 
 {% block content %}
-
 <div class="container">
-    <h2>Contact Page</h2>
+    <h1>Contact Us</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="full_name" class="form-label">Full Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="full_name" name="full_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject<span class="text-danger">*</span></label>
+            <select class="form-select" id="subject" name="subject" required>
+                <option selected disabled value="">Choose...</option>
+                <option value="order_status">Where's my order?</option>
+                <option value="report_issue">Report an issue</option>
+                <option value="product_question">Product question</option>
+                <option value="order_change">Cancel or amend order</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message<span class="text-danger">*</span></label>
+            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="file_upload" class="form-label">Attach a file<span class="text-danger">*</span></label>
+            <input class="form-control" type="file" id="file_upload" name="file_upload" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 </div>
-
 {% endblock %}
