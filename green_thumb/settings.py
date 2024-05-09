@@ -60,6 +60,8 @@ INSTALLED_APPS = [
     'contact',
     'checkout',
     'crispy_forms',
+    'crispy_bootstrap5',
+    'mathfilters',
 ]
 
 SITE_ID = 1
@@ -80,6 +82,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'green_thumb.urls'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 TEMPLATES = [
