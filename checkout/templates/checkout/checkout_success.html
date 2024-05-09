@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2>Order Successfully Processed</h2>
+            <p>Thank you for your order. Your order number is {{ order.order_number }}.</p>
+            <p>We have sent a confirmation email to {{ order.email }}.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <a href="{% url 'products' %}" class="btn btn-primary">Continue Shopping</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
