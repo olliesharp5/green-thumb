@@ -16,35 +16,47 @@ function goBack() {
   }
   
 
-  document.querySelectorAll('.button-plus').forEach(function(button) {
-    button.addEventListener('click', incrementValue);
+document.querySelectorAll('.btn-outline-secondary').forEach(function(button) {
+    if(button.id === 'button-plus' || button.classList.contains('button-plus')) {
+        button.addEventListener('click', incrementValue);
+    } else if(button.id === 'button-minus' || button.classList.contains('button-minus')) {
+        button.addEventListener('click', decrementValue);
+    }
 });
 
-document.querySelectorAll('.button-minus').forEach(function(button) {
-    button.addEventListener('click', decrementValue);
-});
-
-document.querySelectorAll('.quantity').forEach(function(input) {
-    input.addEventListener('change', validateQuantity);
+document.querySelectorAll('input[type="number"]').forEach(function(input) {
+    if(input.name === 'quantity' || input.classList.contains('quantity')) {
+        input.addEventListener('change', validateQuantity);
+    }
 });
 
 function incrementValue(event) {
     var input = event.target.previousElementSibling;
-    var value = parseInt(input.value, 10);
-    value = isNaN(value) ? 0 : value;
-    if(value < 15) {
-        value++;
-        input.value = value;
+    while(input && (input.type !== 'number' || (input.name !== 'quantity' && !input.classList.contains('quantity')))) {
+        input = input.previousElementSibling;
+    }
+    if(input) {
+        var value = parseInt(input.value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value < 15) {
+            value++;
+            input.value = value;
+        }
     }
 }
 
 function decrementValue(event) {
     var input = event.target.nextElementSibling;
-    var value = parseInt(input.value, 10);
-    value = isNaN(value) ? 0 : value;
-    if(value > 1) {
-        value--;
-        input.value = value;
+    while(input && (input.type !== 'number' || (input.name !== 'quantity' && !input.classList.contains('quantity')))) {
+        input = input.nextElementSibling;
+    }
+    if(input) {
+        var value = parseInt(input.value, 10);
+        value = isNaN(value) ? 0 : value;
+        if(value > 1) {
+            value--;
+            input.value = value;
+        }
     }
 }
 
