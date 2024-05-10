@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from checkout.models import Order
 from products.models import Product
 from .models import UserProfile, Wishlist
 
@@ -9,8 +10,11 @@ from .models import UserProfile, Wishlist
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     wishlist = Wishlist.objects.get(user=user_profile)
+    orders = Order.objects.filter(email=request.user.email)
     context = {
         'wishlist': wishlist,
+        'orders': orders,
+        'user_profile': user_profile,
     }
     return render(request, 'profiles/profile.html', context)
 

@@ -5,6 +5,7 @@ from django.conf import settings
 
 from products.models import Product
 from cart.contexts import cart_contents
+from profiles.models import UserProfile
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 
@@ -128,6 +129,18 @@ def checkout_success(request, order_number):
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
+    if save_info:
+        profile, created = UserProfile.objects.get_or_create(user=request.user)
+        profile.default_phone_number = order.phone_number
+        profile.default_street_address1 = order.street_address1
+        profile.default_street_address2 = order.street_address2
+        profile.default_town_or_city = order.town_or_city
+        profile.default_county = order.county
+        profile.default_postcode = order.postcode
+        profile.default_country = order.country
+        profile.save()
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')

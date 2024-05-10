@@ -20,54 +20,82 @@
       <!-- Add more personal information here -->
     </div>
     <div class="col-md-6 border-start position-relative">
-      <!-- Add position-relative class here -->
       <h2 class="text-center">Default Delivery Information</h2>
-      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2"></i> <!-- Add edit icon here -->
-      <!-- Add default delivery information here -->
+      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2"></i>
+      <p>Phone Number: {{ user_profile.default_phone_number }}</p>
+      <p>Street Address: {{ user_profile.default_street_address1 }} {{ user_profile.default_street_address2 }}</p>
+      <p>Town or City: {{ user_profile.default_town_or_city }}</p>
+      <p>County: {{ user_profile.default_county }}</p>
+      <p>Postcode: {{ user_profile.default_postcode }}</p>
+      <p>Country: {{ user_profile.default_country }}</p>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2>Order History</h2>
+        {% if orders %}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Order Number</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">Line Items</th>
+              <th scope="col">Order Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+            <tr>
+              <td>{{ order.order_number }}</td>
+              <td>{{ order.date }}</td>
+              <td>
+                {% for item in order.lineitems.all %}
+                <p>{{ item.product.name }} {% if item.product_size %}(Size: {{ item.product_size }}){% endif %}
+                  (Quantity: {{ item.quantity }})</p>
+                {% endfor %}
+              </td>
+              <td>{{ order.order_total }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>You have no previous orders.</p>
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
 
-<hr>
-
-<div class="row mt-5">
-  <div class="col-md-12">
-    <h2>Order History</h2>
-    <!-- Add order history here -->
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <h2>Wishlist</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in wishlist.products.all %}
+          <tr>
+            <td><img src="{% static 'images/placeholder_image.png' %}" alt="{{ product.name }}"
+                class="img-fluid wishlist-image"></td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="4">No products in wishlist.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
-</div>
-
-<div class="row mt-5">
-  <div class="col-md-12">
-    <h2>Wishlist</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Image</th>
-          <th scope="col">Name</th>
-          <th scope="col">Description</th>
-          <th scope="col">Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for product in wishlist.products.all %}
-        <tr>
-          <td><img src="{% static 'images/placeholder_image.png' %}" alt="{{ product.name }}"
-              class="img-fluid wishlist-image"></td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.description }}</td>
-          <td>{{ product.price }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-          <td colspan="4">No products in wishlist.</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-</div>
 </div>
 
 {% endblock %}
