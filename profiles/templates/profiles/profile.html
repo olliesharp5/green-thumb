@@ -6,6 +6,7 @@
 <div class="container mt-5">
   <div class="row">
     <h1 class="text-center">Your Profile</h1>
+    {% include 'profiles/profile_modals.html' %}
   </div>
 
   <hr>
@@ -13,14 +14,14 @@
   <div class="row">
     <div class="col-md-6 position-relative">
       <h2 class="text-center">Personal Information</h2>
-      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2"></i>
+      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal" data-bs-target="#personalInfoModal"></i>
       <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
       <p>Email: {{ user.email }}</p>
-      <p>Phone Number: {{ user_profile.default_phone_number }}</p>
     </div>
     <div class="col-md-6 border-start position-relative">
       <h2 class="text-center">Default Delivery Information</h2>
-      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2"></i>
+      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal" data-bs-target="#deliveryInfoModal"></i>
+      <p>Phone Number: {{ user_profile.default_phone_number }}</p>
       <p>Street Address: {{ user_profile.default_street_address1 }} {{ user_profile.default_street_address2 }}</p>
       <p>Town or City: {{ user_profile.default_town_or_city }}</p>
       <p>County:

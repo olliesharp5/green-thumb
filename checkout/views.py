@@ -54,6 +54,9 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
+            # Add the user_profile to the order
+            profile, created = UserProfile.objects.get_or_create(user=request.user)
+            order.user_profile = profile
             order.save()
             for item_id, item_data in cart.items():
                 try:
@@ -106,8 +109,27 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
             metadata={'cart': json.dumps(cart)},
         )
+        
+        if request.user.is_authenticated:
+            # Get the user's profile
+            user_profile = UserProfile.objects.get(user=request.user)
+            # Create a dictionary with the user's saved information
+            form_data = {
+                'full_name': request.user.first_name + ' ' + request.user.last_name,
+                'email': request.user.email,
+                'phone_number': user_profile.default_phone_number,
+                'country': user_profile.default_country,
+                'postcode': user_profile.default_postcode,
+                'town_or_city': user_profile.default_town_or_city,
+                'street_address1': user_profile.default_street_address1,
+                'street_address2': user_profile.default_street_address2,
+                'county': user_profile.default_county,
+            }
+            # Create an instance of the form with the user's saved information
+            order_form = OrderForm(initial=form_data)
+        else:
 
-        order_form = OrderForm()
+            order_form = OrderForm()
 
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
