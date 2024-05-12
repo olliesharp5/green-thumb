@@ -1,0 +1,22 @@
+Dear {{ order.full_name }},
+
+We are pleased to confirm your recent purchase with Green Thumb. Below are the details of your order:
+
+Order Reference: {{ order.order_number }}
+Date of Order: {{ order.date }}
+
+Total Order Amount: ${{ order.order_total }}
+Delivery Charges: ${{ order.delivery_cost }}
+Overall Total: ${{ order.grand_total }}
+
+Your order is set to be dispatched to {{ order.street_address1 }}, {{ order.town_or_city }}, {{ order.country }}.
+
+We have your contact number recorded as {{ order.phone_number }}.
+
+Should you have any inquiries, please do not hesitate to reach out to us at {{ contact_email }}.
+
+We appreciate your business!
+
+Best Regards,
+
+Green Thumb
