@@ -145,7 +145,7 @@ def checkout(request):
     return render(request, template, context)
 
 
-def checkout_success(request, order_number):
+def checkout_success(request, order_number, source=None):
     """
     Handle successful checkouts
     """
@@ -163,9 +163,10 @@ def checkout_success(request, order_number):
         profile.default_country = order.country
         profile.save()
 
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+    if source != 'profile':
+        messages.success(request, f'Order successfully processed! \
+            Your order number is {order_number}. A confirmation \
+            email will be sent to {order.email}.')
 
     if 'cart' in request.session:
         del request.session['cart']
