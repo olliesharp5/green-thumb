@@ -40,6 +40,9 @@ def product_detail(request, product_id):
         user_profile = UserProfile.objects.get(user=request.user)
         wishlist, created = Wishlist.objects.get_or_create(user=user_profile)
         context['wishlist'] = wishlist
+        if request.user.is_superuser:
+            form = ProductForm(instance=product)
+            context['form'] = form
     return render(request, 'products/product_detail.html', context)
 
 
@@ -53,3 +56,26 @@ def add_product(request):
     else:
         form = ProductForm()
     return render(request, 'products/add_product.html', {'form': form})
+
+def edit_product(request, product_id):
+    if not request.user.is_superuser:
+        messages.error(request, 'Only superusers can edit products.')
+        return redirect('home')
+
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            print(form.cleaned_data)  # print form data
+            product = form.save()
+            messages.success(request, f'Successfully updated product {product.name}!')
+            return redirect('product_detail', product_id=product.id)
+    else:
+        form = ProductForm(instance=product)
+    return render(request, 'products/edit_product.html', {'form': form})
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product deleted!')
+    return redirect('home')
