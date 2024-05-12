@@ -9,7 +9,7 @@
   <div class="toast-body">
     {{ message }}
     <!-- Cart Preview -->
-    {% if grand_total %}
+    {% if cart_changed and grand_total %}
     <p class="logo-font bg-white text-black py-1">Your Cart ({{ product_count }})</p>
     <div>
       {% for item in cart_items %}

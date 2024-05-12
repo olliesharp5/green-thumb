@@ -9,6 +9,7 @@ from products.models import Product
 # Create your views here.
 def cart_view(request):
     """ A view to return the cart.html page """
+    request.session['cart_changed'] = False
     return render(request, "cart/cart.html")
 
 
@@ -40,6 +41,7 @@ def add_to_cart(request, product_id):
             messages.success(request, f'{product.name} has been added to your cart!')
 
     request.session['cart'] = cart
+    request.session['cart_changed'] = True
     if request.POST.get('from_product_page') == 'true':
         return redirect('product_detail', product_id=product_id)
     else:
@@ -61,6 +63,7 @@ def update_cart(request, product_id):
             messages.success(request, f'Quantity of {product.name} in your cart has been updated!')
 
     request.session['cart'] = cart
+    request.session['cart_changed'] = True
     return redirect('cart_view')
 
 
@@ -82,4 +85,5 @@ def remove_from_cart(request, product_id):
             messages.success(request, f'{product.name} has been removed from your cart!')
 
     request.session['cart'] = cart
+    request.session['cart_changed'] = True
     return redirect('cart_view')

@@ -5,6 +5,7 @@ from products.models import Product
 
 def cart_contents(request):
     cart = request.session.get('cart', {})
+    cart_changed = request.session.get('cart_changed', False)
 
     cart_items = []
     total = 0
@@ -52,6 +53,7 @@ def cart_contents(request):
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY_THRESHOLD,
         'grand_total': grand_total,
+        'cart_changed': cart_changed, 
     }
 
     return context

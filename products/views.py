@@ -68,6 +68,7 @@ def edit_product(request, product_id):
         if form.is_valid():
             print(form.cleaned_data)  # print form data
             product = form.save()
+            request.session['cart_changed'] = False
             messages.success(request, f'Successfully updated product {product.name}!')
             return redirect('product_detail', product_id=product.id)
     else:
@@ -76,6 +77,17 @@ def edit_product(request, product_id):
 
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    product.delete()
-    messages.success(request, 'Product deleted!')
+    cart = request.session.get('cart', {})
+
+    if str(product_id) in cart:
+        product.delete()
+        del cart[str(product_id)]
+        request.session['cart'] = cart
+        request.session['cart_changed'] = True
+        messages.success(request, 'Product deleted and removed from carts!')
+    else:
+        product.delete()
+        request.session['cart_changed'] = False
+        messages.success(request, 'Product deleted!')
+
     return redirect('home')
