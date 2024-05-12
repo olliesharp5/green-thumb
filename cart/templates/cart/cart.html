@@ -29,8 +29,15 @@
                         {% for item in cart_items %}
                         <tr>
                             <td class="p-3 w-25">
-                                <img class="img-fluid rounded" src="{% static 'images/placeholder_image.png' %}">
-                                <a href="{% url 'product_detail' item.product.id %}"><strong>{{ item.product.name }}</strong></a>
+                                {% if item.product.image %}
+                                <img class="img-fluid rounded" src="{{ item.product.image.url }}"
+                                    alt="{{ item.product.name }}">
+                                {% else %}
+                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}placeholder_image.png"
+                                    alt="{{ item.product.name }}">
+                                {% endif %}
+                                <a
+                                    href="{% url 'product_detail' item.product.id %}"><strong>{{ item.product.name }}</strong></a>
                                 <p><strong>Size:
                                     </strong>{% if item.product.has_size %}{{ item.size|upper }}{% else %}N/A{% endif %}
                                 </p>

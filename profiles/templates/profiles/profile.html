@@ -14,13 +14,15 @@
   <div class="row">
     <div class="col-md-6 position-relative">
       <h2 class="text-center">Personal Information</h2>
-      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal" data-bs-target="#personalInfoModal"></i>
+      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal"
+        data-bs-target="#personalInfoModal"></i>
       <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
       <p>Email: {{ user.email }}</p>
     </div>
     <div class="col-md-6 border-start position-relative">
       <h2 class="text-center">Default Delivery Information</h2>
-      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal" data-bs-target="#deliveryInfoModal"></i>
+      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal"
+        data-bs-target="#deliveryInfoModal"></i>
       <p>Phone Number: {{ user_profile.default_phone_number }}</p>
       <p>Street Address: {{ user_profile.default_street_address1 }} {{ user_profile.default_street_address2 }}</p>
       <p>Town or City: {{ user_profile.default_town_or_city }}</p>
@@ -83,23 +85,28 @@
         <tbody>
           {% for product in wishlist.products.all %}
           <tr>
-              <td><img src="{% static 'images/placeholder_image.png' %}" alt="{{ product.name }}"
-                  class="img-fluid wishlist-image"></td>
-              <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
-              <td>{{ product.description }}</td>
-              <td>{{ product.price }}</td>
-              <td>
-                <a href="{% url 'profiles:remove_from_wishlist' product.id 'profile' %}">
-                  <i class="fa fa-trash"></i>
+            <td>
+              {% if product.image %}
+              <img src="{{ product.image.url }}" alt="{{ product.name }}" class="wishlist-image">
+              {% else %}
+              <img src="{{ MEDIA_URL }}placeholder_image.png" alt="{{ product.name }}" class="wishlist-image">
+              {% endif %}
+            </td>
+            <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+              <a href="{% url 'profiles:remove_from_wishlist' product.id 'profile' %}">
+                <i class="fa fa-trash"></i>
               </a>
-              </td>
+            </td>
           </tr>
           {% empty %}
           <tr>
-              <td colspan="5">No products in wishlist.</td>
+            <td colspan="5">No products in wishlist.</td>
           </tr>
           {% endfor %}
-      </tbody>
+        </tbody>
       </table>
     </div>
   </div>
