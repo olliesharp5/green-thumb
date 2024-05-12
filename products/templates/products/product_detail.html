@@ -51,7 +51,7 @@
                 <button class="btn btn-outline-secondary">
                     <i class="fas fa-heart {% if product in wishlist.products.all %}text-danger{% endif %}"></i>
                     {% if product in wishlist.products.all %}
-                    <a href="{% url 'profiles:remove_from_wishlist' product.id %}" id="remove_from_wishlist">Remove from
+                    <a href="{% url 'profiles:remove_from_wishlist' product.id 'product_detail' %}" id="remove_from_wishlist">Remove from
                         Wishlist</a>
                     {% else %}
                     Add to Wishlist

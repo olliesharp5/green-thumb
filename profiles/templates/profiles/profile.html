@@ -83,18 +83,23 @@
         <tbody>
           {% for product in wishlist.products.all %}
           <tr>
-            <td><img src="{% static 'images/placeholder_image.png' %}" alt="{{ product.name }}"
-                class="img-fluid wishlist-image"></td>
-            <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
-            <td>{{ product.description }}</td>
-            <td>{{ product.price }}</td>
+              <td><img src="{% static 'images/placeholder_image.png' %}" alt="{{ product.name }}"
+                  class="img-fluid wishlist-image"></td>
+              <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.price }}</td>
+              <td>
+                <a href="{% url 'profiles:remove_from_wishlist' product.id 'profile' %}">
+                  <i class="fa fa-trash"></i>
+              </a>
+              </td>
           </tr>
           {% empty %}
           <tr>
-            <td colspan="4">No products in wishlist.</td>
+              <td colspan="5">No products in wishlist.</td>
           </tr>
           {% endfor %}
-        </tbody>
+      </tbody>
       </table>
     </div>
   </div>
