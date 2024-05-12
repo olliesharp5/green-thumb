@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.db.models import Q
 from profiles.models import Wishlist, UserProfile
 from .models import Product, Category
-from .forms import SortForm
+from .forms import SortForm, ProductForm
 
 def all_products(request):
     query = request.GET.get('q')
@@ -41,3 +41,15 @@ def product_detail(request, product_id):
         wishlist, created = Wishlist.objects.get_or_create(user=user_profile)
         context['wishlist'] = wishlist
     return render(request, 'products/product_detail.html', context)
+
+
+def add_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'The advert has been added to your site.')
+            return redirect('home')
+    else:
+        form = ProductForm()
+    return render(request, 'products/add_product.html', {'form': form})

@@ -13,6 +13,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Blog</a>
             </li>
+            {% if user.is_authenticated and user.is_superuser %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_product' %}">Add Products</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
     <div class="col-md-4 text-center">
@@ -40,9 +45,9 @@
         </a>
         <p class="my-0 d-inline-block">
             {% if grand_total %}
-                ${{ grand_total|floatformat:2 }}
+            ${{ grand_total|floatformat:2 }}
             {% else %}
-                $0.00
+            $0.00
             {% endif %}
         </p>
     </div>
