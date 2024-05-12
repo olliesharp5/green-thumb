@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'mathfilters',
+    'storages',
 ]
 
 SITE_ID = 1
@@ -183,6 +184,12 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static', 
     os.path.join(os.path.dirname(django_countries.__file__), 'static'),
 ]
+
+if 'USE_AWS' in os.environ:
+    WS_STORAGE_BUCKET_NAME = 'olliesharp5-green-thumb'
+    AWS_S3_REGION_NAME = 'eu-north-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
