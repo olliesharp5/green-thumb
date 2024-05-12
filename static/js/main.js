@@ -14,7 +14,7 @@ $('.dropdown').hover(function(){
 function goBack() {
     window.history.back();
   }
-  
+
 
 document.querySelectorAll('.btn-outline-secondary').forEach(function(button) {
     if(button.id === 'button-plus' || button.classList.contains('button-plus')) {

@@ -30,8 +30,8 @@
         {% else %}
         {% for product in products %}
         <div class="col-md-4">
-            <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
-                <div class="card mb-4 shadow-sm">
+            <div class="card mb-4 shadow-sm">
+                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
                     {% if product.image %}
                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"
                         class="card-img-top">
@@ -41,23 +41,33 @@
                     {% endif %}
                     <div class="card-body">
                         <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text"><i class="fas fa-star"></i> {{ product.rating }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">${{ product.price }}</small>
-                            {% if not product.has_size %}
-                            <form method="post" action="{% url 'add_to_cart' product.id %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="quantity" value="1">
-                                <input type="hidden" name="from_product_page" value="false">
-                                <button type="submit" class="btn btn-sm btn-outline-secondary">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </form>
+                    </div>
+                </a>
+                <div class="card-body">
+                    <p class="card-text"><i class="fas fa-star"></i> {{ product.rating }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">${{ product.price }}</small>
+                        <form method="post" action="{% url 'add_to_cart' product.id %}"
+                            class="d-flex justify-content-end">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" value="1">
+                            <input type="hidden" name="from_product_page" value="false">
+                            {% if product.has_size %}
+                            <select class="form-control rounded-0 mr-2" name="product_size">
+                                <option value="xs">XS</option>
+                                <option value="s">S</option>
+                                <option value="m" selected>M</option>
+                                <option value="l">L</option>
+                                <option value="xl">XL</option>
+                            </select>
                             {% endif %}
-                        </div>
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
-            </a>
+            </div>
         </div>
         {% endfor %}
         {% endif %}
