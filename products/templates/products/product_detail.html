@@ -11,7 +11,13 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <img src="{% static 'images/placeholder_image.png' %}" class="img-fluid" alt="{{ product.name }}">
+            {% if product.image %}
+            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"
+                class="img-fluid">
+            {% else %}
+            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}placeholder_image.png" alt="{{ product.name }}"
+                class="img-fluid">
+            {% endif %}
         </div>
         <div class="col-md-6">
             <h2>{{ product.name }}</h2>
@@ -51,7 +57,8 @@
                 <button class="btn btn-outline-secondary">
                     <i class="fas fa-heart {% if product in wishlist.products.all %}text-danger{% endif %}"></i>
                     {% if product in wishlist.products.all %}
-                    <a href="{% url 'profiles:remove_from_wishlist' product.id 'product_detail' %}" id="remove_from_wishlist">Remove from
+                    <a href="{% url 'profiles:remove_from_wishlist' product.id 'product_detail' %}"
+                        id="remove_from_wishlist">Remove from
                         Wishlist</a>
                     {% else %}
                     Add to Wishlist
