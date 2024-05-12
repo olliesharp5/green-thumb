@@ -46,7 +46,7 @@
             <p>{{ product.description }}</p>
             <p>Category: {{ product.category.name }}</p>
             <div>
-                <i class="fas fa-star"></i> {{ product.rating }}
+                <i class="fas fa-star"></i> {{ product.calculate_rating }}
             </div>
             <form method="post" action="{% url 'add_to_cart' product.id %}">
                 {% csrf_token %}
@@ -114,7 +114,11 @@
             <h3>Reviews</h3>
             {% if reviews %}
             {% for review in reviews %}
-            <p>{{ review.user }}: {{ review.comment }}</p>
+            <p><strong>{{ review.user.username }}</strong></p>
+            <p><i class="fas fa-star"></i> {{ review.rating }}</p>
+            <p><strong>{{ review.title }}</strong></p>
+            <p>{{ review.text }}</p>
+            <p>{{ review.date_added }}</p>
             {% endfor %}
             {% else %}
             <p>Be the first to review this item!</p>

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.db.models import Q
 from profiles.models import Wishlist, UserProfile
-from .models import Product, Category
+from .models import Product, Category, Review
 from .forms import SortForm, ProductForm
 
 def all_products(request):
@@ -33,8 +33,10 @@ def products_by_category(request, category_slug):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
+    reviews = product.reviews.all()
     context = {
         'product': product,
+        'reviews': reviews,
     }
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
