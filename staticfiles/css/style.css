@@ -1,0 +1,74 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+.carousel-item img {
+    height: 350px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+
+
+.tooltip-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-wrapper:hover .tooltip-content, .tooltip-content:hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-content {
+    visibility: hidden;
+    width: 200px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; 
+    left: 50%; 
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-content::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.wishlist-image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+.message-container {
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    z-index: 99999999999;
+    overflow: visible;
+    position: fixed;
+    top: 72px;
+    right: 15px;
+}
