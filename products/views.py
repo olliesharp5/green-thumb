@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.db.models import Q
+from django.views.decorators.http import require_POST
 from profiles.models import Wishlist, UserProfile
 from .models import Product, Category, Review
-from .forms import SortForm, ProductForm
+from .forms import SortForm, ProductForm, ReviewForm
 
 def all_products(request):
     query = request.GET.get('q')
@@ -45,6 +46,15 @@ def product_detail(request, product_id):
         if request.user.is_superuser:
             form = ProductForm(instance=product)
             context['form'] = form
+        try:
+            review = Review.objects.get(product=product, user=request.user)
+            review_form = ReviewForm(instance=review)  # pass the review to the form
+        except Review.DoesNotExist:
+            review_form = ReviewForm()  # if the review does not exist, create an empty form
+        context['review_form'] = review_form
+    else:
+        review_form = ReviewForm()  # if the user is not authenticated, create an empty form
+        context['review_form'] = review_form
     return render(request, 'products/product_detail.html', context)
 
 
@@ -93,3 +103,40 @@ def delete_product(request, product_id):
         messages.success(request, 'Product deleted!')
 
     return redirect('home')
+
+def create_review(request, product_id):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        print(form)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product_id = product_id
+            review.user = request.user
+            review.save()
+            return redirect('product_detail', product_id=product_id)
+    else:
+        form = ReviewForm()
+    return render(request, 'reviews/create_review.html', {'review_form': form})
+
+def update_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    print(form)
+    if request.user != review.user:
+        return HttpResponseForbidden()
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('product_detail', product_id=review.product.id)
+    else:
+        form = ReviewForm(instance=review)
+    return render(request, 'reviews/update_review.html', {'review_form': form})
+
+@require_POST
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    if request.user != review.user:
+        return HttpResponseForbidden()
+    product_id = review.product.id
+    review.delete()
+    return redirect('product_detail', product_id=product_id)

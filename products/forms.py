@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import MinValueValidator
 
-from .models import Product, Category
+from .models import Product, Category, Review
 
 class SortForm(forms.Form):
     SORT_CHOICES = [
@@ -29,3 +29,9 @@ class ProductForm(forms.ModelForm):
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
         self.fields['description'].widget.attrs.update({'class': 'form-control'})
         self.fields['image'].widget.attrs.update({'class': 'form-control-file'})
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['title', 'rating', 'text']

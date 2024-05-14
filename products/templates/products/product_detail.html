@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <button onclick="goBack()" class="btn btn-sm btn-outline-secondary mb-3">Back to Search Results</button>
         </div>
-        {% include "products/product_modals.html" %}
+        {% include "products/product_modals.html" with review_form=review_form %}
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -91,6 +91,9 @@
     <div class="row">
         <div class="col-md-12">
             <h3>Reviews</h3>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReviewModal">
+                Create Review
+            </button>
             {% if reviews %}
             {% for review in reviews %}
             <p><strong>{{ review.user.username }}</strong></p>
@@ -98,6 +101,12 @@
             <p><strong>{{ review.title }}</strong></p>
             <p>{{ review.text }}</p>
             <p>{{ review.date_added }}</p>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateReviewModal">
+                Edit Review
+            </button>
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
+                Delete Review
+            </button>
             {% endfor %}
             {% else %}
             <p>Be the first to review this item!</p>
