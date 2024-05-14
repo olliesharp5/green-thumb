@@ -10,6 +10,12 @@ SUBJECT_CHOICES = [
     ('other', 'Other'),
 ]
 
+STATUS_CHOICES = [
+        ('O', 'Open'),
+        ('P', 'In Progress'),
+        ('C', 'Closed'),
+    ]
+
 class ContactRequest(models.Model):
    
     full_name = models.CharField(max_length=200)
@@ -18,6 +24,7 @@ class ContactRequest(models.Model):
     message = models.TextField()
     file_upload = models.FileField(upload_to='', null=True, blank=True)  # upload_to is now blank
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='O')
     
     def __str__(self):
         return f"Contact request from {self.full_name}"
