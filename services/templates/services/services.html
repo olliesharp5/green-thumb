@@ -5,8 +5,8 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 p-0">
-            <div class="hero-image" style="background-image: url('{{ MEDIA_URL }}placeholder_image.png');">
-                <div class="hero-text">
+            <div class="hero-image d-flex align-items-center">
+                <div class="hero-text p-3">
                     <h1>Welcome to Green Thumb gardening services</h1>
                     <p>Lawn mowing, flowerbed clearing, leaf raking, and fruit tree pruning? We assist you whether it's
                         for individual tasks or a subscription for the entire season</p>
@@ -16,78 +16,95 @@
     </div>
 </div>
 
-<div class="container py-5">
+<div class="container services-container py-5">
     <div class="row">
-        <div class="col-12 text-center">
+        <div class="col-12 text-center mb-5">
             <h2>Our Services</h2>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-6 col-md-3 text-center">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
             <h5>Gardening</h5>
-            <p>What does this include?</p>
-            <ul>
-                <li>Tree Pruning</li>
-                <li>Hege Trimming</li>
-                <li>Weed Control</li>
-                <li>Irrigation</li>
-            </ul>
+            <div class="text-left">
+                <p>What does this include?</p>
+                <ul>
+                    <li>Tree Pruning</li>
+                    <li>Hege Trimming</li>
+                    <li>Weed Control</li>
+                    <li>Irrigation</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary mt-auto">Get a Quote</button>
         </div>
-        <div class="col-sm-6 col-md-3 text-center">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
             <h5>Lawn Care</h5>
-            <p>What does this include?</p>
-            <ul>
-                <li>Cutting Grass</li>
-                <li>Lawn renewal</li>
-                <li>Landscaping</li>
-            </ul>
+            <div class="text-left">
+                <p>What does this include?</p>
+                <ul>
+                    <li>Cutting Grass</li>
+                    <li>Lawn renewal</li>
+                    <li>Landscaping</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary mt-auto">Get a Quote</button>
         </div>
-        <div class="col-sm-6 col-md-3 text-center">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
             <h5>Holiday Service</h5>
-            <p>What does this include?</p>
-            <ul>
-                <li>We mow and water the lawn.</li>
-                <li>We water flower beds and flowerpots.</li>
-                <li>We move objects around to signal that someone is home.</li>
-            </ul>
+            <div class="text-left">
+                <p>What does this include?</p>
+                <ul>
+                    <li>We mow and water the lawn.</li>
+                    <li>We water flower beds and flowerpots.</li>
+                    <li>We move objects around to signal that someone is home.</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary mt-auto">Get a Quote</button>
         </div>
-        <div class="col-sm-6 col-md-3 text-center">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
             <h5>Seasonal Care</h5>
-            <p>What does this include?</p>
-            <ul>
-                <li>Spring cleaning</li>
-                <li>Autumn Cleaning</li>
-            </ul>
+            <div class="text-left">
+                <p>What does this include?</p>
+                <ul>
+                    <li>Spring cleaning</li>
+                    <li>Autumn Cleaning</li>
+                </ul>
+            </div>
+            <button class="btn btn-primary mt-auto">Get a Quote</button>
         </div>
     </div>
 </div>
 
-<div class="container py-5">
+<div class="container gardener-container py-5">
     <div class="row">
-        <div class="col-12 text-center">
+        <div class="col-12 text-center mb-5">
             <h2>Meet our gardeners</h2>
         </div>
     </div>
-    <div class="row text-center">
-        <div class="col-sm-6 col-md-2">
+    <div class="row text-center justify-content-center">
+        <div class="col-sm-6 col-md-2 m-2">
             <p>John</p>
-            <a href="#"><img src="{{ MEDIA_URL }}placeholder_image.png" class="rounded-circle services-profile" alt="John"></a>
+            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+                    alt="John"></a>
         </div>
-        <div class="col-sm-6 col-md-2">
+        <div class="col-sm-6 col-md-2 m-2">
             <p>Andy</p>
-            <a href="#"><img src="{{ MEDIA_URL }}placeholder_image.png" class="rounded-circle services-profile" alt="Andy"></a>
+            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+                    alt="Andy"></a>
         </div>
-        <div class="col-sm-6 col-md-2">
+        <div class="col-sm-6 col-md-2 m-2">
             <p>Jennifer</p>
-            <a href="#"><img src="{{ MEDIA_URL }}placeholder_image.png" class="rounded-circle services-profile" alt="Jennifer"></a>
+            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+                    alt="Jennifer"></a>
         </div>
-        <div class="col-sm-6 col-md-2">
+        <div class="col-sm-6 col-md-2 m-2">
             <p>Samantha</p>
-            <a href="#"><img src="{{ MEDIA_URL }}placeholder_image.png" class="rounded-circle services-profile" alt="Samantha"></a>
+            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+                    alt="Samantha"></a>
         </div>
-        <div class="col-sm-6 col-md-2">
+        <div class="col-sm-6 col-md-2 m-2">
             <p>Ben</p>
-            <a href="#"><img src="{{ MEDIA_URL }}placeholder_image.png" class="rounded-circle services-profile" alt="Ben"></a>
+            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+                    alt="Ben"></a>
         </div>
     </div>
 </div>
