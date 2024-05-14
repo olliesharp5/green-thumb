@@ -1,7 +1,5 @@
 {% load static %}
 
-
-
 <!doctype html>
 <html lang="en">
 
@@ -50,6 +48,7 @@
         <div class="row">
             {% include 'includes/top-nav.html' %}
         </div>
+        {% if request.resolver_match.url_name != 'services' %}
         <div class="row px-3">
             <div class="col-8 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'products' %}">
@@ -78,6 +77,7 @@
                 </div>
             </nav>
         </div>
+        {% endif %}
 
         {% if messages %}
         <div class="message-container">
