@@ -55,3 +55,11 @@ def remove_from_wishlist(request, product_id, from_page):
         return redirect('profiles:profile')
     else:
         return redirect('product_detail', product_id=product.id)
+
+
+def gardener_profile(request, username):
+    gardener = get_object_or_404(UserProfile, user__username=username, role='GR')
+    context = {
+        'gardener': gardener,
+    }
+    return render(request, 'profiles/gardener_profile.html', context)
