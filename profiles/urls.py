@@ -7,5 +7,4 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('add_to_wishlist/<int:product_id>/', views.add_to_wishlist, name='add_to_wishlist'),
     path('wishlist/remove/<int:product_id>/<str:from_page>/', views.remove_from_wishlist, name='remove_from_wishlist'),
-    path('gardener/<str:username>/', views.gardener_profile, name='gardener_profile'),
 ]
