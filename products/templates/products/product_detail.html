@@ -100,7 +100,7 @@
             <p>You have already reviewed this product</p>
             {% endif %}
             {% else %}
-            <p>Please log in or register to review this product</p>
+            <p>Please <a href="{% url 'account_login' %}">log in</a> or <a href="{% url 'account_signup' %}">register</a> to review this product</p>
             {% endif %}
             {% if reviews %}
             {% for review in reviews %}
