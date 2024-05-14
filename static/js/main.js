@@ -15,6 +15,15 @@ function goBack() {
     window.history.back();
   }
 
+//when the gardener checkbox is checked, the gardener fields will be displayed and marked as required. 
+//When the checkbox is not checked, the gardener fields will be hidden and not required. 
+document.getElementById('id_gardener').onchange = function() {
+    document.getElementById('gardenerFields').style.display = this.checked ? "block" : "none";
+    document.getElementById('display_name').required = this.checked;
+    document.getElementById('location').required = this.checked;
+    document.getElementById('about').required = this.checked;
+};
+
 
 document.querySelectorAll('.btn-outline-secondary').forEach(function(button) {
     if(button.id === 'button-plus' || button.classList.contains('button-plus')) {
