@@ -1,3 +1,7 @@
 Superuser
 User: olliesharp5   
 Password: greenthumb1
+
+Gardener John:
+User: gardener1
+Password: userprofilegr1

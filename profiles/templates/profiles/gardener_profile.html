@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'services' %}" class="btn btn-secondary mb-3">Back to Services</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img class="rounded-circle img-fluid mb-3" src="{% static 'images/placeholder_image.png' %}"
+                        alt="Profile Picture" width="150">
+                    
+                        <h3 class="card-title">{{ gardener.display_name }}</h3>
+                        <h4 class="card-subtitle mb-3 text-muted">{{ gardener.location }}</h4>
+                        <p class="card-text">{{ gardener.about }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

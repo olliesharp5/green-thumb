@@ -81,31 +81,13 @@
         </div>
     </div>
     <div class="row text-center justify-content-center">
+        {% for gardener in gardeners %}
         <div class="col-sm-6 col-md-2 m-2">
-            <p>John</p>
-            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+            <p>{{ gardener.display_name }}</p>
+            <a href="{% url 'profiles:gardener_profile' username=gardener.user.username %}"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
                     alt="John"></a>
         </div>
-        <div class="col-sm-6 col-md-2 m-2">
-            <p>Andy</p>
-            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
-                    alt="Andy"></a>
-        </div>
-        <div class="col-sm-6 col-md-2 m-2">
-            <p>Jennifer</p>
-            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
-                    alt="Jennifer"></a>
-        </div>
-        <div class="col-sm-6 col-md-2 m-2">
-            <p>Samantha</p>
-            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
-                    alt="Samantha"></a>
-        </div>
-        <div class="col-sm-6 col-md-2 m-2">
-            <p>Ben</p>
-            <a href="#"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
-                    alt="Ben"></a>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

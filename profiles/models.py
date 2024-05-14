@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=2, choices=USER_ROLES, default='RU')
     display_name = models.CharField(max_length=100, null=True, blank=True, unique=True)
     location = models.TextField()
-    # profile_image = CloudinaryField('profile_image', default='profile_placeholder')
+    profile_image = models.ImageField(null=True, blank=True)
     about = models.TextField()
 
     default_phone_number = models.CharField(max_length=20, null=True, blank=True)
