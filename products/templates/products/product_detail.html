@@ -91,9 +91,17 @@
     <div class="row">
         <div class="col-md-12">
             <h3>Reviews</h3>
+            {% if user.is_authenticated %}
+            {% if not user_has_reviewed %}
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReviewModal">
                 Create Review
             </button>
+            {% else %}
+            <p>You have already reviewed this product</p>
+            {% endif %}
+            {% else %}
+            <p>Please log in or register to review this product</p>
+            {% endif %}
             {% if reviews %}
             {% for review in reviews %}
             <p><strong>{{ review.user.username }}</strong></p>
@@ -101,14 +109,16 @@
             <p><strong>{{ review.title }}</strong></p>
             <p>{{ review.text }}</p>
             <p>{{ review.date_added }}</p>
+            {% if user.is_authenticated and user == review.user %}
             <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateReviewModal">
                 Edit Review
             </button>
             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
                 Delete Review
             </button>
+            {% endif %}
             {% endfor %}
-            {% else %}
+            {% elif user.is_authenticated %}
             <p>Be the first to review this item!</p>
             {% endif %}
         </div>

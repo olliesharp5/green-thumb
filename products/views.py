@@ -35,6 +35,7 @@ def products_by_category(request, category_slug):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     reviews = product.reviews.all()
+    user_has_reviewed = False
     context = {
         'product': product,
         'reviews': reviews,
@@ -49,12 +50,14 @@ def product_detail(request, product_id):
         try:
             review = Review.objects.get(product=product, user=request.user)
             review_form = ReviewForm(instance=review)  # pass the review to the form
+            user_has_reviewed = True
         except Review.DoesNotExist:
             review_form = ReviewForm()  # if the review does not exist, create an empty form
         context['review_form'] = review_form
     else:
         review_form = ReviewForm()  # if the user is not authenticated, create an empty form
         context['review_form'] = review_form
+    context['user_has_reviewed'] = user_has_reviewed
     return render(request, 'products/product_detail.html', context)
 
 
