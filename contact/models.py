@@ -22,7 +22,7 @@ class ContactRequest(models.Model):
     email = models.EmailField()
     subject = models.CharField(max_length=200, choices=SUBJECT_CHOICES)
     message = models.TextField()
-    file_upload = models.FileField(upload_to='', null=True, blank=True)  # upload_to is now blank
+    file_upload = models.FileField(upload_to='uploads/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='O')
     

@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from checkout.models import Order
 from products.models import Product
+
+from contact.models import ContactRequest
 from .models import UserProfile, Wishlist
 from .forms import UserForm, UserProfileForm
 
@@ -10,6 +12,7 @@ from .forms import UserForm, UserProfileForm
 @login_required
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
+    contact_requests = ContactRequest.objects.filter(email=request.user.email)
     if request.method == 'POST':
         if 'first_name' in request.POST:
             user_form = UserForm(request.POST, instance=request.user)
@@ -35,6 +38,7 @@ def profile(request):
         'wishlist': wishlist,
         'orders': orders,
         'user_profile': user_profile,
+        'contact_requests': contact_requests,
     }
     return render(request, 'profiles/profile.html', context)
 
