@@ -54,7 +54,7 @@
                 <img src="{{ MEDIA_URL }}placeholder_image.png" class="card-img" alt="Seeds">
                 <div class="card-img-overlay">
                     <h5 class="card-title">Best Sellers</h5>
-                    <a href="#" class="btn btn-light">Shop Now</a>
+                    <a href="{% url 'products' %}?sort_by=best_selling" class="btn btn-light">Shop Now</a>
                 </div>
             </div>
         </div>

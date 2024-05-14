@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.views.decorators.http import require_POST
 from profiles.models import Wishlist, UserProfile
 from .models import Product, Category, Review
@@ -13,12 +13,15 @@ def all_products(request):
         sort_by = '-date_added' 
     elif sort_by == 'highest_rating':
         sort_by = '-rating'  
+    elif sort_by == 'best_selling':
+        sort_by = '-sales_count'
     if query:
-        products = Product.objects.filter(name__icontains=query).order_by(sort_by)
+        products = Product.objects.filter(name__icontains=query)
     else:
-        products = Product.objects.all().order_by(sort_by)
-        if 'q' in request.GET:  # Check if 'q' parameter is in the request
-            messages.error(request, 'Please enter a search term.')  # Error message
+        products = Product.objects.all()
+    products = products.annotate(sales_count=Count('orderlineitem')).order_by(sort_by)
+    if 'q' in request.GET:  # Check if 'q' parameter is in the request
+        messages.error(request, 'Please enter a search term.')  # Error message
     form = SortForm(request.GET)
     return render(request, 'products/products.html', {'products': products, 'form': form})
 
