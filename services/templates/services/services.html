@@ -84,7 +84,7 @@
         {% for gardener in gardeners %}
         <div class="col-sm-6 col-md-2 m-2">
             <p>{{ gardener.display_name }}</p>
-            <a href="{% url 'profiles:gardener_profile' username=gardener.user.username %}"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+            <a href="{% url 'gardener_profile' username=gardener.user.username %}"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
                     alt="John"></a>
         </div>
         {% endfor %}
