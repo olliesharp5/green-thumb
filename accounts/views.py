@@ -17,6 +17,7 @@ def register(request):
                     gardener_profile.user = user
                     gardener_profile.role = 'GR'
                     gardener_profile.save()
+                    Wishlist.objects.create(user=gardener_profile)  # Create Wishlist for gardener
                 else:
                     # Handle the case where the gardener form is not valid
                     return render(request, 'accounts/register.html', {'user_form': user_form, 'gardener_form': gardener_form})

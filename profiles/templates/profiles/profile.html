@@ -12,12 +12,34 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-6 position-relative">
-      <h2 class="text-center">Personal Information</h2>
-      <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal"
-        data-bs-target="#personalInfoModal"></i>
-      <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
-      <p>Email: {{ user.email }}</p>
+    <div class="col-md-6">
+      <div class="position-relative">
+        <h2 class="text-center">Personal Information</h2>
+        <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal"
+          data-bs-target="#personalInfoModal"></i>
+        <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+      </div>
+      {% if user_profile.role == 'GR' %}
+      <hr>
+      <div class="position-relative">
+        <h2 class="text-center">Gardener Profile</h2>
+        <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal"
+          data-bs-target="#gardenerProfileModal"></i>
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{% static 'images/placeholder_image.png' %}" alt="Profile Image"
+              class="rounded-circle services-profile">
+          </div>
+          <div class="col-md-6">
+            <br>
+            <p>Display Name: {{ user_profile.display_name }}</p>
+            <p>Location: {{ user_profile.location }}</p>
+            <p>About: {{ user_profile.about }}</p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
     </div>
     <div class="col-md-6 border-start position-relative">
       <h2 class="text-center">Default Delivery Information</h2>
@@ -36,6 +58,7 @@
 
   <div class="row mt-5">
     <div class="col-md-12">
+      <hr>
       <h2>Order History</h2>
       {% if orders %}
       <table class="table table-striped">
@@ -72,6 +95,7 @@
 
   <div class="row mt-5">
     <div class="col-md-12">
+      <hr>
       <h2>Wishlist</h2>
       <table class="table">
         <thead>
@@ -112,6 +136,7 @@
   </div>
   <div class="row mt-5">
     <div class="col-md-12">
+      <hr>
       <h2>Customer Service Requests</h2>
       <table class="table">
         <thead>
@@ -131,16 +156,15 @@
             <td>{{ request.email }}</td>
             <td>{{ request.get_subject_display }}</td>
             <td>{{ request.message }}</td>
-            <td class="{% if request.status == 'O' %}text-primary{% elif request.status == 'P' %}text-warning{% else %}text-success{% endif %}">
+            <td
+              class="{% if request.status == 'O' %}text-primary{% elif request.status == 'P' %}text-warning{% else %}text-success{% endif %}">
               {{ request.get_status_display }}
             </td>
             <td>
               {% if "day" in request.created_at|timesince %}
-                {{ request.created_at|timesince }} ago
+              {{ request.created_at|timesince }} ago
               {% else %}
-                <0 days
-              {% endif %}
-            </td>
+              <0 days {% endif %} </td>
           </tr>
           {% empty %}
           <tr>
