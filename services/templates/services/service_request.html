@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Service Request</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="full_name" class="form-label">Full Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="full_name" name="full_name"
+                value="{{ user.first_name }} {{ user.last_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="services" class="form-label">Services<span class="text-danger">*</span></label>
+            {% for service in services %}
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="{{ service.id }}"
+                    id="service{{ forloop.counter }}" name="services">
+                <label class="form-check-label" for="service{{ forloop.counter }}">
+                    {{ service.get_name_display }}
+                </label>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="file_upload" class="form-label">Attach a file</label>
+            <input class="form-control" type="file" id="file_upload" name="file_upload" multiple>
+        </div>
+        <div class="mb-3">
+            <label for="date_required" class="form-label">Date Required<span class="text-danger">*</span></label>
+            <input type="date" class="form-control" id="date_required" name="date_required" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

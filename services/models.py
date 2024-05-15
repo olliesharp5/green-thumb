@@ -30,7 +30,7 @@ class ServiceRequest(models.Model):
     date_required = models.DateField(help_text='Date when the service is required')
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default='O')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     
     def __str__(self):
-        return f"Contact request from {self.user}"
+        return f"Service request from {self.full_name}"
