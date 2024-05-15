@@ -5,7 +5,7 @@ from products.models import Product
 
 from contact.models import ContactRequest
 from .models import UserProfile, Wishlist
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, UserProfileForm, GardenerProfileForm
 
 # Create your views here.
 
@@ -27,14 +27,23 @@ def profile(request):
                 user_profile_form.save()
         else:
             user_profile_form = UserProfileForm(instance=user_profile)
+
+        if 'display_name' in request.POST:
+            gardener_profile_form = GardenerProfileForm(request.POST, request.FILES, instance=user_profile)
+            if gardener_profile_form.has_changed() and gardener_profile_form.is_valid():
+                gardener_profile_form.save()
+        else:
+            gardener_profile_form = GardenerProfileForm(instance=user_profile)
     else:
         user_form = UserForm(instance=request.user)
         user_profile_form = UserProfileForm(instance=user_profile)
+        gardener_profile_form = GardenerProfileForm(instance=user_profile)
     wishlist = Wishlist.objects.get(user=user_profile)
     orders = Order.objects.filter(user_profile=user_profile)
     context = {
         'user_form': user_form,
         'user_profile_form': user_profile_form,
+        'gardener_profile_form': gardener_profile_form, 
         'wishlist': wishlist,
         'orders': orders,
         'user_profile': user_profile,

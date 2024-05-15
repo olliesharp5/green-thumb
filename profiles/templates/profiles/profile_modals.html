@@ -39,3 +39,23 @@
         </div>
     </div>
 </div>
+
+<!-- Gardener Information Modal -->
+<div class="modal fade" id="gardenerInfoModal" tabindex="-1" aria-labelledby="gardenerInfoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="gardenerInfoModalLabel">Edit Gardener Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ gardener_profile_form|crispy }}
+                    <button type="submit">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
