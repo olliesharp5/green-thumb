@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 from checkout.models import Order
 from products.models import Product
 
@@ -50,6 +51,15 @@ def profile(request):
         'contact_requests': contact_requests,
     }
     return render(request, 'profiles/profile.html', context)
+
+
+@login_required
+def delete_profile(request):
+    user = request.user
+    user.delete()
+    logout(request)
+    return redirect('home')
+    messages.success(request, 'User successfully deleted!')
 
     
 def add_to_wishlist(request, product_id):

@@ -30,5 +30,4 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path('checkout/', include('checkout.urls')),
     path('services/', include('services.urls')),
-    # path('blog/', include('blog.urls')),
 ]
