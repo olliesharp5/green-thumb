@@ -9,6 +9,9 @@ class SortForm(forms.Form):
         ('price', 'Price Low to High'),
         ('-price', 'Price High to Low'),
         ('-rating', 'Rating'),
+        ('recent', 'Recently Added'),
+        ('highest_rating', 'Highest Rating'),
+        ('best_selling', 'Best Selling'),
     ]
 
     sort_by = forms.ChoiceField(choices=SORT_CHOICES, required=False, widget=forms.Select(attrs={'onchange': 'this.form.submit();'}))
