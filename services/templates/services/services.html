@@ -34,9 +34,6 @@
                     <li>Irrigation</li>
                 </ul>
             </div>
-            <a href="{% url 'service_request' %}">
-                <button class="btn btn-primary mt-auto">Get a Quote</button>
-            </a>
         </div>
         <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
             <h5>Lawn Care</h5>
@@ -48,7 +45,6 @@
                     <li>Landscaping</li>
                 </ul>
             </div>
-            <button class="btn btn-primary mt-auto">Get a Quote</button>
         </div>
         <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
             <h5>Holiday Service</h5>
@@ -60,7 +56,6 @@
                     <li>We move objects around to signal that someone is home.</li>
                 </ul>
             </div>
-            <button class="btn btn-primary mt-auto">Get a Quote</button>
         </div>
         <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
             <h5>Seasonal Care</h5>
@@ -71,7 +66,13 @@
                     <li>Autumn Cleaning</li>
                 </ul>
             </div>
-            <button class="btn btn-primary mt-auto">Get a Quote</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center mt-5">
+            <a href="{% url 'service_request' %}">
+                <button class="btn btn-primary btn-lg">Get a Quote</button>
+            </a>
         </div>
     </div>
 </div>
@@ -86,7 +87,8 @@
         {% for gardener in gardeners %}
         <div class="col-sm-6 col-md-2 m-2">
             <p>{{ gardener.display_name }}</p>
-            <a href="{% url 'gardener_profile' username=gardener.user.username %}"><img src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
+            <a href="{% url 'gardener_profile' username=gardener.user.username %}"><img
+                    src="{% static 'images/placeholder_image.png' %}" class="rounded-circle services-profile"
                     alt="John"></a>
         </div>
         {% endfor %}
