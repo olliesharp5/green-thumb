@@ -5,6 +5,7 @@ from checkout.models import Order
 from products.models import Product
 
 from contact.models import ContactRequest
+from services.models import ServiceRequest
 from .models import UserProfile, Wishlist
 from .forms import UserForm, UserProfileForm, GardenerProfileForm
 
@@ -14,6 +15,7 @@ from .forms import UserForm, UserProfileForm, GardenerProfileForm
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
     contact_requests = ContactRequest.objects.filter(email=request.user.email)
+    service_requests = ServiceRequest.objects.filter(user=request.user)  
     if request.method == 'POST':
         if 'first_name' in request.POST:
             user_form = UserForm(request.POST, instance=request.user)
@@ -49,6 +51,7 @@ def profile(request):
         'orders': orders,
         'user_profile': user_profile,
         'contact_requests': contact_requests,
+        'service_requests': service_requests,
     }
     return render(request, 'profiles/profile.html', context)
 

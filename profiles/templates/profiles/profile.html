@@ -168,7 +168,7 @@
               {% if "day" in request.created_at|timesince %}
               {{ request.created_at|timesince }} ago
               {% else %}
-              <0 days {% endif %} </td>
+              <1 day {% endif %} </td>
           </tr>
           {% empty %}
           <tr>
@@ -179,6 +179,55 @@
       </table>
     </div>
   </div>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <hr>
+      <h2>Service Requests</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Services</th>
+            <th scope="col">Message</th>
+            <th scope="col">Date Required</th>
+            <th scope="col">Status</th>
+            <th scope="col">Days Since Submitted</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for request in service_requests %}
+          <tr>
+            <td>{{ request.full_name }}</td>
+            <td>{{ request.email }}</td>
+            <td>
+              {% for service in request.services.all %}
+                {% if not forloop.first %}, {% endif %}
+                {{ service.get_name_display }}
+              {% endfor %}
+            </td>
+            <td>{{ request.message }}</td>
+            <td>{{ request.date_required }}</td>
+            <td
+              class="{% if request.status == 'O' %}text-primary{% elif request.status == 'P' %}text-warning{% else %}text-success{% endif %}">
+              {{ request.get_status_display }}
+            </td>
+            <td>
+              {% if "day" in request.created_at|timesince %}
+              {{ request.created_at|timesince }} ago
+              {% else %}
+              <1 day {% endif %} </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7">No service requests.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
 </div>
 
 {% endblock %}

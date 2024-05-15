@@ -48,7 +48,7 @@
         <div class="row">
             {% include 'includes/top-nav.html' %}
         </div>
-        {% if request.resolver_match.url_name != 'services' and request.resolver_match.url_name != 'gardener_profile' %}
+        {% if request.resolver_match.url_name != 'services' and request.resolver_match.url_name != 'gardener_profile' and request.resolver_match.url_name != 'service_request' %}
         <div class="row px-3">
             <div class="col-8 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'products' %}">
