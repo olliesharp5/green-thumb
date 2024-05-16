@@ -1,17 +1,17 @@
 <div class="row align-items-center">
     <div class="col-md-4">
         <ul class="nav">
-            <li class="nav-item">
+            <li class="nav-item top-nav-item">
                 <a class="nav-link" href="{% url 'home' %}">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item top-nav-item">
                 <a class="nav-link" href="{% url 'about' %}">About</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item top-nav-item">
                 <a class="nav-link" href="{% url 'contact' %}">Contact</a>
             </li>
             {% if user.is_authenticated and user.is_superuser %}
-            <li class="nav-item">
+            <li class="nav-item top-nav-item">
                 <a class="nav-link" href="{% url 'add_product' %}">Add Products</a>
             </li>
             {% endif %}
@@ -20,10 +20,10 @@
     <div class="col-md-4 text-center">
         <h1 class="mb-0">Green Thumb</h1>
     </div>
-    <div class="col-md-4 text-end">
-        <div class="dropdown d-inline-block">
-            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
-                aria-expanded="false">
+    <div class="col-md-4 text-end d-flex align-items-center justify-content-end">
+        <div class="dropdown me-3">
+            <button class="btn btn-link dropdown-toggle account-dropdown" type="button" id="dropdownMenuButton"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 My Account
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -42,15 +42,15 @@
                 {% endif %}
             </ul>
         </div>
-        <a class="btn btn-black border border-black rounded-0 d-inline-block" href="{% url 'cart_view' %}">
+        <a class="cart-button" href="{% url 'cart_view' %}">
             <i class="fas fa-shopping-cart"></i>
+            <p class="my-0">
+                {% if grand_total %}
+                ${{ grand_total|floatformat:2 }}
+                {% else %}
+                $0.00
+                {% endif %}
+            </p>
         </a>
-        <p class="my-0 d-inline-block">
-            {% if grand_total %}
-            ${{ grand_total|floatformat:2 }}
-            {% else %}
-            $0.00
-            {% endif %}
-        </p>
     </div>
 </div>

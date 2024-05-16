@@ -5,6 +5,10 @@ body {
   min-height: 100vh;
 }
 
+hr {
+    color: #007B55;
+}
+
 .dropdown:hover .dropdown-menu {
     display: block;
 }
@@ -22,6 +26,57 @@ body {
     right: 15px;
 }
 
+/* BASE.HTML CSS */
+html, body {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 0;
+    background-color: #F1F5E6; /* This is a soft green color, perfect for a gardening site */
+}
+
+a {
+    color: #007B55; /* This is a deep green color, perfect for links */
+}
+
+.navbar {
+    background-color: #B2DBBF !important; /* Light green for the navbar */
+}
+
+.navbar-toggler-icon {
+    filter: invert(49%) sepia(99%) saturate(1368%) hue-rotate(109deg) brightness(96%) contrast(101%);
+}
+
+/* Search bar styling  */
+input[type=text], 
+.subscribe-input {
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    background-color: #B2DBBF; /* Light green background for the search bar */
+    border: none;
+    color: #007B55; /* A deep green color for the text in search bar */
+}
+
+/* Button styling */
+.search-button {
+    background-color: #007B55; /* A deep green color for buttons */
+    color: #F1F5E6; /* Light color for the button text */
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.search-button:hover {
+    background-color: #F1F5E6; 
+    color: #007B55;
+}
+
 /* HOME CSS */
 /* Carousel Element CSS */
 .carousel-item img {
@@ -30,10 +85,119 @@ body {
     object-fit: cover;
   }
 
+/* NAVBAR CSS */
+/* Main navigation styles */
+.navbar-nav {
+    font-size: 1rem;
+}
+
+.nav-link {
+    color: #007B55;
+    text-transform: capitalize;
+}
+
+.nav-link:hover, .nav-link:focus {
+    color: #F1F5E6;
+}
+
+.top-nav-item:hover {
+    background-color: #007B55;
+}
+
+.dropdown-menu {
+    background-color: #B2DBBF; /* Light green background for the dropdown menu */
+}
+
+.dropdown-item {
+    color: #007B55;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #F1F5E6;
+    background-color: #007B55;
+}
+
+.nav-link-btn, 
+.btn-primary {
+    background-color: #007B55; 
+    color: #F1F5E6; 
+    border-radius: 5px; 
+    padding: 10px 15px; 
+    transition: background-color 0.3s ease;
+}
+
+.nav-link-btn:hover, .nav-link-btn:focus {
+    background-color: #F1F5E6; 
+    color: #007B55; 
+    border-color: #007B55 !important;
+}
+
+/* Top navigation styles */
+.nav > li a {
+    color: #007B55;
+}
+
+.nav > li a:hover, .nav > li a:focus {
+    color: #F1F5E6;
+}
+
+.dropdown-menu {
+    background-color: #B2DBBF; /* Light green background for the dropdown menu */
+}
+
+.dropdown-item {
+    color: #007B55;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    color: #F1F5E6;
+    background-color: #007B55;
+}
+
+.account-dropdown {
+    text-decoration: none;
+    color: #007B55;
+}
+
+.account-dropdown:hover,
+.account-dropdown:focus {
+    text-decoration: none;
+    color: #007B55;
+}
+
+h1.mb-0 {
+    color: #007B55; /* Making the site name have the consistent green color */
+}
+
+.cart-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #007B55;
+    color: #F1F5E6;
+    width: 65px;
+    height: 65px;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.cart-button:hover {
+    background-color: #F1F5E6;
+    color: #007B55;
+}
+
+.cart-button:active {
+    background-color: #F1F5E6;
+    color: #007B55;
+}
+
+.cart-button i {
+    margin-bottom: 2px;
+}
 
 /* PRODUCTS CSS */
-
-
 
 /* PRODUCT_DETAIL CSS */
 
@@ -107,4 +271,22 @@ body {
 .services-profile {
     width: 200px !important;
     height: 200px !important;
+}
+
+/* FOOTER CSS */
+footer {
+    background-color: #007B55; /* A deep green color for the footer */
+    color: white;
+}
+
+footer i {
+    color: #007B55;
+}
+
+.d-flex span.text-muted {
+    color: #F1F5E6 !important; /* Making the text color lightly visible on the deep green footer */
+}
+
+.list-inline-item a {
+    color: #F1F5E6;
 }
