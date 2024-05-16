@@ -1,0 +1,17 @@
+Dear {{ contact_request.full_name }},
+
+We have received the following customer service request: 
+
+Subject: {{ contact_request.get_subject_display|safe }}
+Message: {{ contact_request.message }}
+Attachments: {{ contact_request.file_upload }}
+
+Submitted on: {{ contact_request.created_at }}
+
+We endeavor to handle your request wihin 3 days in this email thread. 
+
+Should you have any inquiries, please do not hesitate to reach out to us at {{ contact_email }}.
+
+Best Regards,
+
+Green Thumb
