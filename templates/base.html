@@ -146,11 +146,14 @@
                             </a>
                         </li>
                     </ul>
-                    <span class="mb-2">Join our mailing list</span>
-                    <div class="d-flex align-items-center mb-2">
-                        <input type="email" class="form-control" placeholder="Enter your email">
-                        <button class="btn btn-primary ml-2">Subscribe</button>
-                    </div>
+                    <form method="POST" action="{% url 'subscribe' %}">
+                        {% csrf_token %}
+                        <span class="mb-2">Join our mailing list</span>
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="email" name="email" class="form-control" placeholder="Enter your email">
+                            <button type="submit" class="btn btn-primary ml-2">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
