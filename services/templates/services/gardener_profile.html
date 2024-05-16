@@ -13,12 +13,32 @@
         <div class="col-lg-8 mx-auto">
             <div class="card">
                 <div class="card-body text-center">
-                    <img class="rounded-circle services-profile img-fluid mb-3" src="{% static 'images/placeholder_image.png' %}"
-                        alt="Profile Picture" width="150">
-                    
-                        <h3 class="card-title">{{ gardener.display_name }}</h3>
-                        <h4 class="card-subtitle mb-3 text-muted">{{ gardener.location }}</h4>
-                        <p class="card-text">{{ gardener.about }}</p>
+                    <img class="rounded-circle services-profile img-fluid mb-3"
+                        src="{% static 'images/placeholder_image.png' %}" alt="Profile Picture" width="150">
+
+                    <h3 class="card-title">{{ gardener.display_name }}</h3>
+                    <h4 class="card-subtitle mb-3 text-muted">{{ gardener.location }}</h4>
+                    <p class="card-text">{{ gardener.about }}</p>
+                </div>
+            </div>
+            <div class="mt-5">
+                <h4>Customer Feedback:</h4>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {% for feedback in feedbacks %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ feedback.first_name }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ feedback.title }}</h6>
+                                <p class="card-text">{{ feedback.message }}</p>
+                                <p class="card-text"><small class="text-muted">{{ feedback.rating }}/5 <i
+                                            class="fas fa-star"></i></small></p>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No feedback yet.</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>

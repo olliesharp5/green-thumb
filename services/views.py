@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
 from profiles.models import UserProfile
-from .models import Service, ServiceRequest
+from .models import Service, ServiceRequest, GardenerFeedback
 from .forms import GardenerFeedbackForm
 
 # Create your views here.
@@ -20,8 +20,10 @@ def services(request):
 
 def gardener_profile(request, username):
     gardener = get_object_or_404(UserProfile, user__username=username, role='GR')
+    feedbacks = GardenerFeedback.objects.filter(gardener=gardener)
     context = {
         'gardener': gardener,
+        'feedbacks': feedbacks,
     }
     return render(request, 'services/gardener_profile.html', context)
 
