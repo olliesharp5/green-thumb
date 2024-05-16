@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <hr>
+        <h2>Wishlist</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in wishlist.products.all %}
+                <tr>
+                    <td>
+                        {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="wishlist-image">
+                        {% else %}
+                        <img src="{% static 'images/placeholder_image.png' %}" alt="{{ product.name }}"
+                            class="wishlist-image">
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>
+                        <a href="{% url 'profiles:remove_from_wishlist' product.id 'profile' %}">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No products in wishlist.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

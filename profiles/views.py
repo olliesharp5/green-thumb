@@ -14,8 +14,6 @@ from .forms import UserForm, UserProfileForm, GardenerProfileForm
 @login_required
 def profile(request):
     user_profile = UserProfile.objects.get(user=request.user)
-    contact_requests = ContactRequest.objects.filter(email=request.user.email)
-    service_requests = ServiceRequest.objects.filter(user=request.user)  
     if request.method == 'POST':
         if 'first_name' in request.POST:
             user_form = UserForm(request.POST, instance=request.user)
@@ -41,19 +39,51 @@ def profile(request):
         user_form = UserForm(instance=request.user)
         user_profile_form = UserProfileForm(instance=user_profile)
         gardener_profile_form = GardenerProfileForm(instance=user_profile)
-    wishlist = Wishlist.objects.get(user=user_profile)
-    orders = Order.objects.filter(user_profile=user_profile)
+
     context = {
         'user_form': user_form,
         'user_profile_form': user_profile_form,
         'gardener_profile_form': gardener_profile_form, 
-        'wishlist': wishlist,
-        'orders': orders,
         'user_profile': user_profile,
-        'contact_requests': contact_requests,
-        'service_requests': service_requests,
     }
     return render(request, 'profiles/profile.html', context)
+    
+
+@login_required
+def order_history(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    orders = Order.objects.filter(user_profile=user_profile)
+    context = {
+        'orders': orders,
+        'user_profile': user_profile,
+    }
+    return render(request, 'profiles/order_history.html', context)
+
+@login_required
+def wishlist(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    wishlist = Wishlist.objects.get(user=user_profile)
+    context = {
+        'wishlist': wishlist,
+        'user_profile': user_profile,
+    }
+    return render(request, 'profiles/wishlist.html', context)
+
+@login_required
+def customer_service_requests(request):
+    contact_requests = ContactRequest.objects.filter(email=request.user.email)
+    context = {
+        'contact_requests': contact_requests,
+    }
+    return render(request, 'profiles/customer_service_requests.html', context)
+
+@login_required
+def service_requests(request):
+    service_requests = ServiceRequest.objects.filter(user=request.user)
+    context = {
+        'service_requests': service_requests,
+    }
+    return render(request, 'profiles/service_requests.html', context)
 
 
 @login_required

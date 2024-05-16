@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="row mt-5">
+    <div class="col-md-12">
+        <hr>
+        <h2>Order History</h2>
+        {% if orders %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Order Number</th>
+                    <th scope="col">Order Date</th>
+                    <th scope="col">Line Items</th>
+                    <th scope="col">Order Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td><a href="{% url 'checkout_success' order.order_number 'profile' %}">{{ order.order_number }}</a>
+                    <td>{{ order.date }}</td>
+                    <td>
+                        {% for item in order.lineitems.all %}
+                        <p>{{ item.product.name }} {% if item.product_size %}(Size: {{ item.product_size }}){% endif %}
+                            (Quantity: {{ item.quantity }})</p>
+                        {% endfor %}
+                    </td>
+                    <td>{{ order.order_total }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>You have no previous orders.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

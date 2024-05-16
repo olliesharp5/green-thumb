@@ -30,6 +30,11 @@
                 <!-- Check if user is authorized -->
                 {% if user.is_authenticated %}
                 <li><a class="dropdown-item" href="{% url 'profiles:profile' %}">My Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'profiles:order_history' %}">Order History</a></li>
+                <li><a class="dropdown-item" href="{% url 'profiles:wishlist' %}">Wishlist</a></li>
+                <li><a class="dropdown-item" href="{% url 'profiles:customer_service_requests' %}">Customer Service
+                        Requests</a></li>
+                <li><a class="dropdown-item" href="{% url 'profiles:service_requests' %}">Gardening Requests</a></li>
                 <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                 {% else %}
                 <li><a class="dropdown-item" href="{% url 'account_login' %}">Login</a></li>
