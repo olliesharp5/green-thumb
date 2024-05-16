@@ -1,5 +1,8 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
+
+from profiles.models import UserProfile
 # Create your models here.
 
 class Service(models.Model):
@@ -34,3 +37,15 @@ class ServiceRequest(models.Model):
     
     def __str__(self):
         return f"Service request from {self.full_name}"
+
+
+class GardenerFeedback(models.Model):
+    gardener = models.ForeignKey(UserProfile, on_delete=models.CASCADE, limit_choices_to={'role': 'GR'})
+    first_name = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    message = models.TextField()
+    rating = models.DecimalField(max_digits=2, decimal_places=1, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Feedback submitted by {self.first_name}"

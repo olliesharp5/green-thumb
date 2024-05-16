@@ -7,6 +7,7 @@ from django.core.files.storage import FileSystemStorage
 
 from profiles.models import UserProfile
 from .models import Service, ServiceRequest
+from .forms import GardenerFeedbackForm
 
 # Create your views here.
 def services(request):
@@ -23,6 +24,17 @@ def gardener_profile(request, username):
         'gardener': gardener,
     }
     return render(request, 'services/gardener_profile.html', context)
+
+def gardener_feedback(request):
+    if request.method == 'POST':
+        form = GardenerFeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save()
+            messages.success(request, f'Thank you for submitting feedback for {feedback.gardener.display_name}')
+            return redirect('services')
+    else:
+        form = GardenerFeedbackForm()
+    return render(request, 'gardener_feedback.html', {'form': form})
 
 def service_request(request):
     services = Service.objects.all()
