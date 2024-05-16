@@ -4,6 +4,11 @@
 
 {% block content %}
 <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'services' %}" class="btn btn-secondary mb-3">Back to Services</a>
+        </div>
+    </div>
     <h1>Gardener Feedback</h1>
     <form method="post">
         {% csrf_token %}

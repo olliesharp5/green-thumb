@@ -36,7 +36,7 @@ def gardener_feedback(request):
             return redirect('services')
     else:
         form = GardenerFeedbackForm()
-    return render(request, 'gardener_feedback.html', {'form': form})
+    return render(request, 'services/gardener_feedback.html', {'form': form})
 
 def service_request(request):
     services = Service.objects.all()
