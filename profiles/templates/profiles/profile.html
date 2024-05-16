@@ -117,7 +117,7 @@
               {% if product.image %}
               <img src="{{ product.image.url }}" alt="{{ product.name }}" class="wishlist-image">
               {% else %}
-              <img src="{{ MEDIA_URL }}placeholder_image.png" alt="{{ product.name }}" class="wishlist-image">
+              <img src="{% static 'images/placeholder_image.png' %}" alt="{{ product.name }}" class="wishlist-image">
               {% endif %}
             </td>
             <td><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></td>
