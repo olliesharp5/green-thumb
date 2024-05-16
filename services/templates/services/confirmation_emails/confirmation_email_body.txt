@@ -1,0 +1,23 @@
+Dear {{ service_request.full_name }},
+
+We have received the following request for a gardening service quote: 
+
+Requested service(s): 
+{% for service in services %}
+    - {{ service.get_name_display }}
+{% endfor %}
+Message: {{ service_request.message }}
+Required for: {{ service_request.date_required }}
+Attachments: {{ service_request.file_upload }}
+
+Submitted on: {{ service_request.created_at }}
+
+We endeavor to handle your request wihin 3 days.
+
+Our gardeners will respond with quotes in this email thread.
+
+Should you have any inquiries, please do not hesitate to reach out to us at {{ contact_email }}.
+
+Best Regards,
+
+Green Thumb

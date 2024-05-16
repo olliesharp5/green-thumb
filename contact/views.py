@@ -40,7 +40,7 @@ def contact(request):
             [email]
         )
 
-        messages.success(request, 'Your contact request has been submitted. View your requests in "My Profile"')
+        messages.success(request, 'Your contact request has been submitted. A confirmation email has been sent to {email}.')
         return redirect('contact')
 
     return render(request, "contact/contact.html")

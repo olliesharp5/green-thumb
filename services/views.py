@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
 from profiles.models import UserProfile
@@ -49,7 +52,25 @@ def service_request(request):
             service_request.file_upload = fs.url(filename)
             service_request.save()
 
-        messages.success(request, 'Your service request has been submitted.')
+        # Prepare email
+        email_subject = render_to_string(
+        'services/confirmation_emails/confirmation_email_subject.txt',
+        {'service_request': service_request}
+        )
+        email_body = render_to_string(
+        'services/confirmation_emails/confirmation_email_body.txt',
+        {'service_request': service_request, 'contact_email': settings.DEFAULT_FROM_EMAIL, 'services': service_objects}
+        )
+
+        # Send confirmation email
+        send_mail(
+            email_subject,
+            email_body,
+            settings.DEFAULT_FROM_EMAIL,
+            [email]
+        )
+
+        messages.success(request, f'Your service request has been submitted. A confirmation email has been sent to {email}.')
         return redirect('services')
 
     else:
