@@ -1,30 +1,39 @@
-<div class="row align-items-center">
+<div class="row align-items-center top-nav-row">
     <div class="col-md-4">
-        <ul class="nav">
-            <li class="nav-item top-nav-item">
-                <a class="nav-link" href="{% url 'home' %}">Home</a>
-            </li>
-            <li class="nav-item top-nav-item">
-                <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-            <li class="nav-item top-nav-item">
-                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-            </li>
-            {% if user.is_authenticated and user.is_superuser %}
-            <li class="nav-item top-nav-item">
-                <a class="nav-link" href="{% url 'add_product' %}">Add Products</a>
-            </li>
-            {% endif %}
-        </ul>
+        <div class="d-none d-md-block">
+            <ul class="nav ps-3">
+                <li class="nav-item top-nav-item">
+                    <a class="nav-link nav-link-top" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item top-nav-item">
+                    <a class="nav-link nav-link-top" href="{% url 'about' %}">About</a>
+                </li>
+                <li class="nav-item top-nav-item">
+                    <a class="nav-link nav-link-top" href="{% url 'contact' %}">Contact</a>
+                </li>
+                {% if user.is_authenticated and user.is_superuser %}
+                <li class="nav-item top-nav-item">
+                    <a class="nav-link nav-link-top" href="{% url 'add_product' %}">Add Products</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center position-relative">
+        <button class="navbar-toggler position-absolute d-block d-md-none menu-button" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
+            aria-label="Toggle navigation">
+            Menu
+        </button>
         <h1 class="mb-0">Green Thumb</h1>
     </div>
-    <div class="col-md-4 text-end d-flex align-items-center justify-content-end">
-        <div class="dropdown me-3">
+    <div class="col-md-4 text-end d-flex align-items-center justify-content-end account-cart">
+        <div class="dropdown account-dropdown-container me-3">
             <button class="btn btn-link dropdown-toggle account-dropdown" type="button" id="dropdownMenuButton"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                My Account
+                <span class="d-md-none"><i class="fas fa-user"></i></span>
+                <!-- Font Awesome icon for smaller screens -->
+                <span class="d-none d-md-inline">My Account</span> <!-- Text for larger screens -->
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <!-- Check if user is authorized -->
