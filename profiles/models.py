@@ -1,6 +1,8 @@
 from django.db import models
+from django.apps import apps
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from django.db.models import Avg
 
 from products.models import Product
 
@@ -27,6 +29,12 @@ class UserProfile(models.Model):
     default_county = models.CharField(max_length=80, null=True, blank=True)
     default_postcode = models.CharField(max_length=20, null=True, blank=True)
     default_country = CountryField(blank_label='Country', null=True, blank=True)
+
+    @property
+    def calculate_rating(self):
+        GardenerFeedback = apps.get_model('services', 'GardenerFeedback')
+        reviews = GardenerFeedback.objects.filter(gardener=self)
+        return round(reviews.aggregate(Avg('rating'))['rating__avg'] or 0.0, 1)
 
     def __str__(self):
         return self.user.username
