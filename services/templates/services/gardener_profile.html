@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}gardener-page{% endblock %}
+
 {% block content %}
 
 <div class="container py-5">
@@ -11,7 +13,7 @@
     </div>
     <div class="row">
         <div class="col-lg-8 mx-auto">
-            <div class="card">
+            <div class="card gardener-card">
                 <div class="card-body text-center">
                     <img class="rounded-circle services-profile img-fluid mb-3"
                         src="{% static 'images/placeholder_image.png' %}" alt="Profile Picture" width="150">

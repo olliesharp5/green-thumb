@@ -69,6 +69,7 @@ a {
 input[type=text],
 input[type=email],
 input[type=file],
+input[type=date],
 #subject,
 #message, 
 .form-select,
@@ -123,8 +124,27 @@ span.icon {
     padding: 0 !important;
 }
 
+.carousel-control-prev, .carousel-control-next {
+    width: 30px; /* Adjust this value to change the width of the clickable area */
+    height: 30px; /* Adjust this value to change the height of the clickable area */
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+}
+
+.carousel-control-prev {
+    left: 10px; /* Adjust this value to position the left control */
+}
+
+.carousel-control-next {
+    right: 10px; /* Adjust this value to position the right control */
+}
+
 body.home-page {
-    background-image: none;
+    background-image: url(/static/images/wood-chips.jpg);
+    object-fit: cover;
 }
 
 .home-card {
@@ -435,29 +455,26 @@ label[for="id_sort_by"] {
 
 /* SERVICES CSS */
 
-body.services-page {
-    background-color:#F1F5E6
+body.services-page, 
+body.gardener-page, body.feedback-page, body.service-request-page {
+    background-image: url(/static/images/service-background.jpg);
+    background-size: cover;
+}
+
+.services-container h2, .services-container hr {
+    color: #F1F5E6;
 }
 
 .container-fluid {
     padding: 0 !important;
 }
 
-.hero-image {
-    background-image: url(/static/images/services.jpg);
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: top;
-}
-
-.hero-text {
-    background-color: rgba(241, 245, 230, 0.6);
+.hero-text, .gardener-card {
+    background-color: rgba(255, 255, 255, 0.404);
 }
 
 .service-column {
-    background-image: url(/static/images/placeholder_image.png);
-    background-size: cover;
+    background-color: rgba(241, 245, 230, 0.6);
     padding: 20px;
 }
 
@@ -468,6 +485,17 @@ body.services-page {
 .services-profile {
     width: 200px !important;
     height: 200px !important;
+}
+
+/* CONTACT PAGE CSS */
+body.contact-page {
+    background-image: url(/static/images/supplies.jpg);
+    object-fit: cover;
+}
+
+.contact-container {
+    background-color: rgba(241, 245, 230, 0.6);
+    padding: 1rem;
 }
 
 /* FOOTER CSS */

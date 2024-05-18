@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}service-request-page{% endblock %}
+
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <a href="{% url 'services' %}" class="btn btn-secondary mb-3">Back to Services</a>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <a href="{% url 'services' %}" class="btn btn-secondary mb-3">Back to Services</a>
     </div>
+</div>
+<div class="container contact-container">
     <h1>Service Request</h1>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}

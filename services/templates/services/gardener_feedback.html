@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block body_class %}feedback-page{% endblock %}
+
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <a href="{% url 'services' %}" class="btn btn-secondary mb-3">Back to Services</a>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <a href="{% url 'services' %}" class="btn btn-secondary mb-3">Back to Services</a>
     </div>
+</div>
+<div class="container contact-container">
     <h1>Gardener Feedback</h1>
     <form method="post">
         {% csrf_token %}
