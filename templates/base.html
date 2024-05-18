@@ -43,13 +43,13 @@
     <title>Green Thumb</title>
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
     <main class="flex-shrink-0">
-        <div class="row">
+        <div class="row nav-row">
             {% include 'includes/top-nav.html' %}
         </div>
         {% if request.resolver_match.url_name != 'services' and request.resolver_match.url_name != 'gardener_profile' and request.resolver_match.url_name != 'service_request' %}
-        <div class="row px-3">
+        <div class="row px-3 nav-row">
             <div class="col-8 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
@@ -107,7 +107,7 @@
         {% endblock %}
     </main>
 
-    <footer class="footer mt-auto py-3 bg-light">
+    <footer class="footer mt-auto py-3">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-start">

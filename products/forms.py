@@ -14,7 +14,7 @@ class SortForm(forms.Form):
         ('best_selling', 'Best Selling'),
     ]
 
-    sort_by = forms.ChoiceField(choices=SORT_CHOICES, required=False, widget=forms.Select(attrs={'onchange': 'this.form.submit();'}))
+    sort_by = forms.ChoiceField(choices=SORT_CHOICES, required=False, widget=forms.Select(attrs={'onchange': 'this.form.submit();','class': 'sort-form'}))
 
 
 class ProductForm(forms.ModelForm):

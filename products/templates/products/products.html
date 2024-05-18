@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}products-page{% endblock %}
+
 {% block content %}
 
-<div class="container">
+<div class="container products-container">
     <div class="row">
-        <div class="col-md-12 d-flex justify-content-end">
+        <div class="col-md-12 d-flex justify-content-end p-3">
             <form method="get">
                 {{ form.as_p }}
             </form>
@@ -55,7 +57,7 @@
                             <input type="hidden" name="quantity" value="1">
                             <input type="hidden" name="from_product_page" value="false">
                             {% if product.has_size %}
-                            <select class="form-control rounded-0 mr-2" name="product_size">
+                            <select class="form-control rounded-0 mr-2 custom-select" name="product_size">
                                 <option value="xs">XS</option>
                                 <option value="s">S</option>
                                 <option value="m" selected>M</option>

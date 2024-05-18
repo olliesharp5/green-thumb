@@ -3,10 +3,22 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 hr {
     color: #007B55;
+}
+
+.fa-star {
+    color: gold;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -30,7 +42,7 @@ hr {
 html, body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 0;
-    background-color: #F1F5E6; /* This is a soft green color, perfect for a gardening site */
+    
 }
 
 a {
@@ -85,8 +97,19 @@ input[type=text],
     object-fit: cover;
   }
 
+body.home-page {
+    background-image: none;
+}
+
 /* NAVBAR CSS */
 /* Main navigation styles */
+
+.nav-row {
+    background-color: #F1F5E6;
+    --bs-gutter-x: 0 !important; 
+    --bs-gutter-y: 0 !important;
+}
+
 .navbar-nav {
     font-size: 1rem;
 }
@@ -232,6 +255,27 @@ h1.mb-0 {
 
 /* PRODUCTS CSS */
 
+body.products-page {
+    background-image: url(/static/images/leaves-image.jpg);
+}
+
+.custom-select {
+    appearance: auto;
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist;
+}
+
+label[for="id_sort_by"] {
+    color:#007B55;
+}
+
+.sort-form {
+    border-radius: 5px;
+    border: 1px solid #007B55;
+    background-color: #F1F5E6;
+    color: #007B55;
+}
+
 /* PRODUCT_DETAIL CSS */
 
 /* ToolTip Element CSS */
@@ -308,8 +352,8 @@ h1.mb-0 {
 
 /* FOOTER CSS */
 footer {
-    background-color: #007B55; /* A deep green color for the footer */
-    color: white;
+    background-color: #F1F5E6 !important; /* A deep green color for the footer */
+    color:#007B55;
 }
 
 footer i {
@@ -317,11 +361,11 @@ footer i {
 }
 
 .d-flex span.text-muted {
-    color: #F1F5E6 !important; /* Making the text color lightly visible on the deep green footer */
+    color: #007B55 !important;
 }
 
 .list-inline-item a {
-    color: #F1F5E6;
+    color:#007B55 !important;
 }
 
 
