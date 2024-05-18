@@ -9,23 +9,30 @@
     {% include 'includes/carousel.html' %}
 </div>
 
-<div class="card text-center">
-    <div class="card-body">
+<div class="card intro-card text-center">
+    <div class="overlay"></div>
+    <div class="card-body position-relative z-index-1">
         <h4 class="card-title">Welcome to Green Thumb</h4>
         <h6 class="card-text">Your one-stop shop for all your gardening needs.</h6>
-        <p class="card-text">Our website boasts a vast selection of garden flora, ideal for your flower beds, hanging
+        <p class="card-text">Our website boasts a vast selection of garden flora, ideal for your flower beds,
+            hanging
             pots, and patio
             planters. We offer a variety of Roses, Bamboos and Grasses, along with hedging and screening plants, and
-            fruit trees like apples, pears, cherries, plums, and even figs. Additionally, we cultivate a wide array of
+            fruit trees like apples, pears, cherries, plums, and even figs. Additionally, we cultivate a wide array
+            of
             hardy herbaceous perennials, ferns, shrubs, and climbers, with Clematis, Hydrangea, and Lavender Plants
             being among the top picks. You'll also find Palms, Buxus Box Topiary, Bay Trees, Olives, and Specimen
             plants. Altogether, we cultivate countless hardy plants at our Essex nursery, which spans over 14 acres.
             That's an immense amount of plants!
-            From Garden Plants, Shrubs, Trees, Patio Plants and more, we're all about them. The pillars of our business
-            are quality, service, and value for money. We operate our own nurseries and collaborate closely with other
-            plant enthusiasts across the gardening community to bring you the finest new and exclusive plants, beloved
+            From Garden Plants, Shrubs, Trees, Patio Plants and more, we're all about them. The pillars of our
+            business
+            are quality, service, and value for money. We operate our own nurseries and collaborate closely with
+            other
+            plant enthusiasts across the gardening community to bring you the finest new and exclusive plants,
+            beloved
             classics, and the latest trends. We're proud to have been chosen to supply plants for high-profile RHS
-            Flower Shows, BBC Gardeners World live, the Corporation of London, celebrity chefs, stately homes, and many
+            Flower Shows, BBC Gardeners World live, the Corporation of London, celebrity chefs, stately homes, and
+            many
             others.</p>
     </div>
 </div>
@@ -34,6 +41,7 @@
     <div class="row justify-content-center">
         <div class="col-sm-6 col-md-3">
             <div class="card bg-dark text-white home-card">
+                <div class="overlay"></div>
                 <img src="/static/images/shipping.jpg" class="card-img" alt="Shipping">
                 <div class="card-img-overlay">
                     <h5 class="card-title">Free Standard Shipping</h5>
@@ -45,6 +53,7 @@
 
         <div class="col-sm-6 col-md-3">
             <div class="card bg-dark text-white home-card">
+                <div class="overlay"></div>
                 <img src="/static/images/satisfaction.jpg" class="card-img" alt="Guarantee">
                 <div class="card-img-overlay">
                     <h5 class="card-title">30-Day Customer Happiness Guarantee</h5>
@@ -56,11 +65,12 @@
 
         <div class="col-sm-6 col-md-3">
             <div class="card bg-dark text-white home-card">
+                <div class="overlay"></div>
                 <img src="/static/images/services.jpg" class="card-img" alt="Services">
                 <div class="card-img-overlay">
                     <h5 class="card-title">Gardening Services</h5>
                     <p>Our team of gardeners are available to help you with various tasks at home. Simply visit the <a
-                        href="{% url 'services' %}">Services</a> page to find out more.</p>
+                            href="{% url 'services' %}">Services</a> page to find out more.</p>
                 </div>
             </div>
         </div>
