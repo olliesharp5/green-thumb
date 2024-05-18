@@ -33,7 +33,7 @@
         {% for product in products %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark">
+                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-detail-link">
                     {% if product.image %}
                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"
                         class="card-img-top">

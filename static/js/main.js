@@ -11,11 +11,30 @@ $('.dropdown').hover(function(){
   });
 
 
+// Get all product detail links
+let productDetailLinks = document.querySelectorAll('.product-detail-link');
+
+// Add a click event listener to each link
+productDetailLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+        // Store the current URL in the session storage
+        sessionStorage.setItem('searchResultsUrl', window.location.href);
+    });
+});
+
+
+// Functionality for plus and minus buttons to increment quantity value
 function goBack() {
-    window.history.back();
-  }
+    let url = sessionStorage.getItem('searchResultsUrl');
+    if (url) {
+        window.location.href = url;
+    } else {
+        // Fallback to the history back method
+        window.history.back();
+    }
+}
 
-
+// Functionality for plus and minus buttons to increment quantity value
 document.querySelectorAll('.btn-outline-secondary').forEach(function(button) {
     if(button.id === 'button-plus' || button.classList.contains('button-plus')) {
         button.addEventListener('click', incrementValue);
