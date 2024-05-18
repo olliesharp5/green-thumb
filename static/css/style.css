@@ -68,6 +68,14 @@ input[type=text],
     color: #007B55; /* A deep green color for the text in search bar */
 }
 
+span.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
 /* Button styling */
 .search-button {
     background-color: #007B55; /* A deep green color for buttons */
@@ -82,6 +90,7 @@ input[type=text],
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 50%;
+    position: relative; /* Additional property for positioning the icon */
 }
 
 .search-button:hover {
@@ -253,10 +262,31 @@ h1.mb-0 {
     width: 250px;
 }
 
+.search-area {
+    max-width: 35vw;
+    align-items: center;
+}
+
 /* PRODUCTS CSS */
 
-body.products-page {
+body.products-page.all-products {
     background-image: url(/static/images/leaves-image.jpg);
+}
+
+body.products-page.garden-plants {
+    background-image: url(/static/images/garden-plants.jpg);
+}
+
+body.products-page.house-plants {
+    background-image: url(/static/images/house-plants.jpg);
+}
+
+body.products-page.seeds {
+    background-image: url(/static/images/seeds.jpg);
+}
+
+body.products-page.supplies {
+    background-image: url(/static/images/supplies.jpg);
 }
 
 .custom-select {
@@ -380,6 +410,10 @@ footer i {
         width: 50px;
         height: 50px;
     }
+
+    .search-area {
+        max-width: 50vw;
+    }
 }
 
 @media only screen and (max-width: 543px) {
@@ -397,7 +431,7 @@ footer i {
     }
 
     .search-button {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
 }

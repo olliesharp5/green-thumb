@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block body_class %}products-page{% endblock %}
+{% block body_class %}products-page {% if category %}{% if category.parent %}{{ category.parent.name|slugify }}{% else %}{{ category.name|slugify }}{% endif %}{% else %}all-products{% endif %}{% endblock %}
 
 {% block content %}
 
