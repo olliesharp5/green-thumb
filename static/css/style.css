@@ -124,9 +124,10 @@ input[type=text],
     border-radius: 5px; 
     padding: 10px 15px; 
     transition: background-color 0.3s ease;
+    border-color: #007B55;
 }
 
-.nav-link-btn:hover, .nav-link-btn:focus {
+.nav-link-btn:hover, .nav-link-btn:focus, .btn-primary:hover, .btn-primary:focus {
     background-color: #F1F5E6; 
     color: #007B55; 
     border-color: #007B55 !important;

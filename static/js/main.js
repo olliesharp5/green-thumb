@@ -15,15 +15,6 @@ function goBack() {
     window.history.back();
   }
 
-//when the gardener checkbox is checked, the gardener fields will be displayed and marked as required. 
-//When the checkbox is not checked, the gardener fields will be hidden and not required. 
-document.getElementById('id_gardener').onchange = function() {
-    document.getElementById('gardenerFields').style.display = this.checked ? "block" : "none";
-    document.getElementById('display_name').required = this.checked;
-    document.getElementById('location').required = this.checked;
-    document.getElementById('about').required = this.checked;
-};
-
 
 document.querySelectorAll('.btn-outline-secondary').forEach(function(button) {
     if(button.id === 'button-plus' || button.classList.contains('button-plus')) {
@@ -76,4 +67,21 @@ function validateQuantity(event) {
     } else if(value > 15) {
         event.target.value = 15;
     }
+}
+
+
+//when the gardener checkbox is checked, the gardener fields will be displayed and marked as required. 
+//When the checkbox is not checked, the gardener fields will be hidden and not required. 
+var gardenerElement = document.getElementById('id_gardener');
+if(gardenerElement) {
+    gardenerElement.onchange = function() {
+        document.getElementById('gardenerFields').style.display = this.checked ? "block" : "none";
+        var fields = ['display_name', 'location', 'about'];
+        fields.forEach(function(field) {
+            var element = document.getElementById(field);
+            if(element) {
+                element.required = this.checked;
+            }
+        }, this);
+    };
 }
