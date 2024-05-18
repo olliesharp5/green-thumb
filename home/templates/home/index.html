@@ -13,7 +13,8 @@
     <div class="card-body">
         <h4 class="card-title">Welcome to Green Thumb</h4>
         <h6 class="card-text">Your one-stop shop for all your gardening needs.</h6>
-        <p class="card-text">Our website boasts a vast selection of garden flora, ideal for your flower beds, hanging pots, and patio
+        <p class="card-text">Our website boasts a vast selection of garden flora, ideal for your flower beds, hanging
+            pots, and patio
             planters. We offer a variety of Roses, Bamboos and Grasses, along with hedging and screening plants, and
             fruit trees like apples, pears, cherries, plums, and even figs. Additionally, we cultivate a wide array of
             hardy herbaceous perennials, ferns, shrubs, and climbers, with Clematis, Hydrangea, and Lavender Plants
@@ -32,49 +33,36 @@
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-sm-6 col-md-3">
-            <div class="card bg-dark text-white">
-                <img src="{{ MEDIA_URL }}placeholder_image.png" class="card-img" alt="Garden Plants">
+            <div class="card bg-dark text-white home-card">
+                <img src="/static/images/shipping.jpg" class="card-img" alt="Shipping">
                 <div class="card-img-overlay">
-                    <h5 class="card-title">Recently Added</h5>
-                    <a href="{% url 'products' %}?sort_by=recent" class="btn btn-light">Shop Now</a>
+                    <h5 class="card-title">Free Standard Shipping</h5>
+                    <p>Enjoy free standard shipping on all plants, pots and equipment if you spend more than
+                        ${{ free_delivery_threshold }}!</p>
                 </div>
             </div>
         </div>
 
         <div class="col-sm-6 col-md-3">
-            <div class="card bg-dark text-white">
-                <img src="{{ MEDIA_URL }}placeholder_image.png" class="card-img" alt="House Plants">
+            <div class="card bg-dark text-white home-card">
+                <img src="/static/images/satisfaction.jpg" class="card-img" alt="Guarantee">
                 <div class="card-img-overlay">
-                    <h5 class="card-title">Highest Rated</h5>
-                    <a href="{% url 'products' %}?sort_by=highest_rating" class="btn btn-light">Shop Now</a>
+                    <h5 class="card-title">30-Day Customer Happiness Guarantee</h5>
+                    <p>Our team preps, prunes, & carefully packs every order—meaning lots of care goes into every step.
+                        If your plant arrives damaged or unhealthy, we replace it for free.</p>
                 </div>
             </div>
         </div>
 
         <div class="col-sm-6 col-md-3">
-            <div class="card bg-dark text-white">
-                <img src="{{ MEDIA_URL }}placeholder_image.png" class="card-img" alt="Seeds">
+            <div class="card bg-dark text-white home-card">
+                <img src="/static/images/services.jpg" class="card-img" alt="Services">
                 <div class="card-img-overlay">
-                    <h5 class="card-title">Best Sellers</h5>
-                    <a href="{% url 'products' %}?sort_by=best_selling" class="btn btn-light">Shop Now</a>
+                    <h5 class="card-title">Gardening Services</h5>
+                    <p>Our team of gardeners are available to help you with various tasks at home. Simply visit the <a
+                        href="{% url 'services' %}">Services</a> page to find out more.</p>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="container py-5">
-    <div class="row">
-        <div class="col-lg-4">
-            <h5>Free Standard Shipping</h5>
-            <p>Enjoy free standard shipping on all plants, pots and equipment if you spend more than ${{ free_delivery_threshold }}!</p>
-        </div>
-        <div class="col-lg-4">
-            <h5>30-Day Customer Happiness Guarantee</h5>
-            <p>Our team preps, prunes, & carefully packs every order—meaning lots of care goes into every step. If your plant arrives damaged or unhealthy, we replace it for free.</p>
-        </div>
-        <div class="col-lg-4">
-            <h5>Gardening Services</h5>
-            <p>Our team of gardeners are available to help you with various tasks at home. Simply visit the <a href="{% url 'services' %}">Services</a> page to find out more.</p>
         </div>
     </div>
 </div>

@@ -17,6 +17,10 @@ hr {
     color: #007B55;
 }
 
+.btn-danger {
+    background-color: darkred;
+}
+
 .fa-star {
     color: gold;
 }
@@ -58,13 +62,17 @@ a {
 }
 
 /* Search bar styling  */
-input[type=text], 
+input[type=text],
+input[type=email],
+input[type=file],
+#subject,
+#message, 
 .subscribe-input {
     padding: 10px;
-    margin: 10px 0;
+    margin: 5px 0;
     box-sizing: border-box;
     background-color: #B2DBBF; /* Light green background for the search bar */
-    border: none;
+    border: solid;
     color: #007B55; /* A deep green color for the text in search bar */
 }
 
@@ -100,14 +108,25 @@ span.icon {
 
 /* HOME CSS */
 /* Carousel Element CSS */
-.carousel-item img {
-    height: 350px;
+.carousel-item img{
     width: 100%;
-    object-fit: cover;
-  }
+    height: 350px;
+}
 
 body.home-page {
     background-image: none;
+}
+
+.home-card {
+    height: 350px;  
+    width: 100%; 
+    overflow: hidden; 
+}
+
+.card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 /* NAVBAR CSS */
@@ -290,13 +309,30 @@ body.products-page.supplies {
 }
 
 .products-container {
-    background-color: rgba(241, 245, 230, 0.6);
+    background-color: rgba(241, 245, 230, 0.4);
 }
 
 .custom-select {
     appearance: auto;
     -webkit-appearance: menulist;
     -moz-appearance: menulist;
+    color: #007B55;
+    background-color: #F1F5E6;
+}
+
+.cart-card {
+    background-color:#007B55;
+    color:#F1F5E6;
+}
+
+.cart-card:hover {
+    background-color: #F1F5E6;
+    color: #007B55;
+}
+
+.cart-card:active {
+    background-color: #F1F5E6;
+    color: #007B55;
 }
 
 .justify-content-end form {
@@ -314,6 +350,10 @@ label[for="id_sort_by"] {
     border: none;
     background-color: #F1F5E6;
     color: #007B55;
+}
+
+.product-card {
+    background-color: #B2DBBF;
 }
 
 /* PRODUCT_DETAIL CSS */

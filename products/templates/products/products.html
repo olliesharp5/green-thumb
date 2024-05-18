@@ -34,16 +34,16 @@
         {% else %}
         {% for product in products %}
         <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
+            <div class="card mb-4 shadow-lg product-card">
                 <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-detail-link">
                     {% if product.image %}
-                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"
+                    <img class="card-img-top img-fluid" src="/static/images/placeholder_image.png" alt="{{ product.name }}"
                         class="card-img-top">
                     {% else %}
-                    <img class="card-img-top img-fluid" src="{% static 'images/placeholder_image.png' %}"
+                    <img class="card-img-top img-fluid" src="/static/images/placeholder_image.png"
                         alt="{{ product.name }}" class="card-img-top">
                     {% endif %}
-                    <div class="card-body">
+                    <div class="m-2">
                         <h5 class="card-title">{{ product.name }}</h5>
                     </div>
                 </a>
@@ -65,7 +65,7 @@
                                 <option value="xl">XL</option>
                             </select>
                             {% endif %}
-                            <button type="submit" class="btn btn-sm btn-outline-secondary">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary cart-card">
                                 <i class="fas fa-shopping-cart"></i>
                             </button>
                         </form>
