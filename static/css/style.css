@@ -289,10 +289,18 @@ body.products-page.supplies {
     background-image: url(/static/images/supplies.jpg);
 }
 
+.products-container {
+    background-color: rgba(241, 245, 230, 0.6);
+}
+
 .custom-select {
     appearance: auto;
     -webkit-appearance: menulist;
     -moz-appearance: menulist;
+}
+
+.justify-content-end form {
+    padding: 5px;
 }
 
 label[for="id_sort_by"] {
@@ -300,8 +308,10 @@ label[for="id_sort_by"] {
 }
 
 .sort-form {
+    margin-left: 10px;
+    margin-top: 20px;
     border-radius: 5px;
-    border: 1px solid #007B55;
+    border: none;
     background-color: #F1F5E6;
     color: #007B55;
 }
