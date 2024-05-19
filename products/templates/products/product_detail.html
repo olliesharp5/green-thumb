@@ -100,24 +100,35 @@
             <p>You have already reviewed this product</p>
             {% endif %}
             {% else %}
-            <p>Please <a href="{% url 'account_login' %}">log in</a> or <a href="{% url 'account_signup' %}">register</a> to review this product</p>
+            <p>Please <a href="{% url 'account_login' %}">log in</a> or <a
+                    href="{% url 'account_signup' %}">register</a> to review this product</p>
             {% endif %}
             {% if reviews %}
-            {% for review in reviews %}
-            <p><strong>{{ review.user.username }}</strong></p>
-            <p><i class="fas fa-star"></i> {{ review.rating }}</p>
-            <p><strong>{{ review.title }}</strong></p>
-            <p>{{ review.text }}</p>
-            <p>{{ review.date_added }}</p>
-            {% if user.is_authenticated and user == review.user %}
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateReviewModal">
-                Edit Review
-            </button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
-                Delete Review
-            </button>
-            {% endif %}
-            {% endfor %}
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for review in reviews %}
+                <div class="col">
+                    <div class="card h-100 border-success bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{ review.user.username }}</strong></h5>
+                            <p class="card-text"><i class="fas fa-star"></i> {{ review.rating }}</p>
+                            <p class="card-text"><strong>{{ review.title }}</strong></p>
+                            <p class="card-text">{{ review.text }}</p>
+                            <p class="card-text">{{ review.date_added }}</p>
+                            {% if user.is_authenticated and user == review.user %}
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#updateReviewModal">
+                                Edit Review
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteReviewModal">
+                                Delete Review
+                            </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
             {% elif user.is_authenticated %}
             <p>Be the first to review this item!</p>
             {% endif %}

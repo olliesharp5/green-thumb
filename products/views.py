@@ -126,7 +126,6 @@ def create_review(request, product_id):
 
 def update_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
-    print(form)
     if request.user != review.user:
         return HttpResponseForbidden()
     if request.method == 'POST':
@@ -136,6 +135,7 @@ def update_review(request, review_id):
             return redirect('product_detail', product_id=review.product.id)
     else:
         form = ReviewForm(instance=review)
+    print(form)  # Move the print statement here
     return render(request, 'reviews/update_review.html', {'review_form': form})
 
 @require_POST

@@ -35,6 +35,8 @@ class ProductForm(forms.ModelForm):
 
 
 class ReviewForm(forms.ModelForm):
+    RATING_CHOICES = [(i, str(i)) for i in range(6)]
+    rating = forms.ChoiceField(choices=RATING_CHOICES)
     class Meta:
         model = Review
         fields = ['title', 'rating', 'text']

@@ -70,13 +70,15 @@ input[type=text],
 input[type=email],
 input[type=file],
 input[type=date],
+input[type=checkbox],
+.form-check-input:checked,
 #subject,
 #message, 
 .form-select,
 .textarea,
 .subscribe-input {
     padding: 10px;
-    margin: 5px 0;
+    margin: 5px 5px;
     box-sizing: border-box;
     background-color: #B2DBBF; /* Light green background for the search bar */
     border: solid;
@@ -157,6 +159,10 @@ body.home-page {
     height: 100%;
     width: 100%;
     object-fit: cover;
+}
+
+.card-text a {
+    color: #F1F5E6;
 }
 
 .intro-card {
@@ -404,6 +410,10 @@ label[for="id_sort_by"] {
     background-color: #B2DBBF;
 }
 
+body.add-products-page {
+    background-image: url(/static/images/leaves-image.jpg);
+}
+
 /* PRODUCT_DETAIL CSS */
 
 /* ToolTip Element CSS */
@@ -453,6 +463,16 @@ label[for="id_sort_by"] {
     object-fit: contain;
 }
 
+.fa-edit {
+    color: #007B55;
+    cursor: pointer;
+}
+
+.table {
+    --bs-table-striped-bg: rgba(178, 219, 191, 0.6) !important;
+    border-color: #007B55 !important;
+}
+
 /* SERVICES CSS */
 
 body.services-page, 
@@ -485,6 +505,19 @@ body.gardener-page, body.feedback-page, body.service-request-page {
 .services-profile {
     width: 200px !important;
     height: 200px !important;
+}
+
+
+/* CHECKOUT CSS */
+span.icon {
+    width: fit-content;
+    height: fit-content;
+}
+
+.form-check, 
+.form-check-input {
+    padding-left: 0;
+    margin-left: 0 !important;
 }
 
 /* CONTACT PAGE CSS */
