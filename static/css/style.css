@@ -95,19 +95,23 @@ span.icon {
 
 /* Button styling */
 .search-button {
-    background-color: #007B55; /* A deep green color for buttons */
-    color: #F1F5E6; /* Light color for the button text */
+    background-color: #007B55; 
+    color: #F1F5E6; 
     border: none;
-    padding: 10px 20px;
+    padding: 10px 10px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 50%;
-    position: relative; /* Additional property for positioning the icon */
+    position: relative; 
+    width: 50px; 
+    height: 50px; 
 }
 
 .search-button:hover {
@@ -493,7 +497,7 @@ body.gardener-page, body.feedback-page, body.service-request-page {
     padding: 0 !important;
 }
 
-.hero-text, .gardener-card {
+.hero-text, .gardener-card, .gardener-container {
     background-color: rgba(255, 255, 255, 0.404);
 }
 
@@ -509,6 +513,11 @@ body.gardener-page, body.feedback-page, body.service-request-page {
 .services-profile {
     width: 200px !important;
     height: 200px !important;
+}
+
+.gardener-image {
+    width: 100%; /* This will make the image take up the full width of its container */
+    height: auto; /* This will keep the aspect ratio of the image */
 }
 
 
@@ -567,7 +576,7 @@ footer i {
     }
 
     .search-area {
-        max-width: 50vw;
+        max-width: 70vw;
     }
 }
 
