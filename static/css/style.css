@@ -516,8 +516,8 @@ body.gardener-page, body.feedback-page, body.service-request-page {
 }
 
 .gardener-image {
-    width: 100%; /* This will make the image take up the full width of its container */
-    height: auto; /* This will keep the aspect ratio of the image */
+    width: 100%; 
+    height: auto; 
 }
 
 
