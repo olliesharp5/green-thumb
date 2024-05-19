@@ -257,6 +257,10 @@ body.home-page {
 
 /* Top navigation styles */
 
+.custom-dropdown {
+    transform: translateX(-10px);
+}
+
 .top-nav-row {
     --bs-gutter-x: 0 !important;
     margin-bottom: 18px;

@@ -11,6 +11,22 @@ $('.dropdown').hover(function(){
   });
 
 
+
+document.addEventListener('DOMContentLoaded', function() {
+    var dropdownMenuButton = document.getElementById('dropdownMenuButton');
+    dropdownMenuButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var dropdownMenu = dropdownMenuButton.nextElementSibling;
+        dropdownMenu.classList.toggle('show');
+    });
+    document.addEventListener('click', function() {
+        var dropdownMenu = dropdownMenuButton.nextElementSibling;
+        dropdownMenu.classList.remove('show');
+    });
+});
+
+
+
 // Get all product detail links
 let productDetailLinks = document.querySelectorAll('.product-detail-link');
 
