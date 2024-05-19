@@ -48,7 +48,7 @@
         <div class="row nav-row">
             {% include 'includes/top-nav.html' %}
         </div>
-        {% if request.resolver_match.url_name != 'services' and request.resolver_match.url_name != 'gardener_profile' and request.resolver_match.url_name != 'service_request' and request.resolver_match.url_name != 'gardener_feedback' %}
+
         <div class="row px-3 nav-row">
             <div class="col-8 my-auto py-1 py-lg-0">
                 <form method="GET" action="{% url 'products' %}">
@@ -72,7 +72,7 @@
                 </div>
             </nav>
         </div>
-        {% endif %}
+
 
         {% if messages %}
         <div class="message-container">
@@ -109,38 +109,42 @@
 
     <footer class="footer py-3 mt-4">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex justify-content-start">
-                    <span class="text-muted">© 2024 GreenThumb. All rights reserved.</span>
+            <div class="row">
+                <div class="col-12 col-md-6 order-2 order-md-1">
+                    <div class="d-flex justify-content-start">
+                        <span class="text-muted">© 2024 GreenThumb. All rights reserved.</span>
+                    </div>
+                    <div class="d-flex justify-content-start flex-column align-items-start mt-3 mt-md-0">
+                        <span class="mb-2">Follow Us:</span>
+                        <ul class="list-unstyled list-inline mb-2">
+                            <li class="list-inline-item">
+                                <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+                                    aria-label="Visit our Facebook page">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.twitter.com/" target="_blank" rel="noopener"
+                                    aria-label="Visit our Twitter page">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.youtube.com/" target="_blank" rel="noopener"
+                                    aria-label="Visit our YouTube page">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+                                    aria-label="Visit our Instagram page">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="d-flex justify-content-end flex-column align-items-end">
-                    <span class="mb-2">Follow Us:</span>
-                    <ul class="list-unstyled list-inline mb-2">
-                        <li class="list-inline-item">
-                            <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-                                aria-label="Visit our Facebook page">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://www.twitter.com/" target="_blank" rel="noopener"
-                                aria-label="Visit our Twitter page">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://www.youtube.com/" target="_blank" rel="noopener"
-                                aria-label="Visit our YouTube page">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-                                aria-label="Visit our Instagram page">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        </li>
-                    </ul>
+                <div class="col-12 col-md-6 order-1 order-md-2">
                     <form method="POST" action="{% url 'subscribe' %}">
                         {% csrf_token %}
                         <span class="mb-2">Join our mailing list</span>
