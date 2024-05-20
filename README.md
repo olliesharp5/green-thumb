@@ -372,76 +372,223 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
 * [Heroku](https://dashboard.heroku.com/) - Heroku is a cloud platform that lets companies build, deliver, monitor and scale apps.
 
 
-
--------------------------------------- TO-CHANGE
-
 ## Features
 
 ### Existing Features
 
 * Base Header and Footer
-The base header contains a responsive navigation bar including the title of the site, Artwork, Artists and Help links.  If the user is logged in as an artist, an additional option to create an advert will display. Logged in users, will see their Profile, Logout options as well as a welcoming message. If a user isn't logged in, the Register and Log in options will be displayed in place of the Logout button and welcome message. The base footer contains the standard copyright information.
+   - **Header:** The top navigation bar includes links to home, about, contact, and (for superusers) an add product option. The site title is centered, and a "My Account" dropdown on the right includes options like my profile, order history, wishlist, customer service requests, gardening requests, logout (if logged in), and register/login (if not logged in). 
+   - **Search Bar:** Below the top navigation is a search bar for searching the site.
+   - **Main Navigation:** Below the search row are dropdowns for product categories, allowing users to navigate specific categories.
+   - **Footer:** The footer includes social links, copyright information, and a subscribe-to-newsletter input field.
+   - Both header and footer are fully responsive.
   
-![Header](/assets/readme-assets/screenshot_header.png)
-![Footer](/assets/readme-assets/screenshot_footer.png)
+![Header](LINK)
+![Footer](LINK)
 
-* Artwork
-This page showcases all the published artwork in a paginated card format including an image, title, and artist name. There is a filter option to sort the artwork by artist, price, and condition. If user is not logged in, a banner will display advising them to register or login to unlock all the features of the site. 
-  
-![Artwork](/assets/readme-assets/screenshot_artwork.png)
 
-* Artwork Advert 
-Clicking on an artwork card brings up a detailed view with information like larger image, title, artist name, location, price, year, and artwork's condition. It also includes sections for About, Like counter, and reviews. If the logged in user is the owner of the artwork, they get options to edit or delete the artwork. Other logged in users will see options to contact seller, like, and review the artwork. Contacting seller will copy their email to clipboard. Likes on the artwork and reviews can be registered by the users. If the user is not logged in, only the artwork information and reviews will display. 
+* Home
+   - Landing page with a carousel of images showcasing recently added, best-selling, and highest-rated products.
+   - A short introduction to Green Thumb.
+   - Three feature cards highlighting shipping, the 30-day guarantee, and gardening services offered.
   
-![Artwork_advert](/assets/readme-assets/screenshot_art_detail.png)
+![Home](LINK)
 
-* Artists 
-This page displays a paginated card arrangement of all registered artists on the site. Cards contain profile image, name, and location of the artists.
-  
-![Artists](/assets/readme-assets/screenshot_artists.png)
 
-* Artist Profile
-Clicking an artist card will redirect user to their profile. It includes artist's details and a display of their published artwork.
+* About
+   - Contains the mission statement, images, history, reputation, certifications, and licenses of the company.
   
-![Artists_detail](/assets/readme-assets/screenshot_artist_profile.png)
+![About](LINK)
 
-* Help 
-This page contains a form for users to submit customer service requests, which are saved into the database for subsequent actions. 
+
+* Products
+   - Displays a themed background image depending on the category.
+   - Card display of products including image, name, rating, price, and a quick add-to-basket button with a size selector if applicable. The quick add defaults to a quantity of one.
   
-![Help](/assets/readme-assets/screenshot_help.png)
+![Products](LINK)
+
+
+* Product Detail
+   - Detailed product view with larger images, title, price, description, category, rating, size selector (if required), quantity selector, add-to-cart button, add/remove from wishlist button.
+   - Reviews section where reviews are displayed in a card format with author, rating, title, message, and date/time created. Product ratings are based on these reviews.
+   - Users can post one review per product, edit, and delete their reviews.
+   - Only logged-in users can leave reviews or add to the wishlist.
+   - Superusers can edit and delete products from this page.
+  
+![Product_detail](LINK)
+
+
+* Cart
+   - If the cart is empty, it advises the user and links back to the products page.
+   - Displays each cart item in a row with product name, price, quantity, total. Users can edit quantities and delete items.
+   - Cart total, delivery, and grand total values are displayed at the bottom with buttons to continue shopping or proceed to checkout.
+
+![Cart](LINK)
+
+
+* Checkout
+   - A form for customer information: name, email, phone number, country, delivery address details.
+   - Logged-in users can save this info to their profile with a checkbox.
+   - A prompt for non-logged-in users to log in or register to save information.
+   - Payment information field imported via Stripe.
+   - Order summary on the right.
+   - Buttons to adjust the cart (returns to cart page) and complete the order (validates form and initiates payment).
+
+![Checkout](LINK)
+
+
+* Order Success
+   - Displays an order summary: order number, order date, line items, delivery information, personal details.
+   - A button to continue shopping that returns to the products page.
+  
+![Order_success](LINK)
+
+
+* Services
+   - Title welcoming users to the services section.
+   - Four columns outlining service categories and their details.
+   - Button to request a quote, opening the service request page.
+   - Display of registered gardeners with name and profile picture, linking to their profile pages.
+   - Button to leave gardener feedback.
+  
+![Services](LINK)
+
+
+* Gardener Profile 
+    - Centered card with profile image, name, location, about section, and average rating.
+    - Feedback cards from users beneath, containing username, title, message, and rating.
+    - Average rating is calculated from user-submitted ratings.
+  
+![Gardener_profile](LINK)
+
+
+* Service Request 
+    - Form for requesting quotes for gardening services, accessible by guests and registered users.
+    - Fields: full name, email, services required (checkbox), message, file attachment, date required (with calendar selector).
+    - Form validation on required fields.
+  
+![Service_request](LINK)
+
+
+* Gardener Feedback
+    - Form for submitting feedback for registered gardeners.
+    - Fields: dropdown to select the gardener, first name, title, message, rating (dropdown).
+  
+![Gardener_feedback](LINK)
+
+
+* Contact
+    - Form for submitting customer service requests.
+    - Fields: full name, email, subject (dropdown with common categories), message, file attachment.
+    - Form validation on required fields.
+  
+![Contact](LINK)
+
 
 * Profile
-This page displays logged in user's profile with information like assigned role, profile image, display name, location, and about section. There are options to edit profile, manage password, and delete profile. Artists will see additionally their pending artwork adverts for admin approval.  
+    - Displays saved profile information.
+    - Personal information on the left (name, email).
+    - Gardener profile section (if applicable) beneath, displaying profile picture, location, and about section.
+    - Default delivery information on the right, saved during checkout.
+    - Edit icons to update information via modal, and a delete profile button.
   
-![Profile](/assets/readme-assets/screenshot_profile.png)
+![Profile](LINK)
 
-* Register 
-Users can register selecting either a regular user, artist or admin role. Following these, they need to fill up user profile details including a display name, location, profile photo and about information. After successful registration, they will be redirected to the home page. If any required field is empty or incorrect, an error message will display.
-  
-![Register](/assets/readme-assets/screenshot_register.png)
+* Order History
+    - Table showing previous orders with order number (linking to order success page), order date, line items, and order total.
 
-* Login 
-Selecting the login button redirects users to a login page where they can enter their username and password. After successful login, they are redirected to the home page. 
-  
-![Login](/assets/readme-assets/screenshot_login.png)
+![Order_history](LINK)
+
+
+* Wishlist
+    - Table of wishlist items with product image, name (linking to product detail page), description, and price.
+    - Option to delete items from the wishlist.
+
+![Wishlist](LINK)
+
+
+* Customer Service Requests
+    - Table displaying a history of customer service requests with full name, email, subject, message, status, and days since submission.
+    - Status updated by the customer service team to show progress.
+
+![Customer_service_requests](LINK)
+
+
+* Gardener Requests
+    - Table displaying a history of gardening service requests with full name, email, services, message, date required, status, and days since submission.
+    - Status updated by the customer service team to show progress.
+
+![Gardener_requests](LINK)
+
+
+* Register
+    - Registration form with fields for username, email address, password, and confirm password.
+    - Checkbox for gardeners; additional fields for display name, location, profile image, and about section appear if checked.
+
+![Register](LINK)
+
+
+* Login
+    - Sign-in page with fields for login and password, and a checkbox to remember the user.
+
+![Login](LINK)
+
 
 * Logout 
-In order to log out, users need to confirm their action on a prompt. After successful logout, they are redirected back to the main page.
-  
-![Logout](/assets/readme-assets/screenshot_logout.png)
+    - Prompt confirming the user's intent to log out, with a button to complete the action.
+
+![Logout](LINK)
+
+
+* Add Product
+    - Available only to superusers.
+    - Form with fields for SKU, name, description, checkbox for size options, price, image, and category (dropdown selector).
+
+![Add_product](LINK)
+
+
 
 ### Features Left to Implement
 
-In the future I would like to add, 
-1. **Shopping Cart and Checkout**: A functionality to allow users to purchase artwork directly from the website, along with a secure checkout system.
+In the future, I would like to add the following features to enhance user experience and functionality:
 
-2. **Social Media Integration**: Enable sharing of artists' profiles and individual artworks on various social media platforms to increase traffic and user engagement.
+1. **Subscription Service:**
+   - Introduce a subscription model allowing users to receive regular shipments of gardening products or curated selections of plants and seeds.
+   - Offer tiered subscription plans with different levels of service and benefits.
 
-3. **Artwork Auction**: Implement an auction system where users can bid on artwork. This could be an exciting way to promote interaction and sales.
+2. **Community Forum:**
+   - Create a community forum where users can discuss gardening tips, share their experiences, and ask questions.
+   - Include categories for different types of plants, gardening techniques, and regional gardening advice.
 
---------------------------------------------------------
+3. **Gardening Tutorials and Workshops:**
+   - Add a section for video tutorials and articles on various gardening topics, ranging from beginner to advanced levels.
+   - Implement an online workshop registration system where users can sign up for virtual or in-person gardening workshops hosted by expert gardeners.
 
+4. **Plant Care Reminders:**
+   - Develop a feature where users can receive notifications and reminders for plant care tasks such as watering, fertilizing, and pruning based on the plants they own.
 
+5. **Enhanced Search and Filtering:**
+   - Improve the search functionality with advanced filtering options, such as plant type, sunlight requirements, water needs, and growth habits.
+   - Include a plant identification tool that allows users to upload a photo of a plant to identify it and receive care instructions.
+
+6. **User-Generated Content:**
+   - Allow users to upload and share photos of their gardens, plants, and DIY gardening projects.
+   - Implement a rating and comment system for user-generated content to foster community interaction and feedback.
+
+7. **Loyalty and Rewards Program:**
+   - Introduce a loyalty program where users can earn points for purchases, reviews, and participating in community activities, which can be redeemed for discounts or special offers.
+
+8. **Integration with Smart Gardening Devices:**
+   - Integrate with smart gardening devices and sensors to provide users with real-time data and insights about their garden's health.
+   - Develop a dashboard to monitor soil moisture, temperature, and light levels, helping users make informed decisions about their plant care.
+
+9. **Expanded Service Offerings:**
+   - Add new categories of gardening services, such as landscape design consultation, pest control services, and seasonal maintenance packages.
+   - Enable booking and payment for these services directly through the website.
+
+10. **Mobile App:**
+    - Develop a mobile app to provide users with easy access to all website features on the go.
+    - Include features like plant care reminders, a plant identification tool, and the ability to purchase products and book services from the app.
 
 
 ## Testing
