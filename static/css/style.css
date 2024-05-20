@@ -150,7 +150,7 @@ span.icon {
 }
 
 body.home-page {
-    background-image: url(/static/images/wood-chips.jpg);
+    background-image: url(/media/wood-chips.jpg);
     object-fit: cover;
 }
 
@@ -172,7 +172,7 @@ body.home-page {
 
 .intro-card {
     margin: 2rem;
-    background-image: url(/static/images/card-background.jpg);
+    background-image: url(/media/card-background.jpg);
     background-size: contain;
     color: #F1F5E6;
 }
@@ -352,23 +352,23 @@ h1.mb-0 {
 /* PRODUCTS CSS */
 
 body.products-page.all-products {
-    background-image: url(/static/images/leaves-image.jpg);
+    background-image: url(/media/leaves-image.jpg);
 }
 
 body.products-page.garden-plants {
-    background-image: url(/static/images/garden-plants.jpg);
+    background-image: url(/media/garden-plants.jpg);
 }
 
 body.products-page.house-plants {
-    background-image: url(/static/images/house-plants.jpg);
+    background-image: url(/media//house-plants.jpg);
 }
 
 body.products-page.seeds {
-    background-image: url(/static/images/seeds.jpg);
+    background-image: url(/media/seeds.jpg);
 }
 
 body.products-page.supplies {
-    background-image: url(/static/images/supplies.jpg);
+    background-image: url(/media/supplies.jpg);
 }
 
 .products-container {
@@ -420,7 +420,7 @@ label[for="id_sort_by"] {
 }
 
 body.add-products-page {
-    background-image: url(/static/images/leaves-image.jpg);
+    background-image: url(/media/leaves-image.jpg);
 }
 
 /* PRODUCT_DETAIL CSS */
@@ -486,7 +486,7 @@ body.add-products-page {
 
 body.services-page, 
 body.gardener-page, body.feedback-page, body.service-request-page {
-    background-image: url(/static/images/service-background.jpg);
+    background-image: url(/media/service-background.jpg);
     background-size: cover;
 }
 
@@ -529,7 +529,7 @@ span.icon {
 
 /* CONTACT PAGE CSS */
 body.contact-page {
-    background-image: url(/static/images/supplies.jpg);
+    background-image: url(/media/supplies.jpg);
     object-fit: cover;
 }
 
