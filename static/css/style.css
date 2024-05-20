@@ -490,21 +490,14 @@ body.gardener-page, body.feedback-page, body.service-request-page {
     background-size: cover;
 }
 
-.services-container h2, .services-container hr {
-    color: #F1F5E6;
-}
-
 .container-fluid {
     padding: 0 !important;
 }
 
-.hero-text, .gardener-card, .gardener-container {
-    background-color: rgba(255, 255, 255, 0.404);
-}
-
-.service-column {
-    background-color: rgba(241, 245, 230, 0.6);
+.service-column,.hero-text, .gardener-card, .gardener-container {
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 20px;
+    color:#F1F5E6;
 }
 
 .service-column button {
@@ -580,6 +573,7 @@ footer i {
         max-width: 70vw;
     }
 }
+
 
 @media only screen and (max-width: 543px) {
     .account-dropdown {

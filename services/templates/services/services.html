@@ -18,15 +18,14 @@
     </div>
 </div>
 
-<div class="container services-container py-5">
+<div class="container services-container p-3 mt-3 service-column">
     <div class="row">
         <div class="col-12 text-center mb-5">
             <h2>Our Services</h2>
-            <hr>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+    <div class="row g-6">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center">
             <h5>Gardening</h5>
             <div class="text-left">
                 <p>What does this include?</p>
@@ -38,7 +37,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center">
             <h5>Lawn Care</h5>
             <div class="text-left">
                 <p>What does this include?</p>
@@ -49,7 +48,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center">
             <h5>Holiday Service</h5>
             <div class="text-left">
                 <p>What does this include?</p>
@@ -60,7 +59,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center">
             <h5>Seasonal Care</h5>
             <div class="text-left">
                 <p>What does this include?</p>
@@ -71,20 +70,19 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12 text-center mt-5">
-            <a href="{% url 'service_request' %}">
-                <button class="btn btn-primary btn-lg">Request a Quote Today!</button>
-            </a>
-        </div>
+</div>
+<div class="row">
+    <div class="col-12 text-center mt-2 mb-5">
+        <a href="{% url 'service_request' %}">
+            <button class="btn btn-primary btn-lg">Request a Quote Today!</button>
+        </a>
     </div>
 </div>
 
-<div class="container gardener-container py-5">
+<div class="container gardener-container p-3">
     <div class="row">
         <div class="col-12 text-center mb-5">
             <h2>Meet our gardeners</h2>
-            <hr>
         </div>
     </div>
     <div class="row text-center justify-content-center">
@@ -92,7 +90,7 @@
         <div class="col-lg-3 col-md-4 col-sm-12 col-6 p-2">
             <h4>{{ gardener.display_name }}</h4>
             <a href="{% url 'gardener_profile' username=gardener.user.username %}"><img
-                    src="{% static 'images/placeholder_image.png' %}" class="rounded-circle gardener-image"
+                    src="{% static 'images/placeholder_image.png' %}" class="gardener-image"
                     alt="John"></a>
         </div>
         {% endfor %}

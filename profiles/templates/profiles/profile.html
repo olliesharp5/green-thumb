@@ -19,7 +19,6 @@
           data-bs-target="#personalInfoModal"></i>
         <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
         <p>Email: {{ user.email }}</p>
-        <a href="{% url 'account_reset_password' %}" class="btn btn-link mt-2">Change your Password</a>
       </div>
       {% if user_profile.role == 'GR' %}
       <hr>
@@ -56,7 +55,8 @@
       <p>Country: {{ user_profile.default_country }}</p>
     </div>
   </div>
-  <div class="text-center">
+  <div class="text-center mt-4">
+    <a href="{% url 'account_reset_password' %}" class="btn btn-warning">Change your Password</a>
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteProfileModal">
       Delete Profile
     </button>

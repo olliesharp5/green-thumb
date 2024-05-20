@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mt-2">
             <button onclick="goBack()" class="btn btn-sm btn-outline-secondary mb-3">Back to Search Results</button>
         </div>
         {% include "products/product_modals.html" with review_form=review_form %}
@@ -35,7 +35,7 @@
                 {% if s %}
                 <div class="col-12">
                     <p><strong>Size:</strong></p>
-                    <select class="form-control rounded-0 w-50 custom-select" name="product_size" id='id_product_size'>
+                    <select class="form-control rounded-0 w-50 custom-select mb-1" name="product_size" id='id_product_size'>
                         <option value="xs">XS</option>
                         <option value="s">S</option>
                         <option value="m" selected>M</option>
@@ -88,7 +88,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 mt-3">
+            <hr>
             <h3>Reviews</h3>
             {% if user.is_authenticated %}
             {% if not user_has_reviewed %}

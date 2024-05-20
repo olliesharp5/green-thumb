@@ -19,13 +19,12 @@
                         src="{% static 'images/placeholder_image.png' %}" alt="Profile Picture" width="150">
 
                     <h3 class="card-title">{{ gardener.display_name }}</h3>
-                    <h4 class="card-subtitle mb-3 text-muted">{{ gardener.location }}</h4>
+                    <h4 class="card-subtitle mb-3">{{ gardener.location }}</h4>
                     <p class="card-text">{{ gardener.about }}</p>
                     <p class="card-text">Average Rating: {{ gardener.calculate_rating }}</p>
                 </div>
             </div>
             <div class="mt-5">
-                <h4>Customer Feedback:</h4>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     {% for feedback in feedbacks %}
                     <div class="col">
