@@ -25,6 +25,8 @@
                         {% endfor %}
                         <button type="submit" class="btn btn-primary">{% trans "Sign In" %}</button>
                     </form>
+                    <a href="{% url 'account_reset_password' %}"
+                        class="btn btn-link mt-2">{% trans "Forgot your password?" %}</a>
                     {% endif %}
                     {% if LOGIN_BY_CODE_ENABLED %}
                     <hr>
