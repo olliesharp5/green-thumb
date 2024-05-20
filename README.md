@@ -100,46 +100,64 @@ The underlying strategy comprised several crucial goals:
 - Its device compatibility not only enhances the user experience but also boosts the site's SEO performance.
 
 
-
-
-
-
----------------------------------  TO - CHANGE
-
 **Website Sections:**
 1. **_Base Header and Footer:_** A unified header and footer with functionalities varying based on login status and user role.
-2. **_Artwork:_** Artwork catalog with filter options and paginated display encouraging users to register or login.
-3. **_Artwork Advert:_** Detailed view of selected artwork with interaction options varying based on user status.
-4. **_Artists:_** Paginated display of artists registered on the site with each card displaying profile image, name, and location.
-5. **_Artist Profile:_** Summary of an artist including their details and portfolio of published artwork.
-6. **_Help:_** A component for submitting customer service requests.
-7. **_Profile:_** Personalized user profile with various functionalities including profile editing, password management, and profile deletion.
-8. **_Register:_** Registration functionality with role selection and profile creation.
-9. **_Login:_** Simple login form with validations to provide appropriate user feedback.
-10. **_Logout:_** Functionality to log out with a confirm prompt to ensure intentional actions by the user.
+2. **_About:_** Overview of the company, mission, and values, providing an in-depth look at the product and its benefits.
+3. **_Products:_** A comprehensive product catalog with category selectors in the navigation bar and filter options for a refined search experience.
+4. **_Product Detail:_** Detailed view of individual products including descriptions, reviews, and purchase options. Interaction options vary based on user status.
+5. **_Cart:_** View of the user's selected products with the ability to adjust quantities, remove items, and see a summary of the total cost.
+6. **_Checkout:_** Step-by-step checkout process including shipping information, payment details, and order review.
+7. **_Order Success:_** Confirmation page showing the order details and next steps after a successful purchase.
+8. **_Services:_** A display of the services offered by our registered gardeners with descriptions of what each service includes. 
+9. **_Gardener Profile:_** Detailed profile of a gardener including their bio, profile image, name, location and feedback they have received from other users.
+10. **_Service Request:_** Form for users to request quotes for specific services.
+11. **_Gardener Feedback:_** Section for users to leave feedback as reviews for gardeners they have interacted with.
+12. **_Contact:_** Component for submitting customer service requests or general inquiries.
+13. **_Profile:_** Personalized user profile with functionalities for editing profile details, managing passwords, and deleting the account.
+14. **_Order History:_** Section within the user profile that displays a history of all past orders with details and status updates.
+15. **_Wishlist:_** Section within the user profile where users can view their saved products they are interested in purchasing later.
+16. **_Customer Service Requests:_** Section within the user profile for managing and viewing past customer service requests.
+17. **_Gardener Requests:_** Section within the user profile for managing and viewing requests related to gardening services.
+18. **_Register:_** Registration form allowing users to create an account with role selection and profile setup.
+19. **_Login:_** Simple login form with validations to provide appropriate feedback to the user.
+20. **_Logout:_** Functionality to log out with a confirmation prompt to ensure intentional actions by the user.
+21. **_Add Product:_** Interface for authorized users to add new products to the catalog, including all necessary product details.
+
 
 ### Skeleton
-The website is designed with the principles of both clarity and simplicity. 
+The website is designed with the principles of both clarity and simplicity.
 
-- **Header**: The topmost section includes a responsive navigation bar with links to different sections of the site: the title (home), artwork, artists, and help. Depending on the user's role (visitor, regular user, artist, or admin) and the state of login, different options are dynamically displayed in the header.
+- **Header**: The topmost section includes a responsive navigation bar with links to different sections of the site: home, products, services, about, and contact. Depending on the user's role (visitor, regular user, service provider, or admin) and the state of login, different options are dynamically displayed in the header, such as profile, cart, and logout.
 
-- **Body**: The body of the site changes dynamically based on the link clicked from the header. It can display the catalogue of all published artwork, detailed view of an artwork, profile view of an artist, form for help requests, user's profile page, or forms for registration and login. 
+- **Body**: The body of the site changes dynamically based on the link clicked from the header. It can display the product catalog, detailed view of a product, profile view of a service provider, forms for customer service requests, user's profile page, or forms for registration and login.
 
-- **Artwork and Artists' Pages**: These are paginated and sorted in a card display format. 
+  - **Products Page**: Displays a comprehensive product catalog with category selectors in the navigation bar and filter options for a refined search experience.
 
-- **Help Section**: This includes a form through which users can submit their customer service requests.
+  - **Product Detail Page**: Provides a detailed view of individual products including descriptions, reviews, and purchase options. Interaction options vary based on user status.
 
-- **Profile Section**: Here users can view their profile information and depending on their role may edit their adverts, edit profile details, change password, and delete their profile.
+  - **Cart Page**: Shows the user's selected products with the ability to adjust quantities, remove items, and see a summary of the total cost.
 
-- **Register and Login Pages**: Both include forms with validations that display error reason if user's input fails validation.
+  - **Checkout Page**: Guides the user through the checkout process including shipping information, payment details, and order review.
 
-- **Footer**: The lowermost static part of the site displays copyright information, social media links and an email input field for users to sign up to the newsletter.
+  - **Order Success Page**: Displays a confirmation message and order details after a successful purchase.
+
+  - **Services Page**: Paginated display of service providers registered on the site with each card displaying profile image, name, and location.
+
+    - ***Gardener Profile Page***: Detailed profile of a gardener including their bio, services offered, and portfolio of published work.
+
+    - ***Service Request Page***: Form for users to request specific services, with options varying based on user status.
+
+    - ***Gardener Feedback Page***: Section for users to leave feedback and reviews for gardeners they have interacted with.
+
+  - **Help Section**: Includes a form through which users can submit their customer service requests or inquiries.
+
+  - **Profile Section**: Personalized user profile where users can view and edit their profile details, manage passwords, view order history, manage wishlist, and delete their account. Service providers can manage their service requests and feedback.
+
+  - **Register and Login Pages**: Forms for creating a new account and logging into an existing account, with validations to provide appropriate user feedback.
+
+- **Footer**: The lowermost static part of the site displaying copyright information, social media links, and an email input field for users to sign up for the newsletter.
 
 The website employs a hierarchical tree structure where the home page serves as the root. The different sections of the site can be accessed from the top-level navigation in the header. The flows from top to bottom are intuitive and provide a seamless user experience.
-
-
-----------------------------
-
 
 
 ### Wireframes 

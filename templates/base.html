@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Green Thumb is your one-stop online shop for all your gardening needs. We offer a wide range of gardening tools, plants, seeds, and more.">
+    <meta name="description"
+        content="Green Thumb is your one-stop online shop for all your gardening needs. We offer a wide range of gardening tools, plants, seeds, and more.">
     <meta name="keywords" content="Gardening, Plants, Seeds, Gardening Tools, Online Gardening Shop">
     {% endblock %}
 
@@ -146,15 +147,12 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 order-1 order-md-2">
-                    <form method="POST" action="{% url 'subscribe' %}">
-                        {% csrf_token %}
-                        <span class="mb-2">Join our mailing list</span>
-                        <div class="d-flex align-items-center mb-2">
-                            <input type="email" name="email" class="form-control subscribe-input"
-                                placeholder="Enter your email">
-                            <button type="submit" class="btn btn-primary ml-2">Subscribe</button>
-                        </div>
-                    </form>
+                    <span class="mb-2">Join our mailing list</span>
+                    <div class="d-flex align-items-center mb-2">
+                        <input type="email" name="email" class="form-control subscribe-input"
+                            placeholder="Enter your email">
+                        <button type="submit" class="btn btn-primary ml-2">Subscribe</button>
+                    </div>
                 </div>
             </div>
         </div>
