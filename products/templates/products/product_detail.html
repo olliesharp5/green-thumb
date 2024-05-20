@@ -60,8 +60,7 @@
                     <i class="fas fa-heart {% if product in wishlist.products.all %}text-danger{% endif %}"></i>
                     {% if product in wishlist.products.all %}
                     <a href="{% url 'profiles:remove_from_wishlist' product.id 'product_detail' %}"
-                        id="remove_from_wishlist">Remove from
-                        Wishlist</a>
+                        id="remove_from_wishlist">Remove from Wishlist</a>
                     {% else %}
                     Add to Wishlist
                     {% endif %}
@@ -115,16 +114,20 @@
                             <p class="card-text">{{ review.text }}</p>
                             <p class="card-text">{{ review.date_added }}</p>
                             {% if user.is_authenticated and user == review.user %}
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateReviewModal">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#updateReviewModal"
+                                onclick="openUpdateReviewModal('{{ review.id }}', '{{ review.rating }}', '{{ review.title }}', '{{ review.text }}')">
                                 Edit Review
                             </button>
                             {% endif %}
                             {% if user.is_authenticated and user.is_superuser %}
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteReviewModal" onclick="openDeleteReviewModal('{{ review.id }}')">
                                 Delete Review
                             </button>
                             {% elif user.is_authenticated and user == review.user %}
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#deleteReviewModal" onclick="openDeleteReviewModal('{{ review.id }}')">
                                 Delete Review
                             </button>
                             {% endif %}
@@ -132,7 +135,7 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>            
+            </div>
             {% elif user.is_authenticated %}
             <p>Be the first to review this item!</p>
             {% endif %}

@@ -27,6 +27,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+function openUpdateReviewModal(reviewId, rating, title, text) {
+    const updateForm = document.getElementById('updateReviewForm');
+    updateForm.action = `/products/review/${reviewId}/update/`;
+
+    // Ensure the dropdown is correctly set
+    const ratingField = updateForm.querySelector('#id_rating');
+    const options = ratingField.options;
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === rating.toString()) {
+            options[i].selected = true;
+            break;
+        }
+    }
+
+    updateForm.querySelector('#id_title').value = title;
+    updateForm.querySelector('#id_text').value = text;
+}
+
+function openDeleteReviewModal(reviewId) {
+    const deleteForm = document.getElementById('deleteReviewForm');
+    deleteForm.action = `/products/review/${reviewId}/delete/`;
+}
+
+
+
+
 // Get all product detail links
 let productDetailLinks = document.querySelectorAll('.product-detail-link');
 

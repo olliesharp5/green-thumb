@@ -133,12 +133,15 @@ def update_review(request, review_id):
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
             form.save()
+            print("Form is valid and review is updated.")
             return redirect('product_detail', product_id=review.product.id)
+        else:
+            print("Form is not valid:", form.errors)
     else:
         form = ReviewForm(instance=review)
-    print(form)  # Move the print statement here
-    return render(request, 'reviews/update_review.html', {'review_form': form})
-
+    # Redirect to product detail page if not POST or form not valid
+    return redirect('product_detail', product_id=review.product.id)
+    
 @require_POST
 def delete_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
