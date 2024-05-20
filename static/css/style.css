@@ -67,6 +67,7 @@ a {
 
 /* Search bar styling  */
 input[type=text],
+input[type=password],
 input[type=email],
 input[type=file],
 input[type=date],
@@ -80,9 +81,9 @@ input[type=checkbox],
     padding: 10px;
     margin: 5px 5px;
     box-sizing: border-box;
-    background-color: #B2DBBF; /* Light green background for the search bar */
+    background-color: #B2DBBF !important; /* Light green background for the search bar */
     border: solid;
-    color: #007B55; /* A deep green color for the text in search bar */
+    color: #007B55 !important; /* A deep green color for the text in search bar */
 }
 
 span.icon {
@@ -166,7 +167,7 @@ body.home-page {
 }
 
 .card-text a {
-    color: #F1F5E6;
+    color:#007B55;
 }
 
 .intro-card {

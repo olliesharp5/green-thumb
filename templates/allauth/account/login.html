@@ -11,8 +11,8 @@
             <div class="card mt-5">
                 <div class="card-body">
                     <h1 class="card-title">{% trans "Sign In" %}</h1>
-                    <p class="card-text">{% blocktrans %}If you have not created an account yet, then please <a
-                            href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+                    <p class="card-text login-text">If you have not created an account yet, then please <a
+                            href="{% url 'register' %}">sign up</a> first.</p>
                     {% if not SOCIALACCOUNT_ONLY %}
                     {% url 'account_login' as login_url %}
                     <form class="form" method="post" action="{{ login_url }}">

@@ -4,13 +4,23 @@
 
 {% block content %}
 
-<h1>register form</h1>
-<form method="post" action="{% url 'register' %}">
-    {% csrf_token %}
-    {{ user_form|crispy }}
-    <div id="gardenerFields" style="display: none;">
-        {{ gardener_form|crispy }}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="text-center my-4">Register Today!</h1>
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ user_form|crispy }}
+                </div>
+                <div id="gardenerFields" class="mb-3" style="display: none;">
+                    {{ gardener_form|crispy }}
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+            </form>
+        </div>
     </div>
-    <button type="submit">Register</button>
-</form>
+</div>
 {% endblock content %}
