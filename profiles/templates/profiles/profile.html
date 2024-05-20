@@ -19,7 +19,7 @@
           data-bs-target="#personalInfoModal"></i>
         <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
         <p>Email: {{ user.email }}</p>
-        <a href="{% url 'account_reset_password' %}" class="btn btn-link mt-2">{% trans "Change your password" %}</a>
+        <a href="{% url 'account_reset_password' %}" class="btn btn-link mt-2">Change your Password</a>
       </div>
       {% if user_profile.role == 'GR' %}
       <hr>
