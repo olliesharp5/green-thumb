@@ -653,6 +653,7 @@ No errors were found when passing through the contrast validator.
 
 * goback function when on the product detail page 
 * When a user selects the "Edit Review" button, two sets of forms for editing and deleting reviews are displayed in the modal. This leads to confusion and potential errors, as both forms target different review IDs. The modal forms were updated to dynamically populate with the correct review details when the "Edit Review" or "Delete Review" buttons are clicked. This ensures only the relevant form is displayed and populated correctly.
+* The <select> element in the form was not displaying the downward chevron to indicate it is a dropdown field. This issue occurred despite using Bootstrap 5. To resolve this issue, custom CSS styles were added to the <select> element to enforce the appearance of the dropdown indicator. 
 
 
 
