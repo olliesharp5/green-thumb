@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseForbidden
 from django.contrib import messages
 from django.db.models import Q, Count
 from django.views.decorators.http import require_POST
@@ -141,7 +142,7 @@ def update_review(request, review_id):
 @require_POST
 def delete_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
-    if request.user != review.user:
+    if request.user != review.user and not request.user.is_superuser:
         return HttpResponseForbidden()
     product_id = review.product.id
     review.delete()

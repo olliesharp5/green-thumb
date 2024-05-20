@@ -115,12 +115,16 @@
                             <p class="card-text">{{ review.text }}</p>
                             <p class="card-text">{{ review.date_added }}</p>
                             {% if user.is_authenticated and user == review.user %}
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                data-bs-target="#updateReviewModal">
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateReviewModal">
                                 Edit Review
                             </button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteReviewModal">
+                            {% endif %}
+                            {% if user.is_authenticated and user.is_superuser %}
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
+                                Delete Review
+                            </button>
+                            {% elif user.is_authenticated and user == review.user %}
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteReviewModal">
                                 Delete Review
                             </button>
                             {% endif %}
@@ -128,7 +132,7 @@
                     </div>
                 </div>
                 {% endfor %}
-            </div>
+            </div>            
             {% elif user.is_authenticated %}
             <p>Be the first to review this item!</p>
             {% endif %}

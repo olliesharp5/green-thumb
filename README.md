@@ -651,15 +651,13 @@ No errors were found when passing through the contrast validator.
 
 #### Fixed Bugs
 
-* Unable to render crispyforms 
-* Form unable to POST to update a review due to an error in url.py filepath. /art/ needed in front of urlpattern
-* reviewId coming through as null. Debugged Js using console.log queries, amended the getAttribute value to data-review_id from review_id to obtain the correct reviewid value. 
-* Invalid password format or unknown hashing algorithm. - amended the register view to hash the password before being stored in the database. 
+* goback function when on the product detail page 
+
 
 #### Unfixed Bugs
 
-* The masonry style is an experimental feature of Bootstrap5. It has been used in the artwork page to display the cards in a way that compliments both portrait and landscape artwork. This style can somethimes struggle to arrange the tiles correctly, hwoever with a refresh of the page it will resolve. 
-* There is a current issue with the size of image being sent to the site by Cliudinary. This is contributing slightly to a longer loading time for the site. In the future I will limit the size of the image being sent through whilst maintaining the aspect ratio. 
+* tooltip element on product detail page dissapears too soon after the cursor leaves its space 
+
 
 ## Deployment
 
@@ -683,44 +681,40 @@ The performance of the website was tested with [Google Lighthouse](INSERT LINK T
 
 **Lighthouse reports:**<br>
 
-Issues have been highlighted with performance in my Lighthouse reports. These issues have been identified as being related to the Masonry Bootstrap5 style used on the artwork page. Additionally there is some formatting issues in the way Cloudinary brings over images to the site which contributes to loading times. 
-
-These are bugs I hope to resolve in the near future by amending the Masonry Javascript and limiting the image size in Cloudinary. 
-
 * Artwork Page
 
-![lighthouse_artwork](/assets/readme-assets/lighthouse_artwork.png)
+![lighthouse_artwork](LINK)
 
 * Art Advert Page 
 
-![lighthouse_art_detail](/assets/readme-assets/lighthouse_art_detail.png)
+![lighthouse_art_detail](LINK)
 
 * Artists Page 
 
-![lighthouse_artists](/assets/readme-assets/lighthouse_artists.png)
+![lighthouse_artists](LINK)
 
 * Artists Profile Page
 
-![lighthouse_artist_profile](/assets/readme-assets/lighthouse_artist_profile.png)
+![lighthouse_artist_profile](LINK)
 
 * Login/Logout/Register Pages
 
-![lighthouse_login_logout_register](/assets/readme-assets/lighthouse_register_login_logout.png)
+![lighthouse_login_logout_register](LINK)
 
 * Profile Page
 
-![lighthouse_profile](/assets/readme-assets/lighthouse_profile.png)
+![lighthouse_profile](LINK)
 
 
 ## Credits
 
 ### Content
-* The idea for the offcanvas backdrop to house the filter properties was taken from https://getbootstrap.com/docs/5.0/components/offcanvas/
-* Implementation of masonry layout: https://masonry.desandro.com/
+* 
+* 
 
 ### Media
 
 * The icon used for the favicon is from favicon.io
 * The icons in the footer were taken from Font Awesome
-* Credit provided for background image: https://unsplash.com/photos/white-painted-wall-with-black-line-vS3idIiYxX0?utm_content=creditShareLink&utm_medium=referral&utm_source=unsplash 
-* photos for artwork provided by Steve Johnson: https://wolfejohnson.com/
+* Credit provided for background images: https://www.pexels.com/  
+* 
