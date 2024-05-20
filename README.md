@@ -176,75 +176,162 @@ The font family used across the site is 'Trebuchet MS', 'Lucida Sans Unicode', '
 
 The gardening themed images and opaque coloured cards employed for text display across the site enhance the visual appeal and readability, enriching the overall user experience.
 
-
-
-
-------------------------------  TO-CHANGE
-
 ### Models
 
-#### Artwork App
+#### Checkout App
 
-##### Art
+##### Order
 
-| Field Name | Field Type | Validation/Choices |
-| --- | --- | --- |
-| title | CharField | max_length=100, unique=True |
-| slug | SlugField | max_length=100, unique=True |
-| artist | ForeignKey(UserProfile) | on_delete=models.CASCADE, related_name="art_posts" |
-| about | TextField |  |
-| art_image | CloudinaryField | default='art_placeholder' |
-| price | DecimalField | max_digits=10, decimal_places=2 |
-| year | PositiveIntegerField | validators=[MinValueValidator(1600), MaxValueValidator(datetime.date.today().year)], default=datetime.date.today().year |
-| condition | IntegerField | choices=CONDITION, default=0 |
-| created_on | DateTimeField | auto_now_add=True |
-| status | IntegerField | choices=STATUS, default=0 |
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| order_number     | UUIDField               | primary_key=True, default=uuid.uuid4, editable=False|
+| user_profile     | ForeignKey(UserProfile) | on_delete=models.SET_NULL, null=True, blank=True, related_name='orders' |
+| full_name        | CharField               | max_length=50, null=False, blank=False              |
+| email            | EmailField              | max_length=254, null=False, blank=False             |
+| phone_number     | CharField               | max_length=20, null=False, blank=False              |
+| country          | CountryField            | blank_label='Country *', null=False, blank=False    |
+| postcode         | CharField               | max_length=20, null=True, blank=True                |
+| town_or_city     | CharField               | max_length=40, null=False, blank=False              |
+| street_address1  | CharField               | max_length=80, null=False, blank=False              |
+| street_address2  | CharField               | max_length=80, null=True, blank=True                |
+| county           | CharField               | max_length=80, null=True, blank=True                |
+| date             | DateTimeField           | auto_now_add=True                                   |
+| delivery_cost    | DecimalField            | max_digits=6, decimal_places=2, null=False, default=0 |
+| order_total      | DecimalField            | max_digits=10, decimal_places=2, null=False, default=0 |
+| grand_total      | DecimalField            | max_digits=10, decimal_places=2, null=False, default=0 |
+| original_cart    | TextField               | null=False, blank=False, default=''                 |
+| stripe_pid       | CharField               | max_length=254, null=False, blank=False, default='' |
 
-##### Like
 
-| Field Name | Field Type |
-| --- | --- |
-| user | ForeignKey(UserProfile) |
-| art | ForeignKey(Art) |
+##### OrderLineItem
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| order            | ForeignKey(Order)       | null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems' |
+| product          | ForeignKey(Product)     | null=False, blank=False, on_delete=models.CASCADE    |
+| product_size     | CharField               | max_length=2, null=True, blank=True                 |
+| quantity         | PositiveIntegerField    | null=False, blank=False, default=0                  |
+| lineitem_total   | DecimalField            | max_digits=6, decimal_places=2, null=False, blank=False, editable=False |
+
+
+#### Contact App
+
+##### ContactRequest
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| full_name        | CharField               | max_length=200                                      |
+| email            | EmailField              |                                                     |
+| subject          | CharField               | max_length=200, choices=SUBJECT_CHOICES             |
+| message          | TextField               |                                                     |
+| file_upload      | FileField               | upload_to='uploads/', null=True, blank=True         |
+| created_at       | DateTimeField           | auto_now_add=True                                   |
+| status           | CharField               | max_length=2, choices=STATUS_CHOICES, default='O'   |
+
+
+#### Products App
+
+##### Category
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| name             | CharField               | max_length=200                                      |
+| slug             | SlugField               | max_length=200, unique=True, blank=True             |
+| parent           | ForeignKey('self')      | on_delete=models.CASCADE, null=True, blank=True     |
+
+
+##### Product
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| sku              | CharField               | max_length=254, null=True, blank=True               |
+| name             | CharField               | max_length=254                                      |
+| description      | TextField               |                                                     |
+| has_size         | BooleanField            | default=False, null=True, blank=True                |
+| price            | DecimalField            | max_digits=6, decimal_places=2                      |
+| rating           | DecimalField            | max_digits=2, decimal_places=1, null=True, blank=True |
+| image            | ImageField              | null=True, blank=True                               |
+| category         | ForeignKey(Category)    | on_delete=models.CASCADE                            |
+| date_added       | DateTimeField           | auto_now_add=True                                   |
+
 
 ##### Review
 
-| Field Name | Field Type | Validation/Choices |
-| --- | --- | --- |
-| art | ForeignKey(Art) | on_delete=models.CASCADE, related_name="reviews" |
-| author | ForeignKey(UserProfile) | on_delete=models.CASCADE, related_name="reviewer" |
-| body | TextField |  |
-| rating | IntegerField | validators=[MinValueValidator(1), MaxValueValidator(5)] |
-| approved | BooleanField | default=False |
-| created_on | DateTimeField | auto_now_add=True |
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| product          | ForeignKey(Product)     | on_delete=models.CASCADE, related_name='reviews'    |
+| user             | ForeignKey(User)        | on_delete=models.CASCADE                            |
+| title            | CharField               | max_length=200, null=True                           |
+| rating           | DecimalField            | max_digits=2, decimal_places=1, validators=[MinValueValidator(0), MaxValueValidator(5)] |
+| text             | TextField               |                                                     |
+| date_added       | DateTimeField           | auto_now_add=True                                   |
 
-#### Artists App
+
+#### Profiles App
 
 ##### UserProfile
 
-| Field Name | Field Type | Validation/Choices |
-| --- | --- | --- |
-| user | OneToOneField(User) | on_delete=models.CASCADE, default="1" |
-| role | CharField | max_length=2, choices=USER_ROLES, default='RU' |
-| display_name | CharField | max_length=100, null=True, blank=True, unique=True |
-| location | TextField |  |
-| profile_image | CloudinaryField | default='profile_placeholder' |
-| about | TextField |  |
-
-#### Help App
-
-##### HelpRequest
-
-| Field Name | Field Type |
-| --- | --- |
-| name | CharField | max_length=200 |
-| email | EmailField |  |
-| message | TextField |  |
-| created_at | DateTimeField | auto_now_add=True |
+| Field Name             | Field Type              | Validation/Choices                                   |
+|------------------------|-------------------------|-----------------------------------------------------|
+| user                   | OneToOneField(User)     | on_delete=models.CASCADE                            |
+| role                   | CharField               | max_length=2, choices=USER_ROLES, default='RU'      |
+| display_name           | CharField               | max_length=100, null=True, blank=True, unique=True  |
+| location               | TextField               |                                                     |
+| profile_image          | ImageField              | null=True, blank=True                               |
+| about                  | TextField               |                                                     |
+| default_phone_number   | CharField               | max_length=20, null=True, blank=True                |
+| default_street_address1| CharField               | max_length=80, null=True, blank=True                |
+| default_street_address2| CharField               | max_length=80, null=True, blank=True                |
+| default_town_or_city   | CharField               | max_length=40, null=True, blank=True                |
+| default_county         | CharField               | max_length=80, null=True, blank=True                |
+| default_postcode       | CharField               | max_length=20, null=True, blank=True                |
+| default_country        | CountryField            | blank_label='Country', null=True, blank=True        |
 
 
---------------------------------------------------------------
 
+##### Wishlist
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| user             | ForeignKey(UserProfile) | on_delete=models.CASCADE                            |
+| products         | ManyToManyField(Product)|                                                     |
+
+
+
+#### Services App
+
+##### Service
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| name             | CharField               | max_length=200, choices=SERVICE_CHOICES             |
+
+
+##### ServiceRequest
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| full_name        | CharField               | max_length=200                                      |
+| email            | EmailField              |                                                     |
+| services         | ManyToManyField(Service)|                                                     |
+| message          | TextField               | null=True, blank=True                               |
+| file_upload      | FileField               | upload_to='uploads/', null=True, blank=True         |
+| date_required    | DateField               | help_text='Date when the service is required'       |
+| created_at       | DateTimeField           | auto_now_add=True                                   |
+| status           | CharField               | max_length=2, choices=STATUS_CHOICES, default='O'   |
+| user             | ForeignKey(User)        | on_delete=models.CASCADE, null=True                 |
+
+
+##### GardenerFeedback
+
+| Field Name       | Field Type              | Validation/Choices                                   |
+|------------------|-------------------------|-----------------------------------------------------|
+| gardener         | ForeignKey(UserProfile) | on_delete=models.CASCADE, limit_choices_to={'role': 'GR'} |
+| first_name       | CharField               | max_length=200                                      |
+| title            | CharField               | max_length=200                                      |
+| message          | TextField               |                                                     |
+| rating           | DecimalField            | max_digits=2, decimal_places=1, validators=[MinValueValidator(0), MaxValueValidator(5)] |
+| created_at       | DateTimeField           | auto_now_add=True                                   |
 
 
 ## Technologies <hr>
