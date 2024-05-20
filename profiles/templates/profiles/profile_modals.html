@@ -13,7 +13,7 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ user_form|crispy }}
-                    <button type="submit">Save changes</button>
+                    <button type="submit" class="btn-primary">Save changes</button>
                 </form>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ user_profile_form|crispy }}
-                    <button type="submit">Save changes</button>
+                    <button type="submit" class="btn-primary">Save changes</button>
                 </form>
             </div>
         </div>
@@ -53,7 +53,7 @@
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ gardener_profile_form|crispy }}
-                    <button type="submit">Save changes</button>
+                    <button type="submit" class="btn-primary">Save changes</button>
                 </form>
             </div>
         </div>

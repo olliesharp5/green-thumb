@@ -12,7 +12,7 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mt-3">
       <div class="position-relative">
         <h2 class="text-center">Personal Information</h2>
         <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal"
@@ -32,7 +32,7 @@
             <img src="{% static 'images/placeholder_image.png' %}" alt="Profile Image"
               class="rounded-circle services-profile">
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 mt-3">
             <br>
             <p>Display Name: {{ user_profile.display_name }}</p>
             <p>Location: {{ user_profile.location }}</p>
@@ -42,7 +42,7 @@
       </div>
       {% endif %}
     </div>
-    <div class="col-md-6 border-start position-relative">
+    <div class="col-md-6 border-start position-relative mt-3">
       <h2 class="text-center">Default Delivery Information</h2>
       <i class="fas fa-edit position-absolute top-0 end-0 mt-2 me-2" data-bs-toggle="modal"
         data-bs-target="#deliveryInfoModal"></i>
