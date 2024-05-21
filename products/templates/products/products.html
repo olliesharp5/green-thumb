@@ -1,41 +1,51 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block body_class %}products-page {% if category %}{% if category.parent %}{{ category.parent.name|slugify }}{% else %}{{ category.name|slugify }}{% endif %}{% else %}all-products{% endif %}{% endblock %}
+{% block body_class %}products-page
+{% if category %}{% if category.parent %}{{ category.parent.name|slugify }}{% else %}{{ category.name|slugify }}{% endif %}{% else %}all-products{% endif %}{% endblock %}
 
 {% block content %}
 
 <div class="container products-container min-vh-100">
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-end p-3">
+    <div class="row align-items-center mt-3 mb-3">
+        <div class="col-md-6">
+            <h3 class="mb-0">
+                {% url 'products' as products_url %}
+                {% if request.GET.q %}
+                Your search results for "{{ request.GET.q }}"
+                {% elif request.GET.sort_by == 'recent' %}
+                Recently Added
+                {% elif request.GET.sort_by == 'highest_rating' %}
+                Highest Rated
+                {% elif request.GET.sort_by == 'best_selling' %}
+                Best Selling
+                {% elif request.path == products_url %}
+                All Products
+                {% else %}
+                {% if not category.parent %}All {% endif %}{{ category_name }}
+                {% endif %}
+            </h3>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
             <form method="get">
                 {{ form.as_p }}
             </form>
         </div>
     </div>
-    <h1 class="mt-5 mb-5">
-        {% url 'products' as products_url %}
-        {% if request.GET.sort_by == 'recent' %}
-        Recently Added
-        {% elif request.GET.sort_by == 'highest_rating' %}
-        Highest Rated
-        {% elif request.GET.sort_by == 'best_selling' %}
-        Best Selling
-        {% elif request.path == products_url %}
-        All Products
-        {% else %}
-        {% if not category.parent %}All {% endif %}{{ category_name }}
-        {% endif %}
-    </h1>
 
     <div class="row">
         {% if not products %}
-        <h2>No products in this category</h2>
+        {% if request.GET.q %}
+        <h4>There are no results matching your search</h4>
+        {% else %}
+        <h4>No products in this category</h4>
+        {% endif %}
         {% else %}
         {% for product in products %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-lg product-card">
-                <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-detail-link">
+                <a href="{% url 'product_detail' product.id %}"
+                    class="text-decoration-none text-dark product-detail-link">
                     {% if product.image %}
                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"
                         class="card-img-top">
