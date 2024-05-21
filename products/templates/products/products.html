@@ -37,10 +37,10 @@
             <div class="card mb-4 shadow-lg product-card">
                 <a href="{% url 'product_detail' product.id %}" class="text-decoration-none text-dark product-detail-link">
                     {% if product.image %}
-                    <img class="card-img-top img-fluid" src="/static/images/placeholder_image.png" alt="{{ product.name }}"
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}placeholder_image.png" alt="{{ product.name }}"
                         class="card-img-top">
                     {% else %}
-                    <img class="card-img-top img-fluid" src="/static/images/placeholder_image.png"
+                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}placeholder_image.png"
                         alt="{{ product.name }}" class="card-img-top">
                     {% endif %}
                     <div class="m-2">

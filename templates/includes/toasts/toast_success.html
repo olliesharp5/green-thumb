@@ -15,7 +15,7 @@
       {% for item in cart_items %}
       <div class="row">
         <div class="col-3 my-1">
-          <img class="w-100" src="{% static 'images/placeholder_image.png' %}">
+          <img class="w-100" src="{{ MEDIA_URL }}placeholder_image.png">
         </div>
         <div class="col-9">
           <p class="my-0"><strong>{{ item.product.name }}</strong></p>
