@@ -8,21 +8,28 @@ from .models import Product, Category, Review
 from .forms import SortForm, ProductForm, ReviewForm
 
 def all_products(request):
-    query = request.GET.get('q')
+    query = request.GET.get('q', '').strip()  # Retrieve and strip the query
     sort_by = request.GET.get('sort_by', 'name')  # Default is 'name'
-    if sort_by == 'recent':
-        sort_by = '-date_added' 
-    elif sort_by == 'highest_rating':
-        sort_by = '-rating'  
-    elif sort_by == 'best_selling':
-        sort_by = '-sales_count'
+
+    # Map sort options to actual model field names
+    sort_options = {
+        'recent': '-date_added',
+        'highest_rating': '-rating',
+        'best_selling': '-sales_count'
+    }
+    sort_by = sort_options.get(sort_by, 'name')
+
+    # Check if 'q' parameter is in the request and is empty
+    if 'q' in request.GET and not query:
+        messages.error(request, 'Please enter a search term.')
+
     if query:
         products = Product.objects.filter(name__icontains=query)
     else:
         products = Product.objects.all()
+
     products = products.annotate(sales_count=Count('orderlineitem')).order_by(sort_by)
-    if 'q' in request.GET:  # Check if 'q' parameter is in the request
-        messages.error(request, 'Please enter a search term.')  # Error message
+    
     form = SortForm(request.GET)
     return render(request, 'products/products.html', {'products': products, 'form': form})
 
