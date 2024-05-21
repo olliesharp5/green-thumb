@@ -89,9 +89,13 @@
         {% for gardener in gardeners %}
         <div class="col-lg-3 col-md-4 col-sm-12 col-6 p-2">
             <h4>{{ gardener.display_name }}</h4>
-            <a href="{% url 'gardener_profile' username=gardener.user.username %}"><img
-                    src="" class="gardener-image"
-                    alt="John"></a>
+            <a href="{% url 'gardener_profile' username=gardener.user.username %}">
+                {% if gardener.image %}
+                    <img src="{{ gardener.image.url }}" class="gardener-image" alt="{{ gardener.user.username }}">
+                {% else %}
+                    <img src="{{ MEDIA_URL }}placeholder_image.png" class="gardener-image" alt="{{ gardener.user.username }}">
+                {% endif %}
+            </a>
         </div>
         {% endfor %}
     </div>
