@@ -357,20 +357,35 @@ The gardening themed images and opaque coloured cards employed for text display 
 The website is designed using following technologies: HTML, CSS, Bootstrap, Javascript, Django, MarkDown, ElephantSQL, Chrome Dev Tools, Stripe, Amazon AWS, Favicon
 
 ### Libraries
-
+* asgiref==3.8.1: ASGI (Asynchronous Server Gateway Interface) reference implementation, which provides utilities for working with ASGI servers.
+* boto3==1.34.103: The Amazon Web Services (AWS) SDK for Python, which allows Python developers to write software that makes use of Amazon services like S3 and EC2.
+* botocore==1.34.103: The low-level, core functionality of Boto3, providing the foundational interface for interacting with AWS services.
+* dj-database-url==0.5.0: Allows the use of the DATABASE_URL environment variable to configure the database in Django applications.
+* gunicorn==20.1.0: A Python WSGI HTTP server for UNIX, used to serve your Django application.
+* jmespath==1.0.1: A query language for JSON, used by Boto3 and other libraries to parse and extract data from JSON documents.
+* pillow==10.3.0: The Python Imaging Library (PIL), which adds image processing capabilities to your Python interpreter.
+* psycopg2==2.9.9: PostgreSQL database adapter for Python, allowing your Django application to interact with PostgreSQL databases.
+* s3transfer==0.10.1: A library for managing Amazon S3 transfers, used internally by Boto3.
+* sqlparse==0.5.0: A non-validating SQL parser for Python, used for splitting, formatting, and validating SQL statements.
+* stripe==9.5.0: Python bindings for the Stripe API, enabling integration with Stripe's payment processing services.
 * [Font Awesome](https://fontawesome.com/v4.7.0/) - Font Awesome icons were used throughout the web-site.
 
 ### Frameworks & Extensions
 
 * [Django](https://www.djangoproject.com/) – Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 * [Bootstrap5](https://getbootstrap.com/) – Bootstrap5 is a web framework that focuses on simplifying the development of informative web pages.
+* django-allauth==0.62.1: Integrated set of Django applications addressing authentication, registration, account management.
+* django-countries==7.6.1: Provides a country field for Django models with a sensible selection of country choices.
+* django-crispy-forms==2.1: The best way to have Django DRY forms. Build programmatic reusable layouts out of components, having full control of the rendered HTML.
+* crispy-bootstrap5==2024.2: Bootstrap5 template pack for django-crispy-forms.
+* django-mathfilters==1.0.0: Provides a set of simple math filters for Django templates.
+* django-storages==1.14.3: A collection of custom storage backends for Django.
 
 ### Others
 
 * [GitHub](https://github.com/) - GitHub is a global company that provides hosting for software development version control using Git.
 * [Gitpod](https://gitpod.io/workspaces/) - One-click ready-to-code development environments for GitHub.
 * [Heroku](https://dashboard.heroku.com/) - Heroku is a cloud platform that lets companies build, deliver, monitor and scale apps.
-
 
 ## Features
 
