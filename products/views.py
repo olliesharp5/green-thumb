@@ -9,7 +9,7 @@ from .forms import SortForm, ProductForm, ReviewForm
 
 def all_products(request):
     query = request.GET.get('q', '').strip()  # Retrieve and strip the query
-    sort_by = request.GET.get('sort_by', 'name')  # Default is 'name'
+    sort_by = request.GET.get('sort_by', 'name')
 
     # Map sort options to actual model field names
     sort_options = {
@@ -35,7 +35,7 @@ def all_products(request):
 
 
 def products_by_category(request, category_slug):
-    sort_by = request.GET.get('sort_by', 'name')  # Default is 'name'
+    sort_by = request.GET.get('sort_by', 'name')
     category = get_object_or_404(Category, slug=category_slug)
     subcategories = Category.objects.filter(parent=category)
     products = Product.objects.filter(Q(category=category) | Q(category__in=subcategories)).order_by(sort_by)
@@ -92,7 +92,6 @@ def edit_product(request, product_id):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
-            print(form.cleaned_data)  # print form data
             product = form.save()
             request.session['cart_changed'] = False
             messages.success(request, f'Successfully updated product {product.name}!')

@@ -43,7 +43,7 @@ Additionally, Green Thumb extends its framework to landscaping services, where c
 
 ![Website look on different devices](LINK)
 
-### A live demo to the website can be found [here](URL)
+### A live demo to the website can be found [here](https://green-thumb1-5e1e889069e1.herokuapp.com/)
 
 ## UX
 This website is primarily crafted for gardening enthusiasts, landscapers, and those seeking professional gardening services. The key focus is to devise an online marketplace where users can easily purchase gardening essentials while professional gardeners can grow their audience base and potential customers.
@@ -651,15 +651,36 @@ No errors were found when passing through the contrast validator.
 
 #### Fixed Bugs
 
-* goback function when on the product detail page 
+*  The "Back to results" button on the product detail page initially used the standard go back function (window.history.back()). However, this approach did not account for scenarios where users took actions on the product detail page that triggered it to reload (e.g., adding a product to the cart or adding to wishlist). In such cases, clicking the "Back to results" button would take users back to the previous instance of the same product detail page, rather than the search results page they intended to return to.
+To address this issue, I implemented a solution using session storage. By storing the URL of the search results page when a user clicks on a product detail link, it ensures that the "Back to results" button can always navigate the user back to the correct page.
+
 * When a user selects the "Edit Review" button, two sets of forms for editing and deleting reviews are displayed in the modal. This leads to confusion and potential errors, as both forms target different review IDs. The modal forms were updated to dynamically populate with the correct review details when the "Edit Review" or "Delete Review" buttons are clicked. This ensures only the relevant form is displayed and populated correctly.
+
 * The <select> element in the form was not displaying the downward chevron to indicate it is a dropdown field. This issue occurred despite using Bootstrap 5. To resolve this issue, custom CSS styles were added to the <select> element to enforce the appearance of the dropdown indicator. 
 
+* I implemented a calculate_rating method in the Product model to calculate the average product rating based on user reviews. However, simply adding this method did not automatically update the product's rating when reviews were added, updated, or deleted. As a result, the product's rating remained unchanged despite changes in the reviews.
+To ensure that the product's rating is updated whenever a review is added, updated, or deleted, I implemented a Django signal in signals.py. This signal triggers the calculate_rating method and updates the product's rating accordingly.
 
+* I faced an issue where the registration form only created regular users, regardless of which fields were completed. I needed a solution to create different types of users (regular users and gardeners) based on the fields filled out in a single registration form.
+
+To address this issue, I enhanced the registration view and form handling logic to differentiate between regular users and gardeners. I used a single form for user registration and an additional form for gardener-specific details. Based on the form inputs, I created the appropriate user type.
+- Registration View:
+   I used RegistrationForm to handle basic user details and GardenerForm to handle gardener-specific details.
+   The view checks the gardener field in the RegistrationForm to determine the type of user to create.
+   If the gardener checkbox is checked and the GardenerForm is valid, a gardener profile is created. Otherwise, a regular user profile is created.
+   After creating the appropriate user profile, the user is logged in and redirected to the home page.
+- UserProfile Model:
+   The UserProfile model includes a role field to distinguish between regular users and gardeners.
+   The model's save method includes validation to ensure gardeners have the necessary profile details.
+- Forms:
+   RegistrationForm handles basic user details, including a checkbox for identifying gardeners.
+   GardenerForm includes additional fields specific to gardeners, such as display name, location, and about section.
+- JavaScript for Dynamic Form Handling:
+   I used JavaScript to dynamically show or hide the gardener-specific fields based on the state of the gardener checkbox. When the gardener checkbox is checked, the gardener fields are displayed and marked as required. When unchecked, these fields are hidden and not required.
 
 #### Unfixed Bugs
 
-* tooltip element on product detail page dissapears too soon after the cursor leaves its space 
+* The Tooltip element on product detail page dissapears too soon after the cursor leaves its space. I have tried adding padding and margins to the tooltip container but it seems to make no significant difference.  
 
 
 ## Deployment
