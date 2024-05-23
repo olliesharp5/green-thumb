@@ -675,26 +675,47 @@ To address this issue, I implemented a solution using session storage. By storin
 * I implemented a calculate_rating method in the Product model to calculate the average product rating based on user reviews. However, simply adding this method did not automatically update the product's rating when reviews were added, updated, or deleted. As a result, the product's rating remained unchanged despite changes in the reviews.
 To ensure that the product's rating is updated whenever a review is added, updated, or deleted, I implemented a Django signal in signals.py. This signal triggers the calculate_rating method and updates the product's rating accordingly.
 
-* I faced an issue where the registration form only created regular users, regardless of which fields were completed. I needed a solution to create different types of users (regular users and gardeners) based on the fields filled out in a single registration form.
+* I faced an issue where the registration form only created regular users, regardless of which fields were completed. I needed a solution to create different types of users (regular users and gardeners) based on the fields filled out in a single registration form.To address this issue, I enhanced the registration view and form handling logic to differentiate between regular users and gardeners. I used a single form for user registration and an additional form for gardener-specific details. Based on the form inputs, I created the appropriate user type.
 
-To address this issue, I enhanced the registration view and form handling logic to differentiate between regular users and gardeners. I used a single form for user registration and an additional form for gardener-specific details. Based on the form inputs, I created the appropriate user type.
-- Registration View:
-   I used RegistrationForm to handle basic user details and GardenerForm to handle gardener-specific details.
-   The view checks the gardener field in the RegistrationForm to determine the type of user to create.
-   If the gardener checkbox is checked and the GardenerForm is valid, a gardener profile is created. Otherwise, a regular user profile is created.
-   After creating the appropriate user profile, the user is logged in and redirected to the home page.
-- UserProfile Model:
-   The UserProfile model includes a role field to distinguish between regular users and gardeners.
-   The model's save method includes validation to ensure gardeners have the necessary profile details.
-- Forms:
-   RegistrationForm handles basic user details, including a checkbox for identifying gardeners.
-   GardenerForm includes additional fields specific to gardeners, such as display name, location, and about section.
-- JavaScript for Dynamic Form Handling:
-   I used JavaScript to dynamically show or hide the gardener-specific fields based on the state of the gardener checkbox. When the gardener checkbox is checked, the gardener fields are displayed and marked as required. When unchecked, these fields are hidden and not required.
+**Registration View:**
+I used RegistrationForm to handle basic user details and GardenerForm to handle gardener-specific details.
+The view checks the gardener field in the RegistrationForm to determine the type of user to create.
+If the gardener checkbox is checked and the GardenerForm is valid, a gardener profile is created. Otherwise, a regular user profile is created.
+After creating the appropriate user profile, the user is logged in and redirected to the home page.
+
+**UserProfile Model:**
+The UserProfile model includes a role field to distinguish between regular users and gardeners.
+The model's save method includes validation to ensure gardeners have the necessary profile details.
+
+**Forms:**
+RegistrationForm handles basic user details, including a checkbox for identifying gardeners.
+GardenerForm includes additional fields specific to gardeners, such as display name, location, and about section.
+
+**JavaScript for Dynamic Form Handling:**
+I used JavaScript to dynamically show or hide the gardener-specific fields based on the state of the gardener checkbox. When the gardener checkbox is checked, the gardener fields are displayed and marked as required. When unchecked, these fields are hidden and not required.
+
+* When users attempted to register as gardeners and upload a profile image, the image was not being saved to the AWS S3 bucket. This issue was caused by incorrect handling of the image file in the form submission process. To fix this issue I added the enctype="multipart/form-data" attribute to the form tag in the register.html template to ensure that files can be uploaded. Additionally I ensured that the request.FILES data is correctly passed to the GardenerForm in the view handling the registration.
+
+* Gardener profile pictures were not being displayed on the frontend. Instead, a placeholder image was shown even when a profile image was uploaded. The template was checking for the wrong field name when determining whether to display the profile image or the placeholder image. To fix this I corrected the conditional logic in the services.html and gardener_profile.html templates to check for the correct field (profile_image) when displaying the gardener profile pictures.
+
+* There was a critical bug in the user registration process where the application would attempt to save a gardener profile even when the form was invalid. This caused a ValueError with the message "Gardener must have a display name, location, and about section." The error was occurring because the form's validation logic was not correctly identifying missing or invalid fields, allowing the gardener_profile.save() method to be called with incomplete data.
+To resolve this issue, the following steps were taken:
+
+**Updated Form Field Names and Validation:**
+The RegistrationForm fields for passwords were corrected to use password1 and password2 to match the names used in the form's clean method.
+The GardenerForm fields (display_name, location, about) were explicitly marked as required to ensure proper validation.
+
+**Enhanced View Logic:**
+The register view was updated to ensure that the gardener profile is only saved if both the user_form and gardener_form are valid.
+Added transaction management to ensure atomicity of the save operations, preventing partial saves in case of errors.
+
+**Improved Testing:**
+Test cases were updated to correctly simulate invalid form submissions and verify that errors are properly handled.
+Added debug statements to the view to trace form validation status and errors, ensuring that invalid forms are not processed for saving.
 
 #### Unfixed Bugs
 
-* The Tooltip element on product detail page dissapears too soon after the cursor leaves its space. I have tried adding padding and margins to the tooltip container but it seems to make no significant difference.  
+* The Tooltip element on product detail page dissapears too soon after the cursor leaves its space. I have tried adding padding and margins to the tooltip container but it seems to make no significant difference. 
 
 
 ## Deployment
