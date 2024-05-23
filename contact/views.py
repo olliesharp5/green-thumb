@@ -6,6 +6,13 @@ from django.conf import settings
 from .models import ContactRequest
 
 def contact(request):
+    user_details = {}
+    if request.user.is_authenticated:
+        user_details = {
+            'full_name': request.user.get_full_name(),
+            'email': request.user.email,
+        }
+
     if request.method == 'POST':
         full_name = request.POST.get('full_name')
         email = request.POST.get('email')
@@ -22,7 +29,6 @@ def contact(request):
         )
         contact_request.save()
 
-        # Prepare email
         email_subject = render_to_string(
             'contact/confirmation_emails/confirmation_email_subject.txt',
             {'contact_request': contact_request}
@@ -32,7 +38,6 @@ def contact(request):
             {'contact_request': contact_request, 'contact_email': settings.DEFAULT_FROM_EMAIL}
         )
 
-        # Send confirmation email
         send_mail(
             email_subject,
             email_body,
@@ -40,7 +45,7 @@ def contact(request):
             [email]
         )
 
-        messages.success(request, 'Your contact request has been submitted. A confirmation email has been sent to {{ email }}.')
-        return redirect('contact')
+        messages.success(request, 'Your contact request has been submitted. A confirmation email has been sent to {email}.')
+        return redirect('home')
 
-    return render(request, "contact/contact.html")
+    return render(request, "contact/contact.html", {'user_details': user_details})
