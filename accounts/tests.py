@@ -14,7 +14,7 @@ class RegisterViewTests(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('register')  # Adjust the URL name as needed
+        self.url = reverse('register')
 
     def generate_test_image_file(self):
         # Create a simple image file
