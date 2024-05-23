@@ -1,10 +1,9 @@
-# views.py
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.db import transaction
 from profiles.models import UserProfile, Wishlist
 from .forms import RegistrationForm, GardenerForm
+from django.contrib import messages
 
 def register(request):
     if request.method == 'POST':
@@ -15,6 +14,7 @@ def register(request):
             user = user_form.save()
             if user_form.cleaned_data['gardener']:
                 gardener_form.instance.role = 'GR'  # Set role before validation
+                gardener_form.instance.user = user  # Associate user with gardener profile
                 if gardener_form.is_valid():
                     with transaction.atomic():
                         gardener_profile = gardener_form.save(commit=False)
@@ -26,6 +26,7 @@ def register(request):
                         login(request, user)
                         return redirect('home')
                 else:
+                    messages.error(request, 'Please correct the error below.')
                     return render(request, 'accounts/register.html', {
                         'user_form': user_form,
                         'gardener_form': gardener_form
@@ -38,6 +39,7 @@ def register(request):
                     login(request, user)
                     return redirect('home')
         else:
+            messages.error(request, 'Please correct the error below.')
             return render(request, 'accounts/register.html', {
                 'user_form': user_form,
                 'gardener_form': gardener_form

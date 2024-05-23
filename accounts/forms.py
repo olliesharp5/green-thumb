@@ -1,13 +1,11 @@
-# forms.py
-
 from django import forms
 from django.contrib.auth.models import User
 from profiles.models import UserProfile
 
 class RegistrationForm(forms.ModelForm):
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
-    gardener = forms.BooleanField(required=False)
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    gardener = forms.BooleanField(required=False, widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}))
 
     class Meta:
         model = User
@@ -27,10 +25,10 @@ class RegistrationForm(forms.ModelForm):
         return user
 
 class GardenerForm(forms.ModelForm):
-    display_name = forms.CharField(max_length=100, required=False, widget=forms.TextInput(attrs={'id': 'display_name'}))
-    location = forms.CharField(widget=forms.Textarea(attrs={'id': 'location'}), required=False)
-    profile_image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'id': 'profile_image'}))
-    about = forms.CharField(widget=forms.Textarea(attrs={'id': 'about'}), required=False)
+    display_name = forms.CharField(max_length=100, required=False, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'display_name'}))
+    location = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'location'}), required=False)
+    profile_image = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'class': 'form-control-file', 'id': 'profile_image'}))
+    about = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'id': 'about'}), required=False)
 
     class Meta:
         model = UserProfile

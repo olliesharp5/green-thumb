@@ -28,8 +28,11 @@
           data-bs-target="#gardenerInfoModal"></i>
         <div class="row">
           <div class="col-md-6">
-            <img src="{{ MEDIA_URL }}placeholder_image.png" alt="Profile Image"
-              class="rounded-circle services-profile">
+            {% if user_profile.profile_image %}
+            <img src="{{ user_profile.profile_image.url }}" alt="Profile Image" class="rounded-circle services-profile">
+            {% else %}
+            <img src="{{ MEDIA_URL }}placeholder_image.png" alt="Profile Image" class="rounded-circle services-profile">
+            {% endif %}
           </div>
           <div class="col-md-6 mt-3">
             <br>
@@ -40,6 +43,7 @@
         </div>
       </div>
       {% endif %}
+
     </div>
     <div class="col-md-6 border-start position-relative mt-3">
       <h2 class="text-center">Default Delivery Information</h2>

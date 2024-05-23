@@ -15,9 +15,9 @@
         <div class="col-lg-8 mx-auto">
             <div class="card gardener-card">
                 <div class="card-body text-center">
-                    {% if gardener.image %}
+                    {% if gardener.profile_image %}
                         <img class="rounded-circle services-profile img-fluid mb-3"
-                             src="{{ gardener.image.url }}" 
+                             src="{{ gardener.profile_image.url }}" 
                              alt="{{ gardener.user.username }}" width="150">
                     {% else %}
                         <img class="rounded-circle services-profile img-fluid mb-3"
