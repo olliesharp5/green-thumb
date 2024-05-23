@@ -131,18 +131,35 @@ function validateQuantity(event) {
 }
 
 
-//when the gardener checkbox is checked, the gardener fields will be displayed and marked as required. 
-//When the checkbox is not checked, the gardener fields will be hidden and not required. 
+// When the gardener checkbox is checked, the gardener fields will be displayed and marked as required.
+// When the checkbox is not checked, the gardener fields will be removed from the form.
 var gardenerElement = document.getElementById('id_gardener');
-if(gardenerElement) {
+if (gardenerElement) {
     gardenerElement.onchange = function() {
-        document.getElementById('gardenerFields').style.display = this.checked ? "block" : "none";
-        var fields = ['display_name', 'location', 'about'];
-        fields.forEach(function(field) {
-            var element = document.getElementById(field);
-            if(element) {
-                element.required = this.checked;
-            }
-        }, this);
+        var gardenerFields = document.getElementById('gardenerFields');
+        var fields = ['id_display_name', 'id_location', 'id_about'];
+
+        if (this.checked) {
+            gardenerFields.style.display = "block";
+            fields.forEach(function(field) {
+                var element = document.getElementById(field);
+                if (element) {
+                    element.removeAttribute('disabled');
+                    element.setAttribute('required', 'required');
+                }
+            });
+        } else {
+            fields.forEach(function(field) {
+                var element = document.getElementById(field);
+                if (element) {
+                    element.setAttribute('disabled', 'disabled');
+                    element.removeAttribute('required');
+                }
+            });
+            gardenerFields.style.display = "none";
+        }
     };
+
+    // Trigger the change event to set the initial state correctly on page load
+    gardenerElement.onchange();
 }

@@ -562,7 +562,6 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
 ![Add_product](LINK)
 
 
-
 ### Features Left to Implement
 
 In the future, I would like to add the following features to enhance user experience and functionality:
