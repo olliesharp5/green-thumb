@@ -6,6 +6,41 @@ from django.conf import settings
 from .models import ContactRequest
 
 def contact(request):
+    """
+    Handles the contact form submission and renders the contact page. If the user is authenticated, 
+    pre-fills the form with their details.
+
+    **Context**
+
+    ``user_details``
+    A dictionary containing the authenticated user's full name and email.
+
+    ``full_name``
+    The full name of the user submitting the contact form.
+
+    ``email``
+    The email address of the user submitting the contact form.
+
+    ``subject``
+    The subject of the contact request.
+
+    ``message``
+    The message body of the contact request.
+
+    ``file_upload``
+    An optional file upload associated with the contact request.
+
+    **Methods**
+
+    ``contact(request)``
+    Handles both GET and POST requests. On POST, it processes the contact form, saves the contact 
+    request to the database, sends a confirmation email, and redirects to the home page with a success 
+    message. On GET, it renders the contact page with the user's details if authenticated.
+
+    **Template:**
+
+    :template:`contact/contact.html`
+    """
     user_details = {}
     if request.user.is_authenticated:
         user_details = {
@@ -45,7 +80,7 @@ def contact(request):
             [email]
         )
 
-        messages.success(request, 'Your contact request has been submitted. A confirmation email has been sent to {email}.')
+        messages.success(request, f'Your contact request has been submitted. A confirmation email has been sent to {email}.')
         return redirect('home')
 
     return render(request, "contact/contact.html", {'user_details': user_details})

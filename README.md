@@ -774,6 +774,9 @@ The performance of the website was tested with [Google Lighthouse](INSERT LINK T
 ### Media
 
 * The icon used for the favicon is from favicon.io
-* The icons in the footer were taken from Font Awesome
+* The icons used accross the site were taken from Font Awesome
 * Credit provided for background images: https://www.pexels.com/  
+* Credit for product images and details 
+* Credit for stripe integration taken from Stripe web documentation and the Boutique-Ado walkthrough project from Code Institute 
+* Integration of webhook handlers for the stripe integration credited from the Boutique-Ado walkthrough project from Code Institute
 * 

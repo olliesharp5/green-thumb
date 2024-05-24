@@ -9,16 +9,52 @@ from profiles.models import UserProfile
 from .models import Service, ServiceRequest, GardenerFeedback
 from .forms import GardenerFeedbackForm
 
-# Create your views here.
 def services(request):
-    """ A view to return the services page """
+    """
+    A view to return the services page.
+
+    **Context**
+
+    ``gardeners``
+    A queryset of `UserProfile` objects with the role 'GR' (gardeners).
+
+    **Methods**
+
+    ``services(request)``
+    Handles GET requests to display the services page with a list of gardeners.
+
+    **Template:**
+
+    :template:`services/services.html`
+    """
     gardeners = UserProfile.objects.filter(role='GR')
     context = {
         'gardeners': gardeners,
     }
     return render(request, "services/services.html", context)
 
+
 def gardener_profile(request, username):
+    """
+    Displays the profile of a specific gardener and their feedback.
+
+    **Context**
+
+    ``gardener``
+    The gardener's profile object, retrieved by their username.
+
+    ``feedbacks``
+    A queryset of feedbacks associated with the gardener.
+
+    **Methods**
+
+    ``gardener_profile(request, username)``
+    Handles GET requests to display the gardener's profile page, including feedback.
+
+    **Template:**
+
+    :template:`services/gardener_profile.html`
+    """
     gardener = get_object_or_404(UserProfile, user__username=username, role='GR')
     feedbacks = GardenerFeedback.objects.filter(gardener=gardener)
     context = {
@@ -27,7 +63,26 @@ def gardener_profile(request, username):
     }
     return render(request, 'services/gardener_profile.html', context)
 
+
 def gardener_feedback(request):
+    """
+    Handles the submission of feedback for a gardener.
+
+    **Context**
+
+    ``form``
+    An instance of `GardenerFeedbackForm` to handle feedback data input.
+
+    **Methods**
+
+    ``gardener_feedback(request)``
+    Handles both GET and POST requests. On POST, it processes the feedback form and saves the feedback to the database.
+    On GET, it renders the form for submitting feedback.
+
+    **Template:**
+
+    :template:`services/gardener_feedback.html`
+    """
     if request.method == 'POST':
         form = GardenerFeedbackForm(request.POST)
         if form.is_valid():
@@ -38,7 +93,50 @@ def gardener_feedback(request):
         form = GardenerFeedbackForm()
     return render(request, 'services/gardener_feedback.html', {'form': form})
 
+
 def service_request(request):
+    """
+    Handles the submission of a service request.
+
+    **Context**
+
+    ``services``
+    A queryset of all available `Service` objects.
+
+    ``full_name``
+    The full name of the user submitting the service request.
+
+    ``email``
+    The email address of the user submitting the service request.
+
+    ``selected_services``
+    The list of selected services for the service request.
+
+    ``message``
+    The message body of the service request.
+
+    ``date_required``
+    The date the service is required.
+
+    ``files``
+    A list of files uploaded with the service request.
+
+    ``service_objects``
+    A queryset of `Service` objects matching the selected services.
+
+    ``service_request``
+    The service request object created from the form data.
+
+    **Methods**
+
+    ``service_request(request)``
+    Handles both GET and POST requests. On POST, it processes the service request form, saves the request to the database,
+    handles file uploads, and sends a confirmation email. On GET, it renders the form for submitting a service request.
+
+    **Template:**
+
+    :template:`services/service_request.html`
+    """
     services = Service.objects.all()
     if request.method == 'POST':
         full_name = request.POST['full_name']
@@ -68,12 +166,12 @@ def service_request(request):
 
         # Prepare email
         email_subject = render_to_string(
-        'services/confirmation_emails/confirmation_email_subject.txt',
-        {'service_request': service_request}
+            'services/confirmation_emails/confirmation_email_subject.txt',
+            {'service_request': service_request}
         )
         email_body = render_to_string(
-        'services/confirmation_emails/confirmation_email_body.txt',
-        {'service_request': service_request, 'contact_email': settings.DEFAULT_FROM_EMAIL, 'services': service_objects}
+            'services/confirmation_emails/confirmation_email_body.txt',
+            {'service_request': service_request, 'contact_email': settings.DEFAULT_FROM_EMAIL, 'services': service_objects}
         )
 
         # Send confirmation email
