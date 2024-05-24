@@ -73,8 +73,8 @@
 </div>
 <div class="row">
     <div class="col-12 text-center mt-2 mb-5">
-        <a href="{% url 'service_request' %}">
-            <button class="btn btn-primary btn-lg">Request a Quote Today!</button>
+        <a href="{% url 'service_request' %}" class="btn btn-primary btn-lg">
+            Request a Quote Today!
         </a>
     </div>
 </div>
@@ -87,16 +87,17 @@
     </div>
     <div class="row text-center justify-content-center">
         {% for gardener in gardeners %}
-            <div class="col-lg-3 col-md-4 col-sm-12 col-6 p-2">
-                <h4>{{ gardener.display_name }}</h4>
-                <a href="{% url 'gardener_profile' username=gardener.user.username %}">
-                    {% if gardener.profile_image %}
-                        <img src="{{ gardener.profile_image.url }}" class="gardener-image" alt="{{ gardener.user.username }}">
-                    {% else %}
-                        <img src="{{ MEDIA_URL }}placeholder_image.png" class="gardener-image" alt="{{ gardener.user.username }}">
-                    {% endif %}
-                </a>
-            </div>
+        <div class="col-lg-3 col-md-4 col-sm-12 col-6 p-2">
+            <h4>{{ gardener.display_name }}</h4>
+            <a href="{% url 'gardener_profile' username=gardener.user.username %}">
+                {% if gardener.profile_image %}
+                <img src="{{ gardener.profile_image.url }}" class="gardener-image" alt="{{ gardener.user.username }}">
+                {% else %}
+                <img src="{{ MEDIA_URL }}placeholder_image.png" class="gardener-image"
+                    alt="{{ gardener.user.username }}">
+                {% endif %}
+            </a>
+        </div>
         {% endfor %}
     </div>
     <div class="col-12 text-center mt-5">

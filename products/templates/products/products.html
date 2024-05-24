@@ -47,11 +47,10 @@
                 <a href="{% url 'product_detail' product.id %}"
                     class="text-decoration-none text-dark product-detail-link">
                     {% if product.image %}
-                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"
-                        class="card-img-top">
+                    <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                     {% else %}
                     <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}placeholder_image.png"
-                        alt="{{ product.name }}" class="card-img-top">
+                        alt="{{ product.name }}">
                     {% endif %}
                     <div class="m-2">
                         <h5 class="card-title">{{ product.name }}</h5>
