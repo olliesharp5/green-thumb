@@ -274,6 +274,6 @@ def remove_from_wishlist(request, product_id, from_page):
     wishlist, created = Wishlist.objects.get_or_create(user=user_profile)
     wishlist.products.remove(product)
     if from_page == 'profile':
-        return redirect('profiles:profile')
+        return redirect('profiles:wishlist')
     else:
         return redirect('product_detail', product_id=product.id)
