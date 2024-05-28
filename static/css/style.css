@@ -464,6 +464,11 @@ body.add-products-page {
     border-color: #555 transparent transparent transparent;
 }
 
+.fa-trash {
+    color: #dc3545 !important;
+    cursor: pointer !important;
+}
+
 
 /* PROFILE CSS */
 .wishlist-image {
@@ -505,8 +510,9 @@ body.gardener-page, body.feedback-page, body.service-request-page {
 }
 
 .services-profile {
-    width: 200px !important;
-    height: 200px !important;
+    max-width: 200px !important;
+    height: auto !important;
+    object-fit: cover; /* Ensure the image covers the area without distortion */
 }
 
 .gardener-image {

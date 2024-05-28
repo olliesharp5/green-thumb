@@ -33,7 +33,8 @@
                 {% if s %}
                 <div class="col-12">
                     <p><strong>Size:</strong></p>
-                    <select class="form-control rounded-0 w-50 custom-select mb-1" name="product_size" id='id_product_size'>
+                    <select class="form-control rounded-0 w-50 custom-select mb-1" name="product_size"
+                        id='id_product_size'>
                         <option value="xs">XS</option>
                         <option value="s">S</option>
                         <option value="m" selected>M</option>
@@ -77,11 +78,12 @@
             </div>
             {% endif %}
             {% if user.is_authenticated and user.is_superuser %}
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProductModal">
-                Edit Product
-            </button>
-            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                data-bs-target="#deleteProductModal">Delete Product</button>
+            <div class="mt-2">
+                <i class="fas fa-edit edit-icon" data-bs-toggle="modal" data-bs-target="#editProductModal"
+                    data-toggle="tooltip" title="Edit Product"></i>
+                <i class="fas fa-trash delete-icon" data-bs-toggle="modal" data-bs-target="#deleteProductModal"
+                    data-toggle="tooltip" title="Delete Product"></i>
+            </div>
             {% endif %}
         </div>
     </div>
@@ -91,8 +93,9 @@
             <h3>Reviews</h3>
             {% if user.is_authenticated %}
             {% if not user_has_reviewed %}
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReviewModal">
-                Create Review
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReviewModal"
+                data-toggle="tooltip" title="Create Review">
+                <i class="fas fa-plus"></i>
             </button>
             {% else %}
             <p>You have already reviewed this product</p>
@@ -113,22 +116,18 @@
                             <p class="card-text">{{ review.text }}</p>
                             <p class="card-text">{{ review.date_added }}</p>
                             {% if user.is_authenticated and user == review.user %}
-                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                data-bs-target="#updateReviewModal"
-                                onclick="openUpdateReviewModal('{{ review.id }}', '{{ review.rating }}', '{{ review.title }}', '{{ review.text }}')">
-                                Edit Review
-                            </button>
+                            <i class="fas fa-edit edit-icon" data-bs-toggle="modal" data-bs-target="#updateReviewModal"
+                                onclick="openUpdateReviewModal('{{ review.id }}', '{{ review.rating }}', '{{ review.title }}', '{{ review.text }}')"
+                                data-toggle="tooltip" title="Edit Review"></i>
                             {% endif %}
                             {% if user.is_authenticated and user.is_superuser %}
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteReviewModal" onclick="openDeleteReviewModal('{{ review.id }}')">
-                                Delete Review
-                            </button>
+                            <i class="fas fa-trash delete-icon" data-bs-toggle="modal"
+                                data-bs-target="#deleteReviewModal" onclick="openDeleteReviewModal('{{ review.id }}')"
+                                data-toggle="tooltip" title="Delete Review"></i>
                             {% elif user.is_authenticated and user == review.user %}
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#deleteReviewModal" onclick="openDeleteReviewModal('{{ review.id }}')">
-                                Delete Review
-                            </button>
+                            <i class="fas fa-trash delete-icon" data-bs-toggle="modal"
+                                data-bs-target="#deleteReviewModal" onclick="openDeleteReviewModal('{{ review.id }}')"
+                                data-toggle="tooltip" title="Delete Review"></i>
                             {% endif %}
                         </div>
                     </div>
