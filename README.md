@@ -783,33 +783,43 @@ The following git commands were used throughout development to push code to the 
 - The deployed site will update automatically upon new commits to the main branch.
 
 ### Performance
-The performance of the website was tested with [Google Lighthouse](INSERT LINK TO REPORT)
 
 **Lighthouse reports:**<br>
 
-* Artwork Page
+* Home Page
+- Third party code from Stripe negitavley affected my Performance score here. In the future I would look futher into solutions to this to rduce unwarranted stress on my site. 
+- Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+![lighthouse_home](./assets/readme_assets/lighthouse_home.png)
 
-![lighthouse_artwork](LINK)
 
-* Art Advert Page 
+* Products Page 
+- Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+![lighthouse_products](./assets/readme_assets/lighthouse_products.png)
 
-![lighthouse_art_detail](LINK)
 
-* Artists Page 
+* Product Detail Page 
+- Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+![lighthouse_product_detail](./assets/readme_assets/lighthouse_productdetail.png)
 
-![lighthouse_artists](LINK)
 
-* Artists Profile Page
+* Services Page
+- Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+![lighthouse_services](./assets/readme_assets/lighthouse_services.png)
 
-![lighthouse_artist_profile](LINK)
 
 * Login/Logout/Register Pages
+- Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+![lighthouse_login_logout_register](./assets/readme_assets/lighthouse_register.png)
 
-![lighthouse_login_logout_register](LINK)
 
-* Profile Page
+* Profile/Order History/Wishlist/Service Requets/Gardening Requests Pages
+- Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+![lighthouse_profile](./assets/readme_assets/lighthouse_profile.png)
 
-![lighthouse_profile](LINK)
+
+* Contact/Add Products/Service Request/Gardener Feedback forms 
+- Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+![lighthouse_forms](./assets/readme_assets/lighthouse_forms.png)
 
 
 ## Credits
@@ -824,4 +834,3 @@ The performance of the website was tested with [Google Lighthouse](INSERT LINK T
 * The icons used accross the site were taken from Font Awesome
 * Credit provided for background images: https://www.pexels.com/  
 * Credit for product images and details 
-* 

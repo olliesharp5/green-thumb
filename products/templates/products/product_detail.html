@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-2">
-            <button onclick="goBack()" class="btn btn-sm btn-outline-secondary mb-3">Back to Search Results</button>
+            <button onclick="goBack()" class="btn btn-sm btn-outline-secondary mb-3" aria-label="Back to Results">Back to Search Results</button>
         </div>
         {% include "products/product_modals.html" with review_form=review_form %}
     </div>
@@ -54,7 +54,7 @@
                         aria-label="Quantity" aria-describedby="button-addon2" value="1">
                     <input type="hidden" name="from_product_page" value="true">
                     <button class="btn btn-outline-secondary" type="button" id="button-plus">+</button>
-                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add to Cart</button>
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2" aria-label="Add to Cart">Add to Cart</button>
                 </div>
             </form>
             {% if user.is_authenticated %}
@@ -98,7 +98,7 @@
             {% if user.is_authenticated %}
             {% if not user_has_reviewed %}
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createReviewModal"
-                data-toggle="tooltip" title="Create Review">
+                data-toggle="tooltip" title="Create Review" aria-label="Create Review">
                 <i class="fas fa-plus"></i>
             </button>
             {% else %}

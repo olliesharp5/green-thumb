@@ -25,7 +25,8 @@
         </div>
     </div>
     <div class="row g-6">
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column mt-3">
+            <hr>
             <h4>Gardening</h4>
             <div class="text-left">
                 <h6>What does this include?</h6>
@@ -38,7 +39,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column mt-3">
+            <hr>
             <h4>Lawn Care</h4>
             <div class="text-left">
                 <h6>What does this include?</h6>
@@ -50,7 +52,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column mt-3">
+            <hr>
             <h4>Holiday Service</h4>
             <div class="text-left">
                 <h6>What does this include?</h6>
@@ -62,7 +65,8 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column">
+        <div class="col-sm-6 col-md-3 d-flex flex-column text-center service-column mt-3">
+            <hr>
             <h4>Seasonal Care</h4>
             <div class="text-left">
                 <h6>What does this include?</h6>
@@ -92,7 +96,7 @@
     <div class="row text-center justify-content-center">
         {% for gardener in gardeners %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-12 p-2">
-            <div class="gardener-card">
+            <div class="gardener-card service-column">
                 <h4>{{ gardener.display_name }}</h4>
                 <a href="{% url 'gardener_profile' username=gardener.user.username %}">
                     {% if gardener.profile_image %}
