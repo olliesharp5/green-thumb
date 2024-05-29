@@ -151,15 +151,17 @@ def product_detail(request, product_id):
             context['form'] = form
         try:
             review = Review.objects.get(product=product, user=request.user)
-            review_form = ReviewForm(instance=review)  # pass the review to the form
-            context['review'] = review  # add the review to the context
+            review_form = ReviewForm(instance=review)
+            context['review'] = review  # Add review to context only if it exists
             user_has_reviewed = True
         except Review.DoesNotExist:
-            review_form = ReviewForm()  # if the review does not exist, create an empty form
+            review_form = ReviewForm()
+            context['review'] = None  # Ensure review is set to None if it doesn't exist
         context['review_form'] = review_form
     else:
-        review_form = ReviewForm()  # if the user is not authenticated, create an empty form
+        review_form = ReviewForm()
         context['review_form'] = review_form
+        context['review'] = None  # Ensure review is set to None if user is not authenticated
     context['user_has_reviewed'] = user_has_reviewed
     return render(request, 'products/product_detail.html', context)
 

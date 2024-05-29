@@ -72,11 +72,15 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                {% if review %}
                 <form id="updateReviewForm{{ review.id }}" method="post" action="{% url 'update_review' review.id %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ review_form|crispy }}
                     <button class="btn btn-secondary" type="submit" aria-label="Update">Update</button>
                 </form>
+                {% else %}
+                <p>No review available to update.</p>
+                {% endif %}
             </div>
         </div>
     </div>
