@@ -54,7 +54,7 @@ html, body {
 }
 
 a {
-    color: #007B55; /* This is a deep green color, perfect for links */
+    color: #007B55;
 }
 
 .navbar {
@@ -547,7 +547,7 @@ body.contact-page {
 
 /* FOOTER CSS */
 footer {
-    background-color: #F1F5E6 !important; /* A deep green color for the footer */
+    background-color: #F1F5E6 !important;
     color:#007B55;
 }
 
@@ -567,7 +567,6 @@ footer i {
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
 }
-
 
 
 /* MEDIA QUERIES */
