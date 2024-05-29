@@ -20,7 +20,7 @@
 
     <div class="carousel-item">
       <div class="card bg-dark text-white home-card">
-          <img src="{{ MEDIA_URL }}highest-rated.jpg" class="card-img" alt="Highest Rated">
+          <img src="{{ MEDIA_URL }}highest-rated.jpg" class="card-img" alt="Highest Rated" loading="lazy">
           <div class="card-img-overlay">
               <h5 class="card-title">Highest Rated</h5>
               <a href="{% url 'products' %}?sort_by=highest_rating" class="btn btn-light">Shop Now</a>
@@ -30,7 +30,7 @@
 
     <div class="carousel-item">
       <div class="card bg-dark text-white home-card">
-          <img src="{{ MEDIA_URL }}best-sellers.jpg" class="card-img" alt="Best Selling">
+          <img src="{{ MEDIA_URL }}best-sellers.jpg" class="card-img" alt="Best Selling" loading="lazy">
           <div class="card-img-overlay">
               <h5 class="card-title">Best Sellers</h5>
               <a href="{% url 'products' %}?sort_by=best_selling" class="btn btn-light">Shop Now</a>
