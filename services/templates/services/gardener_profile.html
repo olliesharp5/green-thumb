@@ -16,13 +16,13 @@
             <div class="card service-container">
                 <div class="card-body text-center">
                     {% if gardener.profile_image %}
-                        <img class="rounded-circle services-profile img-fluid mb-3"
+                        <img class="services-profile img-fluid mb-3"
                              src="{{ gardener.profile_image.url }}" 
-                             alt="{{ gardener.user.username }}" width="150" height="150">
+                             alt="{{ gardener.user.username }}">
                     {% else %}
-                        <img class="rounded-circle services-profile img-fluid mb-3"
+                        <img class="services-profile img-fluid mb-3"
                              src="{{ MEDIA_URL }}placeholder_image.png" 
-                             alt="{{ gardener.user.username }}" width="150" height="150">
+                             alt="{{ gardener.user.username }}">
                     {% endif %}
                     <h3 class="card-title">{{ gardener.display_name }}</h3>
                     <h4 class="card-subtitle mb-3">{{ gardener.location }}</h4>

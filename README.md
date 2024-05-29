@@ -474,17 +474,17 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
    - Four columns outlining service categories and their details.
    - Button to request a quote, opening the service request page.
    - Display of registered gardeners with name and profile picture, linking to their profile pages.
-   - Button to leave gardener feedback.
   
-![Services]()
+![Services](./assets/readme_assets/services.png)
 
 
 * Gardener Profile 
     - Centered card with profile image, name, location, about section, and average rating.
     - Feedback cards from users beneath, containing username, title, message, and rating.
     - Average rating is calculated from user-submitted ratings.
+    - Button to leave gardener feedback.
   
-![Gardener_profile](LINK)
+![Gardener_profile](./assets/readme_assets/gardener_profile.png)
 
 
 * Service Request 
