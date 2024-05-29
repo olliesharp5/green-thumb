@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: https://green-thumb1-5e1e889069e1.herokuapp.com/sitemap.xml
