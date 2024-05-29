@@ -195,7 +195,7 @@ The strategic selection of the color palette aimed to mirror the natural and fre
 
 | Hex | RGB |
 | -------------- | ----------------- |
-| #007B55 | (0, 123, 85) |
+| #004731 | (0, 71, 49) |
 | #B2DBBF | (178, 219, 191) |
 | #F1F5E6 | (241, 245, 230) |
 
