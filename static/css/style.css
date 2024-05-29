@@ -374,6 +374,11 @@ body.products-page.supplies {
     background-color: rgba(241, 245, 230, 0.4);
 }
 
+.products-title {
+    background-color: #004731;
+    color: #F1F5E6;
+}
+
 .custom-select {
     appearance: auto;
     -webkit-appearance: menulist;
@@ -410,8 +415,8 @@ label[for="id_sort_by"] {
     margin-top: 20px;
     border-radius: 5px;
     border: none;
-    background-color: #F1F5E6;
-    color: #004731;
+    background-color: #004731;
+    color: #F1F5E6;
 }
 
 .product-card {
@@ -502,6 +507,14 @@ body.gardener-page, body.feedback-page, body.service-request-page {
     background-color: rgba(0, 71, 49, 0.9);
     padding: 20px;
     color:#F1F5E6;
+}
+
+.service-column {
+    background-color: rgba(1, 32, 22, 0.9);
+}
+
+.service-container hr {
+    color: #F1F5E6;
 }
 
 .service-column button {
