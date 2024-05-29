@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.contrib import messages
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Avg
 from django.views.decorators.http import require_POST
 from profiles.models import Wishlist, UserProfile
 from .models import Product, Category, Review
@@ -71,7 +71,7 @@ def products_by_category(request, category_slug):
     **Context**
 
     ``sort_by``
-    The field by which to sort the products.
+    The field by which to sort the products, mapped to actual model fields or annotated fields.
 
     ``category``
     The main category specified by the slug.
@@ -80,7 +80,7 @@ def products_by_category(request, category_slug):
     A queryset of subcategories under the main category.
 
     ``products``
-    A queryset of products filtered by the main category and its subcategories.
+    A queryset of products filtered by the main category and its subcategories, annotated with average rating and sales count, and sorted based on the specified criterion.
 
     ``form``
     An instance of `SortForm` pre-filled with the current GET parameters.
@@ -97,7 +97,24 @@ def products_by_category(request, category_slug):
     sort_by = request.GET.get('sort_by', 'name')
     category = get_object_or_404(Category, slug=category_slug)
     subcategories = Category.objects.filter(parent=category)
-    products = Product.objects.filter(Q(category=category) | Q(category__in=subcategories)).order_by(sort_by)
+
+    sort_options = {
+        'recent': '-date_added',
+        'highest_rating': '-avg_rating',
+        'best_selling': '-sales_count',
+        'price': 'price',
+        '-price': '-price',
+        'name': 'name'
+    }
+    sort_by = sort_options.get(sort_by, 'name')
+
+    products = Product.objects.filter(
+        Q(category=category) | Q(category__in=subcategories)
+    ).annotate(
+        avg_rating=Avg('reviews__rating'),
+        sales_count=Count('orderlineitem')
+    ).order_by(sort_by)
+
     form = SortForm(request.GET)
     return render(request, 'products/products.html', {'products': products, 'category_name': category.name, 'category': category, 'form': form})
 
