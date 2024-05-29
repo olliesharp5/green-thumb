@@ -498,8 +498,8 @@ body.gardener-page, body.feedback-page, body.service-request-page {
     padding: 0 !important;
 }
 
-.service-column,.hero-text, .gardener-card, .gardener-container {
-    background-color: rgba(0, 0, 0, 0.6);
+.service-container {
+    background-color: rgba(0, 71, 49, 0.9);
     padding: 20px;
     color:#F1F5E6;
 }
@@ -515,7 +515,8 @@ body.gardener-page, body.feedback-page, body.service-request-page {
 }
 
 .gardener-image {
-    max-width: 300px;
+    width: 100%;
+    height: auto;
     max-height: 300px;
     object-fit: contain;
 }
