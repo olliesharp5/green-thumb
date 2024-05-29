@@ -25,6 +25,15 @@ Additionally, Green Thumb extends its framework to landscaping services, where c
   - [Features](#features)
     - [Existing Features](#existing-features)
     - [Features Left to Implement](#features-left-to-implement)
+  - [Web Marketing](#web-marketing)
+    - [Creating a Facebook Page](#creating-a-facebook-page)
+    - [Integrating Mailchimp to Register for the Mail List](#integrating-mailchimp-to-register-for-the-mail-list) 
+  - [SEO](#seo)
+    - [Implementing robots.txt](#implementing-robotstxt)
+    - [Implementing sitemap.xml](#implementing-sitemapxml)
+    - [Meta Tags](#meta-tags)
+    - [Semantic Structure](#semantic-structure)
+    - [Other SEO Best Practices](#other-seo-best-practices)
   - [Testing](#testing)
     - [Validator Testing](#validator-testing)
       - [HTML](#html)
@@ -41,7 +50,7 @@ Additionally, Green Thumb extends its framework to landscaping services, where c
 
 ## Demo
 
-![Website look on different devices](LINK)
+![Website look on different devices](./assets/readme_assets/responsive_design.png)
 
 ### A live demo to the website can be found [here](https://green-thumb1-5e1e889069e1.herokuapp.com/)
 
@@ -164,8 +173,8 @@ The website employs a hierarchical tree structure where the home page serves as 
 
 The wireframes were designed using Balsamiq software.
 
-<img src="assets/readme-assets/wireframe_artwork.png" width="600" height="800"> <img src="assets/readme-assets/wireframe_art_detail.png" width="600" height="800"> <img src="assets/readme-assets/wireframe_artists.png" width="600" height="800">
-<img src="assets/readme-assets/wireframe_artist_profile.png" width="600" height="800"> <img src="assets/readme-assets/wireframe_help.png" width="600" height="800">
+<img src="assets/readme_assets/homepage_wireframe.png" width="600" height="800"> <img src="assets/readme_assets/products_wireframe.png" width="600" height="800"> <img src="assets/readme_assets/productdetail_wireframe.png" width="600" height="800">
+<img src="assets/readme_assets/basket_wireframe.png" width="600" height="800"> <img src="assets/readme_assets/services_wireframe.png" width="600" height="800">
 
 ### Planning
 
@@ -175,7 +184,7 @@ I broke down the project into manageable tasks and plotted them on the Kanban bo
 
 The use of the Kanban board provided a clear, real-time overview of the project's progress. It facilitated regular reviews, quick adjustments and maintained the fluidity of the development process. This thoughtful planning and organization guided the project towards its successful completion.
 
-[Kanban](LINK)
+[Kanban](https://github.com/users/olliesharp5/projects/4/views/1)
 
 
 ### Surface
@@ -398,8 +407,9 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
    - **Footer:** The footer includes social links, copyright information, and a subscribe-to-newsletter input field.
    - Both header and footer are fully responsive.
   
-![Header](LINK)
-![Footer](LINK)
+![Header (Large Screens)](./assets/readme_assets/head_large.png)
+![Header (Small Screens)](./assets/readme_assets/head_small.png)
+![Footer](./assets/readme_assets/footer.png)
 
 
 * Home
@@ -407,20 +417,20 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
    - A short introduction to Green Thumb.
    - Three feature cards highlighting shipping, the 30-day guarantee, and gardening services offered.
   
-![Home](LINK)
+![Home](./assets/readme_assets/home.png)
 
 
 * About
    - Contains the mission statement, images, history, reputation, certifications, and licenses of the company.
   
-![About](LINK)
+![About](./assets/readme_assets/about.png)
 
 
 * Products
    - Displays a themed background image depending on the category.
    - Card display of products including image, name, rating, price, and a quick add-to-basket button with a size selector if applicable. The quick add defaults to a quantity of one.
   
-![Products](LINK)
+![Products](./assets/readme_assets/products.png)
 
 
 * Product Detail
@@ -430,7 +440,7 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
    - Only logged-in users can leave reviews or add to the wishlist.
    - Superusers can edit and delete products from this page.
   
-![Product_detail](LINK)
+![Product_detail](./assets/readme_assets/product_detail.png)
 
 
 * Cart
@@ -438,7 +448,7 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
    - Displays each cart item in a row with product name, price, quantity, total. Users can edit quantities and delete items.
    - Cart total, delivery, and grand total values are displayed at the bottom with buttons to continue shopping or proceed to checkout.
 
-![Cart](LINK)
+![Cart](./assets/readme_assets/cart.png)
 
 
 * Checkout
@@ -449,14 +459,14 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
    - Order summary on the right.
    - Buttons to adjust the cart (returns to cart page) and complete the order (validates form and initiates payment).
 
-![Checkout](LINK)
+![Checkout](./assets/readme_assets/checkout.png)
 
 
 * Order Success
    - Displays an order summary: order number, order date, line items, delivery information, personal details.
    - A button to continue shopping that returns to the products page.
   
-![Order_success](LINK)
+![Order_success](./assets/readme_assets/order_success.png)
 
 
 * Services
@@ -466,7 +476,7 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
    - Display of registered gardeners with name and profile picture, linking to their profile pages.
    - Button to leave gardener feedback.
   
-![Services](LINK)
+![Services]()
 
 
 * Gardener Profile 
@@ -482,14 +492,14 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
     - Fields: full name, email, services required (checkbox), message, file attachment, date required (with calendar selector).
     - Form validation on required fields.
   
-![Service_request](LINK)
+![Service_request](./assets/readme_assets/service_request.png)
 
 
 * Gardener Feedback
     - Form for submitting feedback for registered gardeners.
     - Fields: dropdown to select the gardener, first name, title, message, rating (dropdown).
   
-![Gardener_feedback](LINK)
+![Gardener_feedback](./assets/readme_assets/gardener_feedback.png)
 
 
 * Contact
@@ -497,7 +507,7 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
     - Fields: full name, email, subject (dropdown with common categories), message, file attachment.
     - Form validation on required fields.
   
-![Contact](LINK)
+![Contact](./assets/readme_assets/contact.png)
 
 
 * Profile
@@ -507,59 +517,60 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
     - Default delivery information on the right, saved during checkout.
     - Edit icons to update information via modal, and a delete profile button.
   
-![Profile](LINK)
+![Profile](./assets/readme_assets/profile.png)
 
 * Order History
     - Table showing previous orders with order number (linking to order success page), order date, line items, and order total.
 
-![Order_history](LINK)
+![Order_history](./assets/readme_assets/order_history.png)
 
 
 * Wishlist
     - Table of wishlist items with product image, name (linking to product detail page), description, and price.
     - Option to delete items from the wishlist.
 
-![Wishlist](LINK)
+![Wishlist](./assets/readme_assets/wishlist.png)
 
 
 * Customer Service Requests
     - Table displaying a history of customer service requests with full name, email, subject, message, status, and days since submission.
     - Status updated by the customer service team to show progress.
 
-![Customer_service_requests](LINK)
+![Customer_service_requests](./assets/readme_assets/cs_requests.png)
 
 
 * Gardener Requests
     - Table displaying a history of gardening service requests with full name, email, services, message, date required, status, and days since submission.
     - Status updated by the customer service team to show progress.
 
-![Gardener_requests](LINK)
+![Gardener_requests](./assets/readme_assets/gardening_requests.png)
 
 
 * Register
     - Registration form with fields for username, email address, password, and confirm password.
     - Checkbox for gardeners; additional fields for display name, location, profile image, and about section appear if checked.
 
-![Register](LINK)
+![Register (Regular User)](./assets/readme_assets/register_1.png)
+![Register (Gardener)](./assets/readme_assets/register_2.png)
 
 
 * Login
     - Sign-in page with fields for login and password, and a checkbox to remember the user.
 
-![Login](LINK)
+![Login](./assets/readme_assets/login.png)
 
 
 * Logout 
     - Prompt confirming the user's intent to log out, with a button to complete the action.
 
-![Logout](LINK)
+![Logout](./assets/readme_assets/logout.png)
 
 
 * Add Product
     - Available only to superusers.
     - Form with fields for SKU, name, description, checkbox for size options, price, image, and category (dropdown selector).
 
-![Add_product](LINK)
+![Add_product](./assets/readme_assets/add_product.png)
 
 
 ### Features Left to Implement
@@ -604,6 +615,37 @@ In the future, I would like to add the following features to enhance user experi
     - Develop a mobile app to provide users with easy access to all website features on the go.
     - Include features like plant care reminders, a plant identification tool, and the ability to purchase products and book services from the app.
 
+## Web Marketing
+
+### Creating a Facebook Page
+I created a dedicated Facebook page for the brand to enhance our social media presence and engage with our audience. This page serves as a platform to share updates, promotions, and interact directly with customers, fostering a community around the brand.
+![Facebook Page](./assets/readme_assets/facebook%20page.png)
+
+### Integrating Mailchimp to Register for the Mail List
+To streamline the email marketing efforts and manage our mailing list efficiently, I integrated Mailchimp into my website. This allows visitors to easily subscribe to our newsletter and ensures that we can send targeted email campaigns to our subscribers, keeping them informed about new products, promotions, and company news.
+![Mailchimp](./assets/readme_assets/mailchimp.png)
+
+## SEO
+
+### Implementing robots.txt
+I implemented a `robots.txt` file to control and optimize the way search engines crawl and index the website. This file helps in directing search engines to important pages while preventing them from indexing irrelevant or sensitive parts of the site, thus improving our site's SEO performance.
+
+### Implementing sitemap.xml
+The website includes a `sitemap.xml` file, which provides search engines with a structured list of all the pages on my site. This helps search engines discover and index our content more effectively, ensuring that all relevant pages are included in search results and improving the site's visibility.
+
+### Meta Tags
+I added relevant meta tags to my website's HTML to provide search engines with essential information about the different pages. These tags include the title, description, and keywords, which help improve the click-through rate from search engine results pages by making our listings more attractive and informative to users.
+
+### Semantic Structure
+My website follows a semantic structure, using HTML5 elements such as `<header>`, `<article>`, `<section>`, and `<footer>`. This approach improves accessibility, enhances the user experience, and helps search engines understand the content and structure of our pages better, contributing to better SEO performance.
+
+### Other SEO Best Practices
+In addition to the above, we have implemented other SEO best practices, including:
+- **Optimized Images**: I use appropriately sized and compressed images to improve page load times.
+- **Mobile-Friendly Design**: My site is responsive and mobile-friendly, providing a good user experience across all devices.
+- **Internal Linking**: I have a robust internal linking structure to help users and search engines navigate the site more efficiently.
+- **High-Quality Content**: I regularly update our site with high-quality, relevant content that provides value to our users and helps attract organic traffic.
+
 
 ## Testing
 
@@ -613,27 +655,33 @@ In the future, I would like to add the following features to enhance user experi
 
 ### Django Testing 
 
-* I tested multiple views in my project which can be found in the tests.py files of my Django project. 
+* I have implemented 18 individual tests on multiple views in the "Accounts", "Cart", "Checkout" and "Contact" apps. The tests can be found in the tests.py files of my Django project. To run the tests, input "python manage.py test" into your IDE console.  
 
 ### Manual Testing
 
-| **Website Section** | **Functionality** | **Test Case ID** | **Test Scenario** |**Test Steps** | **Expected Outcome** |
+| **Website Section** | **Functionality** | **Test Case ID** | **Test Scenario** | **Test Steps** | **Expected Outcome** |
 |---------------------|-------------------|------------------|-------------------| --------------|---------------------|
-| **_Base Header and Footer_** | Clickable strong social links | #1 | Validate clicking on social links | Click each social link | The associated social page opens up in a new tab |
-| **_Register_** | Registration functionality | #2 | Test for registration | Input all required fields and press the register button | Succesful registration with a profile creation |
-| **_Login_** | User login form | #3 | Test for login | Input correct user credentials and press login | Successful user login |
-| **_Logout_** | User logout| #4 | Test for logout | Press logout button | Successful user logout with a confirmation prompt |
-| **_Artwork_** | Filtering artwork | #5 | Test for filtering artwork | Use filter settings and apply | Return a list of artworks matching filter parameters |
-| **_Artists_** | Filtering artists | #6 | Test for filtering artists | Use filter settings and apply | Return a list of artists matching filter parameters |
-| **_Artwork Advert_** | Creating artwork (Artist account) | #7 | Test for creating artwork | Create new artwork and save | New artwork saved/displayed |
-| **_Profile_** | Updating profile details | #8 | Test for updating profile details | Update profile details and save changes | Profile details updated successfully |
-| **_Profile_** | Deleting profile | #9 | Test for deleting profile | Follow profile deletion process | Successful profile deletion with confirmation |
-| **_Artwork Advert_** | Submitting a review | #10| Test for submitting a review | Write review and post | New review saved/displayed |
-| **_Artwork Advert_** | Liking an artwork  | #11| Test for liking an artwork | Click like button | Like count for artwork increases |
-| **_Artwork Advert_** | Unliking an artwork | #12| Test for unliking an artwork | Click unlike button (previously liked) | Like count for artwork decreases |
-| **_Artwork Advert_** | Updating own review | #13| Test for updating your own review | Edit review text and save changes | Updated review saved/displayed |
-| **_Artwork Advert_** | Deleting own review | #14| Test for deleting your own review | Select delete option on self-review | Review successfully deleted |
-| **_Help_** | Submitting a help request | #15| Test for submitting a help request | Write help request and submit | Submition of help request was successful |
+| **_Base Header and Footer_** | Clickable social links | #1 | Validate clicking on social links | Click each social link in the header and footer | The associated social page opens up in a new tab |
+| **_Base Header and Footer_** | My Account dropdown | #2 | Test My Account dropdown | Click on the "My Account" dropdown and select each option | The corresponding page opens or action is performed correctly |
+| **_Base Header and Footer_** | Navigation links | #3 | Test navigation links | Click on each link in the header navigation bar | The corresponding page loads correctly |
+| **_Base Header and Footer_** | Responsive design | #4 | Test responsiveness | Resize the browser window to small and large sizes | Header and footer adjust and display correctly |
+| **_Search Bar_** | Search functionality | #5 | Test search functionality | Enter a keyword in the search bar and press enter | Search results matching the keyword are displayed |
+| **_Home_** | Carousel functionality | #6 | Test carousel | Navigate through the carousel images | Carousel transitions smoothly and displays correct images |
+| **_Register_** | User registration | #7 | Test for registration | Input all required fields and press the register button | Successful registration with a profile creation |
+| **_Login_** | User login | #8 | Test for login | Input correct user credentials and press login | Successful user login |
+| **_Logout_** | User logout | #9 | Test for logout | Press logout button | Successful user logout with a confirmation prompt |
+| **_Products_** | Category navigation | #10 | Test product category navigation | Click on each category in the main navigation dropdown | The corresponding product category page loads correctly |
+| **_Product Detail_** | Add to cart | #11 | Test add to cart functionality | Select size (if applicable), quantity, and press add to cart | Product is added to the cart with correct details |
+| **_Product Detail_** | Review submission | #12 | Test review submission | Write a review and submit | Review is saved and displayed correctly |
+| **_Product Detail_** | Wishlist functionality | #13 | Test add/remove from wishlist | Add and remove a product from the wishlist | Wishlist updates correctly with added/removed product |
+| **_Cart_** | Cart operations | #14 | Test cart operations | Change quantity, delete items, proceed to checkout | Cart updates correctly and checkout process starts |
+| **_Checkout_** | Form validation | #15 | Test form validation | Fill the form with invalid data and try to proceed | Form displays appropriate validation errors |
+| **_Order Success_** | Order summary display | #16 | Test order summary display | Complete an order and view the order success page | Correct order details are displayed |
+| **_Services_** | Request a quote | #17 | Test request a quote | Fill out the service request form and submit | Quote request is submitted successfully |
+| **_Profile_** | Update profile details | #18 | Test updating profile details | Update personal information and save changes | Profile details are updated successfully |
+| **_Profile_** | Delete profile | #19 | Test deleting profile | Follow profile deletion process | Successful profile deletion with confirmation |
+| **_Wishlist_** | Wishlist operations | #20 | Test wishlist operations | Add multiple items to wishlist and remove them | Wishlist updates correctly with added/removed items |
+
 
 ### Validator Testing
 
@@ -646,21 +694,20 @@ No errors were found when passing through the official (Jigsaw) validator.
 #### JSHint
 No errors were found when passing through the official (JSHint) validator.
 
-| HTML Validation Screenshots | CSS Validation Screenshot | JavaScript Validation Screenshots |
+| HTML Validation Screenshots | CSS Validation Screenshot | JavaScript Validation Screenshot |
 |:---------------------------:|:-------------------------:|:---------------------------------:|
-| <img src="./assets/readme-assets/html-validator-base.png" width="400"> | <img src="./assets/readme-assets/css-validator.png" width="400"> | <img src="./assets/readme-assets/js-validator-main.js.png" width="400"> |
-| <img src="./assets/readme-assets/html-validator-artwork.png" width="400"> |                           | <img src="./assets/readme-assets/js-validator-masonry.js.png" width="400"> |
-| <img src="./assets/readme-assets/html-validator-art_detail.png" width="400"> |                           | <img src="./assets/readme-assets/js-validator-review.js.png" width="400"> |
-| <img src="./assets/readme-assets/html-validator-create-advert.png" width="400"> |                           | <img src="./assets/readme-assets/js-validator-script.js.png" width="400"> |
-| <img src="./assets/readme-assets/html-validator-artists.png" width="400"> |                           |                                   |
-| <img src="./assets/readme-assets/html-validator-artist-profile.png" width="400"> |                           |                                   |
-| <img src="./assets/readme-assets/html-validator-profile.png" width="400"> |                           |                                   |
-| <img src="./assets/readme-assets/html-validator-register.png" width="400"> |                           |                                   |
-| <img src="./assets/readme-assets/html-validator-help.png" width="400"> |                           |                                   |
+| <img src="./assets/readme_assets/html_about.png" width="400"> | <img src="./assets/readme_assets/css_validation.png" width="400"> | <img src="./assets/readme_assets/javascript_validator.png" width="400"> |
+| <img src="./assets/readme_assets/html_cart.png" width="400"> |                           |  |
+| <img src="./assets/readme_assets/html_contact.png" width="400"> |                           |  |
+| <img src="./assets/readme_assets/html_home.png" width="400"> |                           |  |
+| <img src="./assets/readme_assets/html_productdetail.png" width="400"> |                           |                                   |
+| <img src="./assets/readme_assets/html_products.png" width="400"> |                           |                                   |
+| <img src="./assets/readme_assets/html_services.png" width="400"> |                           |                                   |
+
 #### WebAim Contrast checker 
 No errors were found when passing through the contrast validator.
 
-![contrast_validator](/assets/readme-assets/contrast-checker.png)
+![contrast_validator](/assets/readme_assets/contrast_validator.png)
 
 
 #### Fixed Bugs
@@ -768,8 +815,8 @@ The performance of the website was tested with [Google Lighthouse](INSERT LINK T
 ## Credits
 
 ### Content
-* 
-* 
+* Credit for stripe integration taken from Stripe web documentation and the Boutique-Ado walkthrough project from Code Institute 
+* Integration of webhook handlers for the stripe integration credited from the Boutique-Ado walkthrough project from Code Institute
 
 ### Media
 
@@ -777,6 +824,4 @@ The performance of the website was tested with [Google Lighthouse](INSERT LINK T
 * The icons used accross the site were taken from Font Awesome
 * Credit provided for background images: https://www.pexels.com/  
 * Credit for product images and details 
-* Credit for stripe integration taken from Stripe web documentation and the Boutique-Ado walkthrough project from Code Institute 
-* Integration of webhook handlers for the stripe integration credited from the Boutique-Ado walkthrough project from Code Institute
 * 

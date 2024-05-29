@@ -9,6 +9,7 @@ class ContactViewTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.url = reverse('contact')
+        self.home_url = reverse('home')  # Add home URL for redirection check
 
     def test_get_contact_view(self):
         response = self.client.get(self.url)
@@ -30,7 +31,7 @@ class ContactViewTests(TestCase):
         response = self.client.post(self.url, data, **file_data)
         
         self.assertEqual(response.status_code, 302)  # Check redirection
-        self.assertRedirects(response, self.url)
+        self.assertRedirects(response, self.home_url)  # Update to check redirection to home
         self.assertTrue(ContactRequest.objects.exists())
         
         contact_request = ContactRequest.objects.first()
@@ -53,5 +54,4 @@ class ContactViewTests(TestCase):
         # Check for success message in the POST response
         messages = list(response.wsgi_request._messages)
         self.assertEqual(len(messages), 1)
-        self.assertEqual(str(messages[0]), 'Your contact request has been submitted. A confirmation email has been sent to {{ email }}.')
-
+        self.assertEqual(str(messages[0]), f'Your contact request has been submitted. A confirmation email has been sent to {data["email"]}.')
