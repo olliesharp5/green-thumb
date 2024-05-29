@@ -167,13 +167,12 @@ body.home-page {
 }
 
 .card-text a {
-    color:#004731;
+    color:#F1F5E6;
 }
 
 .intro-card {
     margin: 2rem;
-    background-image: url(/media/card-background.jpg);
-    background-size: contain;
+    background-color: #004731;
     color: #F1F5E6;
 }
 
@@ -184,7 +183,7 @@ body.home-page {
     height: 100%;
     width: 100%;
     opacity: 0.7;
-    background-color: rgba(128, 128, 128, 0.6);
+    background-color: rgba(0, 71, 49, 0.9);
 }
 
 /* NAVBAR CSS */
