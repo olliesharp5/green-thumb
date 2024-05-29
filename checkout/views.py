@@ -30,7 +30,7 @@ def cache_checkout_data(request):
     Whether to save the user's information for future purchases.
 
     ``username``
-    The username of the logged-in user.
+    The ID of the logged-in user or 'AnonymousUser' if the user is not authenticated.
 
     **Methods**
 
@@ -48,7 +48,7 @@ def cache_checkout_data(request):
         stripe.PaymentIntent.modify(pid, metadata={
             'cart': json.dumps(request.session.get('cart', {})),
             'save_info': request.POST.get('save_info'),
-            'username': request.user,
+            'username': request.user.id if request.user.is_authenticated else 'AnonymousUser',
         })
         return HttpResponse(status=200)
     except Exception as e:
@@ -113,9 +113,11 @@ def checkout(request):
             pid = request.POST.get('client_secret').split('_secret')[0]
             order.stripe_pid = pid
             order.original_cart = json.dumps(cart)
-            # Add the user_profile to the order
-            profile, created = UserProfile.objects.get_or_create(user=request.user)
-            order.user_profile = profile
+
+            if request.user.is_authenticated:
+                profile, created = UserProfile.objects.get_or_create(user=request.user)
+                order.user_profile = profile
+
             order.save()
             for item_id, item_data in cart.items():
                 try:
@@ -169,9 +171,7 @@ def checkout(request):
         )
         
         if request.user.is_authenticated:
-            # Get the user's profile
             user_profile = UserProfile.objects.get(user=request.user)
-            # Create a dictionary with the user's saved information
             form_data = {
                 'full_name': request.user.first_name + ' ' + request.user.last_name,
                 'email': request.user.email,
@@ -183,7 +183,6 @@ def checkout(request):
                 'street_address2': user_profile.default_street_address2,
                 'county': user_profile.default_county,
             }
-            # Create an instance of the form with the user's saved information
             order_form = OrderForm(initial=form_data)
         else:
             order_form = OrderForm()
@@ -229,7 +228,7 @@ def checkout_success(request, order_number, source=None):
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
 
-    if save_info:
+    if save_info and request.user.is_authenticated:
         profile, created = UserProfile.objects.get_or_create(user=request.user)
         profile.default_phone_number = order.phone_number
         profile.default_street_address1 = order.street_address1
