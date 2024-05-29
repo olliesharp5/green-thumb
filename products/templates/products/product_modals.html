@@ -64,8 +64,7 @@
 </div>
 
 <!-- Update Review Modal -->
-<div class="modal fade" id="updateReviewModal" tabindex="-1" aria-labelledby="updateReviewModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="updateReviewModal" tabindex="-1" aria-labelledby="updateReviewModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,7 +72,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="updateReviewForm" method="post" action="." enctype="multipart/form-data">
+                <form id="updateReviewForm{{ review.id }}" method="post" action="{% url 'update_review' review.id %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ review_form|crispy }}
                     <button class="btn btn-secondary" type="submit" aria-label="Update">Update</button>

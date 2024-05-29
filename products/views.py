@@ -37,18 +37,19 @@ def all_products(request):
 
     :template:`products/products.html`
     """
-    query = request.GET.get('q', '').strip()  # Retrieve and strip the query
+    query = request.GET.get('q', '').strip()
     sort_by = request.GET.get('sort_by', 'name')
 
-    # Map sort options to actual model field names
     sort_options = {
         'recent': '-date_added',
         'highest_rating': '-rating',
-        'best_selling': '-sales_count'
+        'best_selling': '-sales_count',
+        'price': 'price',
+        '-price': '-price',
+        'name': 'name'
     }
     sort_by = sort_options.get(sort_by, 'name')
 
-    # Check if 'q' parameter is in the request and is empty
     if 'q' in request.GET and not query:
         messages.error(request, 'Please enter a search term.')
 
@@ -151,6 +152,7 @@ def product_detail(request, product_id):
         try:
             review = Review.objects.get(product=product, user=request.user)
             review_form = ReviewForm(instance=review)  # pass the review to the form
+            context['review'] = review  # add the review to the context
             user_has_reviewed = True
         except Review.DoesNotExist:
             review_form = ReviewForm()  # if the review does not exist, create an empty form
@@ -326,6 +328,7 @@ def update_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.user != review.user:
         return HttpResponseForbidden()
+    
     if request.method == 'POST':
         form = ReviewForm(request.POST, instance=review)
         if form.is_valid():
@@ -333,8 +336,8 @@ def update_review(request, review_id):
             return redirect('product_detail', product_id=review.product.id)
     else:
         form = ReviewForm(instance=review)
-    # Redirect to product detail page if not POST or form not valid
-    return redirect('product_detail', product_id=review.product.id)
+    
+    return render(request, 'products/update_review.html', {'form': form, 'review': review})
 
 
 @require_POST

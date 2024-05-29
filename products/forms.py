@@ -8,7 +8,6 @@ class SortForm(forms.Form):
         ('name', 'Product Name'),
         ('price', 'Price Low to High'),
         ('-price', 'Price High to Low'),
-        ('-rating', 'Rating'),
         ('recent', 'Recently Added'),
         ('highest_rating', 'Highest Rating'),
         ('best_selling', 'Best Selling'),
