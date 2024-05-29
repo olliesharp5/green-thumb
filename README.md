@@ -573,6 +573,13 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
 ![Add_product](./assets/readme_assets/add_product.png)
 
 
+* 404 Page
+   - Presents when a user navigates to a page that doesn't exist 
+   - Contains links back to the home page and contact page 
+
+![404_page](./assets/readme_assets/404_page.png)
+
+
 ### Features Left to Implement
 
 In the future, I would like to add the following features to enhance user experience and functionality:
