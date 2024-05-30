@@ -8,6 +8,7 @@ from profiles.models import Wishlist, UserProfile
 from .models import Product, Category, Review
 from .forms import SortForm, ProductForm, ReviewForm
 
+
 def all_products(request):
     """
     Retrieves and displays all products, optionally filtered by a search query and sorted by a specified criterion.
@@ -55,7 +56,7 @@ def all_products(request):
         messages.error(request, 'Please enter a search term.')
 
     if query:
-        products = Product.objects.filter(name__icontains(query))
+        products = Product.objects.filter(name__icontains=query)
     else:
         products = Product.objects.all()
 
@@ -127,6 +128,8 @@ def products_by_category(request, category_slug):
     
     form = SortForm(request.GET)
     return render(request, 'products/products.html', {'page_obj': page_obj, 'category_name': category.name, 'category': category, 'form': form})
+
+
 def product_detail(request, product_id):
     """
     Retrieves and displays the details of a specified product, including its reviews and user's wishlist status.
