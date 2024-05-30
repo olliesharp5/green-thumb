@@ -24,8 +24,11 @@
                     <td>{{ order.date }}</td>
                     <td>
                         {% for item in order.lineitems.all %}
-                        <p>{{ item.product.name }} {% if item.product_size %}(Size: {{ item.product_size }}){% endif %}
+                        <a href="{% url 'product_detail' item.product.id %}">
+                        <p>{{ item.product.name }} {% if item.product_size %}(Size:
+                            {{ item.product_size }}){% endif %}
                             (Quantity: {{ item.quantity }})</p>
+                        </a>
                         {% endfor %}
                     </td>
                     <td>{{ order.order_total }}</td>
