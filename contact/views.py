@@ -79,7 +79,7 @@ def contact(request):
             settings.DEFAULT_FROM_EMAIL,
             [email]
         )
-
+        request.session['cart_changed'] = False
         messages.success(request, f'Your contact request has been submitted. A confirmation email has been sent to {email}.')
         return redirect('home')
 

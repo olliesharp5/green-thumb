@@ -87,6 +87,7 @@ def gardener_feedback(request):
         form = GardenerFeedbackForm(request.POST)
         if form.is_valid():
             feedback = form.save()
+            request.session['cart_changed'] = False
             messages.success(request, f'Thank you for submitting feedback for {feedback.gardener.display_name}')
             return redirect('services')
     else:
@@ -182,6 +183,7 @@ def service_request(request):
             [email]
         )
 
+        request.session['cart_changed'] = False
         messages.success(request, f'Your service request has been submitted. A confirmation email has been sent to {email}.')
         return redirect('services')
 

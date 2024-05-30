@@ -622,6 +622,9 @@ In the future, I would like to add the following features to enhance user experi
     - Develop a mobile app to provide users with easy access to all website features on the go.
     - Include features like plant care reminders, a plant identification tool, and the ability to purchase products and book services from the app.
 
+11. **Additional functionality in gardener reviews:**
+      - Include further CRUD functionality to gardener reviews. Currently only admins can amend these feedbacks in the admin panel. I would like to add further functionality to do this in the front end as i have done for the reviews on products. 
+
 ## Web Marketing
 
 ### Creating a Facebook Page
