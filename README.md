@@ -34,6 +34,9 @@ Additionally, Green Thumb extends its framework to landscaping services, where c
     - [Meta Tags](#meta-tags)
     - [Semantic Structure](#semantic-structure)
     - [Other SEO Best Practices](#other-seo-best-practices)
+  - [Stripe Webhook Integration](#stripe-webhook-integration)
+    - [Webhook Endpoint (webhooks.py)](#webhook-endpoint)
+    - [Webhook Handler (webhook_handler.py)](#webhook-handler)
   - [Testing](#testing)
     - [Validator Testing](#validator-testing)
       - [HTML](#html)
@@ -657,6 +660,25 @@ In addition to the above, we have implemented other SEO best practices, includin
 - **High-Quality Content**: I regularly update our site with high-quality, relevant content that provides value to our users and helps attract organic traffic.
 
 
+## Stripe Webhook Integration
+
+My implementation ensures all Stripe webhooks are successfully handled. Here's a brief overview:
+
+### Webhook Endpoint (webhooks.py)
+- Endpoint: /webhook/
+- Setup: Retrieves and verifies webhook signature using Stripe's secret key.
+- Handler Mapping: Routes different webhook events (e.g., payment success/failure) to specific handler functions.
+
+### Webhook Handler (webhook_handler.py)
+#### Handler Class: StripeWH_Handler
+#### Functions:
+ - handle_event(): Handles unknown events.
+ - handle_payment_intent_succeeded(): Processes successful payments, creates orders, and sends confirmation emails.
+ - handle_payment_intent_payment_failed(): Logs failed payment intents.
+
+This setup ensures reliable handling and processing of Stripe events.
+![Webhooks](./assets/readme_assets/webhooks.png)
+
 ## Testing
 
 * I tested the site, and it works in different web browsers: Chrome, Firefox, and Microsoft Edge.
@@ -802,36 +824,43 @@ The following git commands were used throughout development to push code to the 
 * Home Page
 - Third party code from Stripe negitavley affected my Performance score here. In the future I would look futher into solutions to this to rduce unwarranted stress on my site. 
 - Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+
 ![lighthouse_home](./assets/readme_assets/lighthouse_home.png)
 
 
 * Products Page 
 - Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+
 ![lighthouse_products](./assets/readme_assets/lighthouse_products.png)
 
 
 * Product Detail Page 
 - Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+
 ![lighthouse_product_detail](./assets/readme_assets/lighthouse_productdetail.png)
 
 
 * Services Page
 - Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+
 ![lighthouse_services](./assets/readme_assets/lighthouse_services.png)
 
 
 * Login/Logout/Register Pages
 - Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+
 ![lighthouse_login_logout_register](./assets/readme_assets/lighthouse_register.png)
 
 
 * Profile/Order History/Wishlist/Service Requets/Gardening Requests Pages
 - Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+
 ![lighthouse_profile](./assets/readme_assets/lighthouse_profile.png)
 
 
 * Contact/Add Products/Service Request/Gardener Feedback forms 
 - Third party cookies from Stripe affected my Best Practices score as support for third-party cookies will be removed in a future version of Chrome.
+
 ![lighthouse_forms](./assets/readme_assets/lighthouse_forms.png)
 
 
@@ -840,10 +869,11 @@ The following git commands were used throughout development to push code to the 
 ### Content
 * Credit for stripe integration taken from Stripe web documentation and the Boutique-Ado walkthrough project from Code Institute 
 * Integration of webhook handlers for the stripe integration credited from the Boutique-Ado walkthrough project from Code Institute
+* Credit to my mentor Medale Oluwafemi for directing me on how to structure my UserProfile models and develop my UI to be easier to navigate for users 
 
 ### Media
 
 * The icon used for the favicon is from favicon.io
 * The icons used accross the site were taken from Font Awesome
 * Credit provided for background images: https://www.pexels.com/  
-* Credit for product images and details 
+* Credit for product images and product_detail content: https://www.gardeningexpress.co.uk/ 
