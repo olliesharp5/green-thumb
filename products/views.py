@@ -217,6 +217,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            request.session['cart_changed'] = False
             messages.success(request, 'The advert has been added to your site.')
             return redirect('home')
     else:
