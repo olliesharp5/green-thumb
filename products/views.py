@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models.functions import Coalesce
 from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
 from django.contrib import messages
-from django.db.models import Q, Count, Avg
+from django.db.models import Q, Count, Avg, Value, DecimalField
 from django.views.decorators.http import require_POST
 from profiles.models import Wishlist, UserProfile
 from .models import Product, Category, Review
@@ -44,7 +45,7 @@ def all_products(request):
 
     sort_options = {
         'recent': '-date_added',
-        'highest_rating': '-rating',
+        'highest_rating': '-coalesced_rating',
         'best_selling': '-sales_count',
         'price': 'price',
         '-price': '-price',
@@ -60,7 +61,10 @@ def all_products(request):
     else:
         products = Product.objects.all()
 
-    products = products.annotate(sales_count=Count('orderlineitem')).order_by(sort_by)
+    products = products.annotate(
+        sales_count=Count('orderlineitem'),
+        coalesced_rating=Coalesce('rating', Value(0), output_field=DecimalField())
+    ).order_by(sort_by)
     
     paginator = Paginator(products, 9)  # 9 products per page
     page_number = request.GET.get('page')
@@ -68,7 +72,6 @@ def all_products(request):
     
     form = SortForm(request.GET)
     return render(request, 'products/products.html', {'page_obj': page_obj, 'form': form})
-
 
 def products_by_category(request, category_slug):
     """
@@ -102,7 +105,7 @@ def products_by_category(request, category_slug):
     """
     sort_options = {
         'recent': '-date_added',
-        'highest_rating': '-avg_rating',
+        'highest_rating': '-avg_coalesced_rating',
         'best_selling': '-sales_count',
         'price': 'price',
         '-price': '-price',
@@ -119,6 +122,7 @@ def products_by_category(request, category_slug):
         Q(category=category) | Q(category__in=subcategories)
     ).annotate(
         avg_rating=Avg('reviews__rating'),
+        avg_coalesced_rating=Coalesce(Avg('reviews__rating'), Value(0), output_field=DecimalField()),
         sales_count=Count('orderlineitem')
     ).order_by(sort_by)
     

@@ -719,6 +719,9 @@ No errors were found when passing through the contrast validator.
 
 #### Fixed Bugs
 
+* When attempting to sort products by rating, an error occurred due to a type mismatch between DecimalField (used for ratings) and IntegerField (used for handling null ratings).
+To resolve this, the Coalesce function was used to treat null ratings as 0, ensuring all ratings are treated as DecimalField. The output_field parameter was specified to maintain consistent field types.
+
 *  The "Back to results" button on the product detail page initially used the standard go back function (window.history.back()). However, this approach did not account for scenarios where users took actions on the product detail page that triggered it to reload (e.g., adding a product to the cart or adding to wishlist). In such cases, clicking the "Back to results" button would take users back to the previous instance of the same product detail page, rather than the search results page they intended to return to.
 To address this issue, I implemented a solution using session storage. By storing the URL of the search results page when a user clicks on a product detail link, it ensures that the "Back to results" button can always navigate the user back to the correct page.
 
