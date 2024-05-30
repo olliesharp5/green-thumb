@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
 from django.contrib import messages
 from django.db.models import Q, Count, Avg
@@ -54,14 +55,18 @@ def all_products(request):
         messages.error(request, 'Please enter a search term.')
 
     if query:
-        products = Product.objects.filter(name__icontains=query)
+        products = Product.objects.filter(name__icontains(query))
     else:
         products = Product.objects.all()
 
     products = products.annotate(sales_count=Count('orderlineitem')).order_by(sort_by)
     
+    paginator = Paginator(products, 9)  # 9 products per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     form = SortForm(request.GET)
-    return render(request, 'products/products.html', {'products': products, 'form': form})
+    return render(request, 'products/products.html', {'page_obj': page_obj, 'form': form})
 
 
 def products_by_category(request, category_slug):
@@ -94,10 +99,6 @@ def products_by_category(request, category_slug):
 
     :template:`products/products.html`
     """
-    sort_by = request.GET.get('sort_by', 'name')
-    category = get_object_or_404(Category, slug=category_slug)
-    subcategories = Category.objects.filter(parent=category)
-
     sort_options = {
         'recent': '-date_added',
         'highest_rating': '-avg_rating',
@@ -106,7 +107,12 @@ def products_by_category(request, category_slug):
         '-price': '-price',
         'name': 'name'
     }
+    
+    sort_by = request.GET.get('sort_by', 'name')
     sort_by = sort_options.get(sort_by, 'name')
+
+    category = get_object_or_404(Category, slug=category_slug)
+    subcategories = Category.objects.filter(parent=category)
 
     products = Product.objects.filter(
         Q(category=category) | Q(category__in=subcategories)
@@ -114,11 +120,13 @@ def products_by_category(request, category_slug):
         avg_rating=Avg('reviews__rating'),
         sales_count=Count('orderlineitem')
     ).order_by(sort_by)
-
+    
+    paginator = Paginator(products, 9)  # 9 products per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     form = SortForm(request.GET)
-    return render(request, 'products/products.html', {'products': products, 'category_name': category.name, 'category': category, 'form': form})
-
-
+    return render(request, 'products/products.html', {'page_obj': page_obj, 'category_name': category.name, 'category': category, 'form': form})
 def product_detail(request, product_id):
     """
     Retrieves and displays the details of a specified product, including its reviews and user's wishlist status.
