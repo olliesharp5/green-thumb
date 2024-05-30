@@ -68,7 +68,7 @@ This UX design emphasizes providing an intuitive, user-friendly experience. Its 
 
 ## User stories
 
-User stories can be viewed on this project's [kanban board](LINK)
+User stories can be viewed on this project's [kanban board](https://github.com/users/olliesharp5/projects/4)
 
 ### Strategy
 
