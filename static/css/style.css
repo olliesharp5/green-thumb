@@ -186,6 +186,9 @@ body.home-page {
     background-color: rgba(0, 71, 49, 0.9);
 }
 
+.link-white {
+    color: #F1F5E6 !important;
+}
 
 /* NAVBAR CSS */
 /* Main navigation styles */
