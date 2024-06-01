@@ -10,6 +10,31 @@ from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """
+    This is an Order model that represents a customer's order.
+
+    Attributes:
+    order_number (UUIDField): The unique identifier for the order, generated automatically.
+    user_profile (ForeignKey): The user's profile associated with the order, can be null or blank.
+    full_name (CharField): The full name of the person who placed the order.
+    email (EmailField): The email address of the person who placed the order.
+    phone_number (CharField): The phone number of the person who placed the order.
+    country (CountryField): The country of the delivery address.
+    postcode (CharField): The postal code of the delivery address, can be null or blank.
+    town_or_city (CharField): The town or city of the delivery address.
+    street_address1 (CharField): The first line of the street address.
+    street_address2 (CharField): The second line of the street address, can be null or blank.
+    county (CharField): The county of the delivery address, can be null or blank.
+    date (DateTimeField): The date and time when the order was placed, automatically set on creation.
+    delivery_cost (DecimalField): The cost of delivery for the order.
+    order_total (DecimalField): The total cost of the items in the order.
+    grand_total (DecimalField): The total cost of the order including delivery.
+    original_cart (TextField): The original cart data as a JSON string.
+    stripe_pid (CharField): The Stripe payment intent ID for the order.
+
+    Methods:
+    update_total(): Updates the grand total of the order, accounting for delivery costs.
+    """
     order_number = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)  # Automatically generates a new UUID when creating a new object.
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True, related_name='orders')
@@ -44,6 +69,20 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """
+    This is an OrderLineItem model that represents a single line item in an order.
+
+    Attributes:
+    order (ForeignKey): The order to which this line item belongs.
+    product (ForeignKey): The product associated with this line item.
+    product_size (CharField): The size of the product, can be null or blank.
+    quantity (PositiveIntegerField): The quantity of the product in this line item.
+    lineitem_total (DecimalField): The total cost of this line item, calculated based on product price and quantity.
+
+    Methods:
+    save(): Overrides the default save method to set the lineitem total and update the order total.
+    __str__(): Returns a readable string representation of the OrderLineItem object.
+    """
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     product_size = models.CharField(max_length=2, null=True, blank=True) # XS, S, M, L, XL

@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 SUBJECT_CHOICES = [
     ('order_status', "Where's my order?"),
     ('report_issue', 'Report an issue'),
@@ -17,7 +15,22 @@ STATUS_CHOICES = [
     ]
 
 class ContactRequest(models.Model):
-   
+    """
+    This is a ContactRequest model that represents a customer's contact request.
+
+    Attributes:
+    full_name (CharField): The full name of the person submitting the contact request.
+    email (EmailField): The email address of the person submitting the contact request.
+    subject (CharField): The subject of the contact request, choices are defined in SUBJECT_CHOICES.
+    message (TextField): The message content of the contact request.
+    file_upload (FileField): An optional file uploaded with the contact request, stored in the 'uploads/' directory.
+    created_at (DateTimeField): The date and time when the contact request was created, automatically set on creation.
+    status (CharField): The status of the contact request, choices are defined in STATUS_CHOICES, with 'Open' as default.
+
+    Methods:
+    __str__(): Returns a readable string representation of the ContactRequest object.
+    """
+    
     full_name = models.CharField(max_length=200)
     email = models.EmailField()
     subject = models.CharField(max_length=200, choices=SUBJECT_CHOICES)
