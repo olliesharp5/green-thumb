@@ -68,7 +68,9 @@ This UX design emphasizes providing an intuitive, user-friendly experience. Its 
 
 ## User stories
 
-User stories can be viewed on this project's [kanban board](https://github.com/users/olliesharp5/projects/4)
+User stories can be viewed on this project's [kanban board](https://github.com/users/olliesharp5/projects/4) 
+
+Please view the "Planning" section for more detail regarding how I implemented agile methodologies. 
 
 ### Strategy
 
@@ -181,13 +183,66 @@ The wireframes were designed using Balsamiq software.
 
 ### Planning
 
-I meticulously designed this project using the agile methodology, really showcasing the benefits of a dynamic, iterative development process. My primary planning and communication tool was a Kanban board, which I used to visualize tasks, detail their status and progress, and track individual responsibilities.
+I meticulously designed this project using the agile methodology, really showcasing the benefits of a dynamic, iterative development process. 
 
-I broke down the project into manageable tasks and plotted them on the Kanban board. The board had columns specifying stages such as 'To-Do', 'In Progress', and 'Done'. This allowed me to clearly see what I had accomplished, what I was currently working on, and what still needed to be done.
+Applying the MoSCoW prioritization method, I classified these user stories within the Issues tab as follows:
 
-The use of the Kanban board provided a clear, real-time overview of the project's progress. It facilitated regular reviews, quick adjustments and maintained the fluidity of the development process. This thoughtful planning and organization guided the project towards its successful completion.
+- Must Have: Essential features that are guaranteed for delivery, comprising up to 70% of the stories.
+- Should Have: Important features that add significant value but are not critical, making up about 10% of the stories.
+- Could Have: Features with a minor impact that can be omitted if necessary, also representing around 10% of the stories.
+- Won't Have: Features that are not a priority for the current iteration and will not be included, also representing around 10%.
 
-[Kanban](https://github.com/users/olliesharp5/projects/4/views/1)
+This method ensures that the most vital elements of the project are prioritized and delivered first, while maintaining flexibility for additional features based on their value and impact.
+
+### Sprints
+
+#### To note: The best way to view these sprints is by configuring them to Group By: "Milestone". Each task in the sprint has been assigned a milestone with subtasks linked to it. 
+
+In line with agile methodologies, this project has been structured into a series of three sprints, each designed to deliver incremental value and functionality. By breaking down the project into manageable sprints, it ensures continuous improvement, flexibility, and a focus on delivering functional components at each stage. Here’s an overview of how I implemented these sprints:
+
+#### Sprint 1: Foundation and Core Features
+
+**Objective:**
+Establish the foundational elements of the project, including basic configuration, user authentication, and initial functionality for product management and the cart system.
+
+**Tasks Completed:**
+- Setup and Basic Configuration
+- User Authentication and Profile Management
+- Product and Wishlist Management
+- Cart Functionality
+
+[Detailed Sprint 1 Page](https://github.com/users/olliesharp5/projects/5)
+
+#### Sprint 2: Checkout and User Enhancements
+
+**Objective:**
+Enhance the user experience with robust checkout processes, order management, and additional functionalities for user profiles and feedback systems.
+
+**Tasks Completed:**
+- Checkout and Order Management
+- User Profile Enhancements
+- Services, Gardener Profile and Feedback
+- About, contact form and gardener form
+
+[Detailed Sprint 2 Page](https://github.com/users/olliesharp5/projects/6)
+
+#### Sprint 3: Refinements and Deployment
+
+**Objective:**
+Focus on refining the user experience, fixing bugs, and preparing the project for deployment. This includes documentation updates and final feature enhancements.
+
+**Tasks Completed:**
+- Feature Enhancements and Bug Fixes
+- Documentation and Deployment Preparation
+
+[Detailed Sprint 3 Page](https://github.com/users/olliesharp5/projects/7)
+
+### Agile Practices Followed
+
+- **Incremental Delivery:** Each sprint delivered functional increments of the project, allowing for continuous feedback and adjustments.
+- **Collaboration and Communication:** Regular mentor meetings and updates ensured that we were aligned and any issues were addressed promptly.
+- **Flexibility and Adaptability:** The project was flexible to changes in requirements and priorities, ensuring that the most valuable features were delivered first.
+- **Continuous Improvement:** Each sprint included a review phase with my mentor to reflect on what worked well and what could be improved in the next sprint.
 
 
 ### Surface
