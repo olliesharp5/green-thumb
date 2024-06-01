@@ -1,12 +1,15 @@
+import json
+from unittest.mock import patch
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.conf import settings
-from unittest.mock import patch
-from .models import Order, OrderLineItem
+
 from profiles.models import UserProfile
 from products.models import Product, Category
-import json
+from .models import Order, OrderLineItem
+
 
 class CheckoutViewsTestCase(TestCase):
 

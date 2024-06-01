@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
+
 from profiles.models import UserProfile
 
-from django import forms
-from django.contrib.auth.models import User
 
 class RegistrationForm(forms.ModelForm):
     password1 = forms.CharField(

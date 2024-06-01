@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+
 from checkout.models import Order
 from products.models import Product
-
 from contact.models import ContactRequest
 from services.models import ServiceRequest
 from .models import UserProfile, Wishlist
 from .forms import UserForm, UserProfileForm, GardenerProfileForm
+
 
 @login_required
 def profile(request):

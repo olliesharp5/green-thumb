@@ -4,6 +4,7 @@ from django.db.models import Avg
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.template.defaultfilters import slugify
 
+
 class Category(models.Model):
     """
     This is a Category model that represents a product category.
@@ -85,7 +86,7 @@ class Review(models.Model):
     Methods:
     __str__(): Returns a readable string representation of the Review object.
     """
-    
+
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200, null=True)

@@ -3,7 +3,9 @@ from django.urls import reverse
 from unittest.mock import patch
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+
 from .models import ContactRequest
+
 
 class ContactViewTests(TestCase):
     def setUp(self):

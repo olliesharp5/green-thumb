@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.contrib.auth import login
 from django.db import transaction
+
 from profiles.models import UserProfile, Wishlist
 from .forms import RegistrationForm, GardenerForm
-from django.contrib import messages
+
 
 def register(request):
     """

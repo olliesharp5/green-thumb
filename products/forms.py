@@ -3,6 +3,7 @@ from django.core.validators import MinValueValidator
 
 from .models import Product, Category, Review
 
+
 class SortForm(forms.Form):
     SORT_CHOICES = [
         ('name', 'Product Name'),

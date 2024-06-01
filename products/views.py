@@ -5,6 +5,7 @@ from django.http import HttpResponseForbidden
 from django.contrib import messages
 from django.db.models import Q, Count, Avg, Value, DecimalField
 from django.views.decorators.http import require_POST
+
 from profiles.models import Wishlist, UserProfile
 from .models import Product, Category, Review
 from .forms import SortForm, ProductForm, ReviewForm

@@ -1,7 +1,9 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.messages import get_messages
+
 from products.models import Product, Category
+
 
 class CartViewsTestCase(TestCase):
 

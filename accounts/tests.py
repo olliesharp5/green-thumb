@@ -1,12 +1,15 @@
+import io
+from PIL import Image
+import logging
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
+
 from profiles.models import UserProfile, Wishlist
 from .forms import RegistrationForm, GardenerForm
-import io
-from PIL import Image
-import logging
+
 
 logger = logging.getLogger(__name__)
 
