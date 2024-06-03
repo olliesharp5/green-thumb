@@ -60,10 +60,15 @@
             </div>
             <div class="col-12 text-center mt-5">
                 {% if user.is_authenticated %}
+                {% if user != gardener.user %}
                 <a href="{% url 'gardener_feedback' %}" class="btn btn-primary">Leave Gardener Feedback</a>
                 {% else %}
-                <h4>Please <a href="{% url 'account_login' %}">log in</a> or <a
-                        href="{% url 'account_signup' %}">register</a> to leave feedback this gardener</h4>
+                <!-- No button or message displayed if the user is the gardener -->
+                {% endif %}
+                {% else %}
+                <h4 class="link-white">Please <a href="{% url 'account_login' %}" class="link-white">log in</a> or <a
+                        href="{% url 'account_signup' %}" class="link-white">register</a> to leave feedback for this
+                    gardener</h4>
                 {% endif %}
             </div>
         </div>
