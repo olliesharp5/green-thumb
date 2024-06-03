@@ -30,16 +30,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+// Review Functions
+
 // Function to open the update review modal with pre-filled form fields
 function openUpdateReviewModal(reviewId, rating, title, text) {
-    const updateForm = document.getElementById('updateReviewForm');
+    const updateForm = document.getElementById('updateReviewForm' + reviewId);
+    if (!updateForm) {
+        console.error('updateReviewForm not found');
+        return;
+    }
     updateForm.action = `/products/review/${reviewId}/update/`;
+
+    // Convert rating to an integer for comparison
+    const ratingInt = parseInt(rating);
 
     // Set the rating field correctly
     const ratingField = updateForm.querySelector('#id_rating');
+    if (!ratingField) {
+        console.error('ratingField not found');
+        return;
+    }
     const options = ratingField.options;
     for (let i = 0; i < options.length; i++) {
-        if (options[i].value === rating.toString()) {
+        if (parseInt(options[i].value) === ratingInt) {
             options[i].selected = true;
             break;
         }
@@ -57,6 +70,7 @@ function openDeleteReviewModal(reviewId) {
 }
 
 
+// Feedback Functions
 
 // Function to open the update feedback modal with pre-filled form fields
 function openUpdateFeedbackModal(feedbackId, gardenerId, rating, title, message) {
@@ -67,9 +81,6 @@ function openUpdateFeedbackModal(feedbackId, gardenerId, rating, title, message)
     const gardenerField = updateForm.querySelector('#id_gardener');
     gardenerField.value = gardenerId.toString();
 
-    // Debug: Log rating value to console
-    console.log('Rating value passed:', rating);
-
     // Convert rating to an integer for comparison
     const ratingInt = parseInt(rating);
 
@@ -77,10 +88,8 @@ function openUpdateFeedbackModal(feedbackId, gardenerId, rating, title, message)
     const ratingField = updateForm.querySelector('#id_rating');
     const options = ratingField.options;
     for (let i = 0; i < options.length; i++) {
-        console.log('Option value:', options[i].value); // Debug: Log each option value to console
         if (parseInt(options[i].value) === ratingInt) {
             options[i].selected = true;
-            console.log('Selected option:', options[i].value); // Debug: Log selected option
             break;
         }
     }
@@ -95,7 +104,6 @@ function openDeleteFeedbackModal(feedbackId) {
     const deleteForm = document.getElementById('deleteFeedbackForm');
     deleteForm.action = `/services/gardener_feedback/${feedbackId}/delete/`;
 }
-
 
 
 // Get all product detail links and add a click event listener to each

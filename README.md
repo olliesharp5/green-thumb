@@ -157,7 +157,7 @@ The website is designed with the principles of both clarity and simplicity.
 
   - **Services Page**: Paginated display of service providers registered on the site with each card displaying profile image, name, and location.
 
-    - ***Gardener Profile Page***: Detailed profile of a gardener including their bio, services offered, and portfolio of published work.
+    - ***Gardener Profile Page***: Detailed profile of a gardener including their bio, profile picture and feedback from other users.
 
     - ***Service Request Page***: Form for users to request specific services, with options varying based on user status.
 
@@ -412,7 +412,7 @@ The gardening themed images and opaque coloured cards employed for text display 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
 | gardener         | ForeignKey(UserProfile) | on_delete=models.CASCADE, limit_choices_to={'role': 'GR'} |
-| first_name       | CharField               | max_length=200                                      |
+| user             | ForeignKey(UserProfile) | on_delete=models.CASCADE                            |
 | title            | CharField               | max_length=200                                      |
 | message          | TextField               |                                                     |
 | rating           | DecimalField            | max_digits=2, decimal_places=1, validators=[MinValueValidator(0), MaxValueValidator(5)] |
@@ -555,7 +555,7 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
 
 * Gardener Feedback
     - Form for submitting feedback for registered gardeners.
-    - Fields: dropdown to select the gardener, first name, title, message, rating (dropdown).
+    - Fields: dropdown to select the gardener, title, message, rating (dropdown).
   
 ![Gardener_feedback](./assets/readme_assets/gardener_feedback.png)
 
@@ -680,8 +680,6 @@ In the future, I would like to add the following features to enhance user experi
     - Develop a mobile app to provide users with easy access to all website features on the go.
     - Include features like plant care reminders, a plant identification tool, and the ability to purchase products and book services from the app.
 
-11. **Additional functionality in gardener reviews:**
-      - Include further CRUD functionality to gardener reviews. Currently only admins can amend these feedbacks in the admin panel. I would like to add further functionality to do this in the front end as i have done for the reviews on products. 
 
 ## Web Marketing
 
