@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
 // Function to open the update review modal with pre-filled form fields
 function openUpdateReviewModal(reviewId, rating, title, text) {
     const updateForm = document.getElementById('updateReviewForm');
@@ -54,6 +55,36 @@ function openDeleteReviewModal(reviewId) {
     const deleteForm = document.getElementById('deleteReviewForm');
     deleteForm.action = `/products/review/${reviewId}/delete/`;
 }
+
+
+
+// Function to open the update feedback modal with pre-filled form fields
+function openUpdateFeedbackModal(feedbackId, rating, title, message) {
+    const updateForm = document.getElementById('updateFeedbackForm');
+    updateForm.action = `/services/gardener_feedback/${feedbackId}/update/`;
+
+    // Set the rating field correctly
+    const ratingField = updateForm.querySelector('#id_rating');
+    const options = ratingField.options;
+    for (let i = 0; i < options.length; i++) {
+        if (options[i].value === rating.toString()) {
+            options[i].selected = true;
+            break;
+        }
+    }
+
+    // Set the title and message fields with the provided values
+    updateForm.querySelector('#id_title').value = title;
+    updateForm.querySelector('#id_message').value = message;
+}
+
+// Function to open the delete feedback modal with the correct action URL
+function openDeleteFeedbackModal(feedbackId) {
+    const deleteForm = document.getElementById('deleteFeedbackForm');
+    deleteForm.action = `/services/gardener_feedback/${feedbackId}/delete/`;
+}
+
+
 
 // Get all product detail links and add a click event listener to each
 let productDetailLinks = document.querySelectorAll('.product-detail-link');

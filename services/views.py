@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseForbidden
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
@@ -61,6 +63,10 @@ def gardener_profile(request, username):
         'gardener': gardener,
         'feedbacks': feedbacks,
     }
+    if request.user.is_authenticated:
+        if request.user.is_superuser or request.user == gardener.user:
+            feedback_form = GardenerFeedbackForm()
+            context['feedback_form'] = feedback_form
     return render(request, 'services/gardener_profile.html', context)
 
 
@@ -86,13 +92,42 @@ def gardener_feedback(request):
     if request.method == 'POST':
         form = GardenerFeedbackForm(request.POST)
         if form.is_valid():
-            feedback = form.save()
+            feedback = form.save(commit=False)
+            feedback.user = request.user  # Associate the feedback with the logged-in user
+            feedback.save()
             request.session['cart_changed'] = False
             messages.success(request, f'Thank you for submitting feedback for {feedback.gardener.display_name}')
-            return redirect('services')
+            return redirect('gardener_profile', username=feedback.gardener.user.username)
     else:
         form = GardenerFeedbackForm()
     return render(request, 'services/gardener_feedback.html', {'form': form})
+
+
+def update_gardener_feedback(request, feedback_id):
+    feedback = get_object_or_404(GardenerFeedback, id=feedback_id)
+    if request.user != feedback.user:
+        return HttpResponseForbidden()
+
+    if request.method == 'POST':
+        form = GardenerFeedbackForm(request.POST, instance=feedback)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Feedback updated successfully')
+            return redirect('gardener_profile', username=feedback.gardener.user.username)
+    else:
+        form = GardenerFeedbackForm(instance=feedback)
+
+    return render(request, 'services/update_gardener_feedback.html', {'form': form, 'feedback': feedback})
+
+
+@require_POST
+def delete_gardener_feedback(request, feedback_id):
+    feedback = get_object_or_404(GardenerFeedback, id=feedback_id)
+    if request.user != feedback.user and not request.user.is_superuser:
+        return HttpResponseForbidden()
+    feedback.delete()
+    messages.success(request, 'Feedback deleted successfully')
+    return redirect('gardener_profile', username=feedback.gardener.user.username)
 
 
 def service_request(request):

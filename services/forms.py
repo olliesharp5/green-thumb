@@ -14,4 +14,4 @@ class GardenerFeedbackForm(forms.ModelForm):
     rating = forms.ChoiceField(choices=RATING_CHOICES)
     class Meta:
         model = GardenerFeedback
-        fields = ['gardener', 'first_name', 'title', 'message', 'rating']
+        fields = ['gardener', 'title', 'message', 'rating']
