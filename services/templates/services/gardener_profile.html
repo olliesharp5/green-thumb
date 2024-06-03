@@ -40,7 +40,7 @@
                                 <p class="card-text">{{ feedback.message }}</p>
                                 <p class="card-text"><small class="text-muted">{{ feedback.rating }}/5.0 <i
                                             class="fas fa-star"></i></small></p>
-                                {% if user.is_authenticated and user.is_superuser or user == feedback.gardener.user %}
+                                {% if user.is_authenticated and user.is_superuser or user == feedback.gardener.user or user == feedback.user %}
                                 <i class="fas fa-edit edit-icon" data-bs-toggle="modal"
                                     data-bs-target="#updateFeedbackModal"
                                     onclick="openUpdateFeedbackModal('{{ feedback.id }}', '{{ feedback.gardener.id }}', '{{ feedback.rating }}', '{{ feedback.title }}', '{{ feedback.message }}')"
@@ -60,15 +60,15 @@
             </div>
             <div class="col-12 text-center mt-5">
                 {% if user.is_authenticated %}
-                {% if user != gardener.user %}
+                {% if user != gardener.user and not has_submitted_feedback %}
                 <a href="{% url 'gardener_feedback' %}" class="btn btn-primary">Leave Gardener Feedback</a>
-                {% else %}
+                {% elif user == gardener.user %}
                 <!-- No button or message displayed if the user is the gardener -->
                 {% endif %}
                 {% else %}
-                <h4 class="link-white">Please <a href="{% url 'account_login' %}?next={{ request.path }}" class="link-white">log in</a> or <a
-                        href="{% url 'account_signup' %}" class="link-white">register</a> to leave feedback for this
-                    gardener</h4>
+                <h4 class="link-white">Please <a href="{% url 'account_login' %}?next={{ request.path }}"
+                        class="link-white">log in</a> or <a href="{% url 'account_signup' %}"
+                        class="link-white">register</a> to leave feedback for this gardener</h4>
                 {% endif %}
             </div>
         </div>

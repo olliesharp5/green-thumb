@@ -59,16 +59,21 @@ def gardener_profile(request, username):
     """
     gardener = get_object_or_404(UserProfile, user__username=username, role='GR')
     feedbacks = GardenerFeedback.objects.filter(gardener=gardener)
+
     context = {
         'gardener': gardener,
         'feedbacks': feedbacks,
     }
+
     if request.user.is_authenticated:
         if request.user.is_superuser or request.user == gardener.user:
             feedback_form = GardenerFeedbackForm()
             context['feedback_form'] = feedback_form
-    return render(request, 'services/gardener_profile.html', context)
+        else:
+            has_submitted_feedback = GardenerFeedback.objects.filter(gardener=gardener, user=request.user).exists()
+            context['has_submitted_feedback'] = has_submitted_feedback
 
+    return render(request, 'services/gardener_profile.html', context)
 
 def gardener_feedback(request):
     """
@@ -126,7 +131,7 @@ def update_gardener_feedback(request, feedback_id):
     :template:`services/update_gardener_feedback.html`
     """
     feedback = get_object_or_404(GardenerFeedback, id=feedback_id)
-    if request.user != feedback.user:
+    if request.user != feedback.user and not request.user.is_superuser:
         return HttpResponseForbidden()
 
     if request.method == 'POST':
