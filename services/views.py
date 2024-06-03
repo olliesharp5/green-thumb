@@ -66,14 +66,18 @@ def gardener_profile(request, username):
     }
 
     if request.user.is_authenticated:
+        feedback_form = GardenerFeedbackForm()  # Create the form instance here
+        context['feedback_form'] = feedback_form  # Always pass the form to the context
+        
         if request.user.is_superuser or request.user == gardener.user:
-            feedback_form = GardenerFeedbackForm()
-            context['feedback_form'] = feedback_form
+            context['can_submit_feedback'] = True
         else:
             has_submitted_feedback = GardenerFeedback.objects.filter(gardener=gardener, user=request.user).exists()
             context['has_submitted_feedback'] = has_submitted_feedback
+            context['can_submit_feedback'] = not has_submitted_feedback
 
     return render(request, 'services/gardener_profile.html', context)
+    
 
 def gardener_feedback(request):
     """
