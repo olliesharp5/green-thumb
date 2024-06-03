@@ -75,7 +75,7 @@ class GardenerFeedback(models.Model):
 
     Attributes:
     gardener (ForeignKey): The gardener (user profile) receiving the feedback, limited to users with the 'Gardener' role.
-    first_name (CharField): The first name of the person providing the feedback.
+    user (ForeignKey): The user providing the feedback.
     title (CharField): The title of the feedback.
     message (TextField): The message content of the feedback.
     rating (DecimalField): The rating given, must be between 0 and 5.

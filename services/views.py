@@ -104,6 +104,27 @@ def gardener_feedback(request):
 
 
 def update_gardener_feedback(request, feedback_id):
+    """
+    Handles the updating of an existing feedback entry for a gardener.
+
+    **Context**
+
+    ``form``
+    An instance of `GardenerFeedbackForm` to handle feedback data input.
+
+    ``feedback``
+    The `GardenerFeedback` instance that is being updated.
+
+    **Methods**
+
+    ``update_gardener_feedback(request, feedback_id)``
+    Handles both GET and POST requests. On POST, it processes the feedback form and updates the feedback entry in the database.
+    On GET, it renders the form for updating the feedback.
+
+    **Template:**
+
+    :template:`services/update_gardener_feedback.html`
+    """
     feedback = get_object_or_404(GardenerFeedback, id=feedback_id)
     if request.user != feedback.user:
         return HttpResponseForbidden()
@@ -122,6 +143,18 @@ def update_gardener_feedback(request, feedback_id):
 
 @require_POST
 def delete_gardener_feedback(request, feedback_id):
+    """
+    Handles the deletion of a feedback entry for a gardener.
+
+    **Methods**
+
+    ``delete_gardener_feedback(request, feedback_id)``
+    Handles POST requests. It deletes the specified feedback entry from the database.
+
+    **Template:**
+
+    None. Redirects to the gardener profile page upon successful deletion.
+    """
     feedback = get_object_or_404(GardenerFeedback, id=feedback_id)
     if request.user != feedback.user and not request.user.is_superuser:
         return HttpResponseForbidden()
