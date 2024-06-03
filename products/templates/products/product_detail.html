@@ -76,7 +76,7 @@
                     Add to Wishlist
                 </button>
                 <div class="tooltip-content">
-                    To use this feature please <a href="{% url 'account_login' %}">Log In</a> or <a
+                    To use this feature please <a href="{% url 'account_login' %}?next={{ request.path }}">Log In</a> or <a
                         href="{% url 'account_signup' %}">Register</a>
                 </div>
             </div>
@@ -105,7 +105,7 @@
             <p>You have already reviewed this product</p>
             {% endif %}
             {% else %}
-            <p>Please <a href="{% url 'account_login' %}">log in</a> or <a
+            <p>Please <a href="{% url 'account_login' %}?next={{ request.path }}">log in</a> or <a
                     href="{% url 'account_signup' %}">register</a> to review this product</p>
             {% endif %}
             {% if reviews %}

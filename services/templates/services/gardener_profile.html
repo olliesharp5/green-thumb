@@ -66,7 +66,7 @@
                 <!-- No button or message displayed if the user is the gardener -->
                 {% endif %}
                 {% else %}
-                <h4 class="link-white">Please <a href="{% url 'account_login' %}" class="link-white">log in</a> or <a
+                <h4 class="link-white">Please <a href="{% url 'account_login' %}?next={{ request.path }}" class="link-white">log in</a> or <a
                         href="{% url 'account_signup' %}" class="link-white">register</a> to leave feedback for this
                     gardener</h4>
                 {% endif %}
