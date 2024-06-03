@@ -59,16 +59,28 @@ function openDeleteReviewModal(reviewId) {
 
 
 // Function to open the update feedback modal with pre-filled form fields
-function openUpdateFeedbackModal(feedbackId, rating, title, message) {
+function openUpdateFeedbackModal(feedbackId, gardenerId, rating, title, message) {
     const updateForm = document.getElementById('updateFeedbackForm');
     updateForm.action = `/services/gardener_feedback/${feedbackId}/update/`;
+
+    // Set the gardener field correctly
+    const gardenerField = updateForm.querySelector('#id_gardener');
+    gardenerField.value = gardenerId.toString();
+
+    // Debug: Log rating value to console
+    console.log('Rating value passed:', rating);
+
+    // Convert rating to an integer for comparison
+    const ratingInt = parseInt(rating);
 
     // Set the rating field correctly
     const ratingField = updateForm.querySelector('#id_rating');
     const options = ratingField.options;
     for (let i = 0; i < options.length; i++) {
-        if (options[i].value === rating.toString()) {
+        console.log('Option value:', options[i].value); // Debug: Log each option value to console
+        if (parseInt(options[i].value) === ratingInt) {
             options[i].selected = true;
+            console.log('Selected option:', options[i].value); // Debug: Log selected option
             break;
         }
     }

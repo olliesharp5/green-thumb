@@ -1,7 +1,8 @@
 {% load crispy_forms_tags %}
 
 <!-- Update Feedback Modal -->
-<div class="modal fade" id="updateFeedbackModal" tabindex="-1" aria-labelledby="updateFeedbackModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateFeedbackModal" tabindex="-1" aria-labelledby="updateFeedbackModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -20,7 +21,8 @@
 </div>
 
 <!-- Delete Feedback Modal -->
-<div class="modal fade" id="deleteFeedbackModal" tabindex="-1" aria-labelledby="deleteFeedbackModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteFeedbackModal" tabindex="-1" aria-labelledby="deleteFeedbackModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,7 +33,8 @@
                 Are you sure you want to delete this feedback?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Cancel">Cancel</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    aria-label="Cancel">Cancel</button>
                 <form id="deleteFeedbackForm" method="post" action="">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger" aria-label="Delete">Delete</button>

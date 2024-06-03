@@ -43,7 +43,7 @@
                                 {% if user.is_authenticated and user.is_superuser or user == feedback.gardener.user %}
                                 <i class="fas fa-edit edit-icon" data-bs-toggle="modal"
                                     data-bs-target="#updateFeedbackModal"
-                                    onclick="openUpdateFeedbackModal('{{ feedback.id }}', '{{ feedback.rating }}', '{{ feedback.title }}', '{{ feedback.message }}')"
+                                    onclick="openUpdateFeedbackModal('{{ feedback.id }}', '{{ feedback.gardener.id }}', '{{ feedback.rating }}', '{{ feedback.title }}', '{{ feedback.message }}')"
                                     data-toggle="tooltip" title="Edit Feedback"></i>
                                 <i class="fas fa-trash delete-icon" data-bs-toggle="modal"
                                     data-bs-target="#deleteFeedbackModal"
