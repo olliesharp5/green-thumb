@@ -87,6 +87,7 @@
         {% endif %}
     </div>
 
+    {% if page_obj.paginator.count > 0 %}
     <div class="row">
         <div class="col">
             <nav aria-label="Page navigation">
@@ -118,6 +119,7 @@
             </nav>
         </div>
     </div>
+    {% endif %}
 </div>
 
 {% endblock %}

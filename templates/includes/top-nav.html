@@ -20,12 +20,14 @@
         </div>
     </div>
     <div class="col-md-4 text-center position-relative">
-        <button class="navbar-toggler position-absolute d-block d-md-none menu-button" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
+        <button class="navbar-toggler position-absolute d-block d-md-none menu-button" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
             aria-label="Toggle navigation">
             Menu
         </button>
-        <h1 class="mb-0">Green Thumb</h1>
+        <a class="account-dropdown" href="{% url 'home' %}">
+            <h1 class="mb-0">Green Thumb</h1>
+        </a>
     </div>
     <div class="col-md-4 text-end d-flex align-items-center justify-content-end account-cart">
         <div class="dropdown account-dropdown-container me-3">

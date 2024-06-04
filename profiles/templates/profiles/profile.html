@@ -38,7 +38,9 @@
             <br>
             <p>Display Name: {{ user_profile.display_name }}</p>
             <p>Location: {{ user_profile.location }}</p>
-            <p>About: {{ user_profile.about }}</p>
+            <div class="overflow-auto" style="max-height: 150px;">
+              {{ user_profile.about }}
+            </div>
           </div>
         </div>
       </div>
