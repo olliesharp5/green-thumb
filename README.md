@@ -19,6 +19,7 @@ Additionally, Green Thumb extends its framework to landscaping services, where c
     - [Planning](#planning)
     - [Surface](#surface)
     - [Models](#models)
+    - [Data Schema Overview](#data-schema-overview)
   - [Technologies](#technologies)
     - [Libraries](#libraries)
     - [Frameworks & Extensions](#frameworks--extensions)
@@ -52,13 +53,14 @@ Additionally, Green Thumb extends its framework to landscaping services, where c
     - [Content](#content)
     - [Media](#media)
 
-## Demo
+## Demo <hr>
 
 ![Website look on different devices](./assets/readme_assets/responsive_design.png)
 
 ### A live demo to the website can be found [here](https://green-thumb1-5e1e889069e1.herokuapp.com/)
 
-## UX
+## UX <hr>
+
 This website is primarily crafted for gardening enthusiasts, landscapers, and those seeking professional gardening services. The key focus is to devise an online marketplace where users can easily purchase gardening essentials while professional gardeners can grow their audience base and potential customers.
 
 - **Gardening Enthusiasts**: These users typically visit the platform for easy, convenient access to a wide array of gardening supplies. From the comfort of their home, they can sift through various products, read reviews, and make informed purchasing decisions. Additionally, they can also request quotes from registered professional gardeners for home gardening services.
@@ -67,7 +69,7 @@ This website is primarily crafted for gardening enthusiasts, landscapers, and th
 
 This UX design emphasizes providing an intuitive, user-friendly experience. Its layout, functionality, and interaction are custom-tailored to the expectations and requirements of its target audience, thus making the gardening experience more enjoyable and efficient.
 
-## User stories
+## User stories <hr>
 
 User stories can be viewed on this project's [kanban board](https://github.com/users/olliesharp5/projects/4) 
 
@@ -268,9 +270,15 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 ### Models
 
+This section outlines the various data models used in the application, organized by their respective apps. Each model includes its fields, field types, and validation rules. Understanding the relationships and the schema helps in managing data efficiently and ensuring data integrity across the system.
+
 #### Checkout App
 
+The Checkout App handles the ordering process, including capturing order details and individual line items.
+
 ##### Order
+
+The Order model captures details about each order placed by users. It includes information such as user profile, contact details, and order costs.
 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
@@ -295,6 +303,8 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 ##### OrderLineItem
 
+The OrderLineItem model captures individual items within an order, linking to products and tracking quantities and costs.
+
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
 | order            | ForeignKey(Order)       | null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems' |
@@ -306,7 +316,11 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 #### Contact App
 
+The Contact App manages user customer service inquiries.
+
 ##### ContactRequest
+
+The ContactRequest model captures messages sent by users, including optional file uploads.
 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
@@ -321,7 +335,11 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 #### Products App
 
+The Products App handles the categorisation and details of products available for purchase.
+
 ##### Category
+
+The Category model organizes products into hierarchical categories.
 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
@@ -331,6 +349,8 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 
 ##### Product
+
+The Product model stores details about individual products, including descriptions, prices, and optional images.
 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
@@ -347,6 +367,8 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 ##### Review
 
+The Review model captures user reviews for products, including ratings and textual feedback.
+
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
 | product          | ForeignKey(Product)     | on_delete=models.CASCADE, related_name='reviews'    |
@@ -359,7 +381,11 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 #### Profiles App
 
+The Profiles App manages user profiles and their preferences.
+
 ##### UserProfile
+
+The UserProfile model stores user-specific information and preferences.
 
 | Field Name             | Field Type              | Validation/Choices                                   |
 |------------------------|-------------------------|-----------------------------------------------------|
@@ -378,8 +404,9 @@ The gardening themed images and opaque coloured cards employed for text display 
 | default_country        | CountryField            | blank_label='Country', null=True, blank=True        |
 
 
-
 ##### Wishlist
+
+The Wishlist model allows users to save products they are interested in for future reference.
 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
@@ -387,10 +414,13 @@ The gardening themed images and opaque coloured cards employed for text display 
 | products         | ManyToManyField(Product)|                                                     |
 
 
-
 #### Services App
 
+The Services App manages service offerings and requests for gardening services quote enquiries.
+
 ##### Service
+
+The Service model defines the types of services available.
 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
@@ -398,6 +428,8 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 
 ##### ServiceRequest
+
+The ServiceRequest model captures details about requests for services, including user information and required dates.
 
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
@@ -414,6 +446,8 @@ The gardening themed images and opaque coloured cards employed for text display 
 
 ##### GardenerFeedback
 
+The GardenerFeedback model captures feedback and ratings for gardeners.
+
 | Field Name       | Field Type              | Validation/Choices                                   |
 |------------------|-------------------------|-----------------------------------------------------|
 | gardener         | ForeignKey(UserProfile) | on_delete=models.CASCADE, limit_choices_to={'role': 'GR'} |
@@ -424,11 +458,42 @@ The gardening themed images and opaque coloured cards employed for text display 
 | created_at       | DateTimeField           | auto_now_add=True                                   |
 
 
+### Data Schema Overview <hr>
+
+The data schema is designed to maintain relational integrity and ensure efficient data management. The following are the primary relationships between models:
+
+#### User Profiles:
+
+UserProfile is linked to User via a one-to-one relationship.
+Order and Wishlist models reference UserProfile to associate orders and wishlists with specific users.
+
+#### Orders and Products:
+
+The Order model is linked to OrderLineItem through a foreign key, capturing multiple items per order.
+OrderLineItem references the Product model to identify the specific products ordered.
+
+#### Product Categorization:
+
+Product is linked to Category to facilitate product categorization.
+Review is linked to Product to allow users to leave feedback on specific products.
+
+#### Service Requests:
+
+ServiceRequest references Service and User to capture user requests for specific services.
+GardenerFeedback links feedback to gardeners via UserProfile.
+
+#### Contact Management:
+
+ContactRequest captures user inquiries, allowing optional file uploads and status tracking.
+This relational structure ensures that data integrity is maintained, enabling robust and efficient data management across the application.
+
+
 ## Technologies <hr>
 
 The website is designed using following technologies: HTML, CSS, Bootstrap, Javascript, Django, MarkDown, ElephantSQL, Chrome Dev Tools, Stripe, Amazon AWS, Favicon
 
 ### Libraries
+
 * asgiref==3.8.1: ASGI (Asynchronous Server Gateway Interface) reference implementation, which provides utilities for working with ASGI servers.
 * boto3==1.34.103: The Amazon Web Services (AWS) SDK for Python, which allows Python developers to write software that makes use of Amazon services like S3 and EC2.
 * botocore==1.34.103: The low-level, core functionality of Boto3, providing the foundational interface for interacting with AWS services.
@@ -459,7 +524,7 @@ The website is designed using following technologies: HTML, CSS, Bootstrap, Java
 * [Gitpod](https://gitpod.io/workspaces/) - One-click ready-to-code development environments for GitHub.
 * [Heroku](https://dashboard.heroku.com/) - Heroku is a cloud platform that lets companies build, deliver, monitor and scale apps.
 
-## Features
+## Features <hr>
 
 ### Existing Features
 
@@ -686,7 +751,7 @@ In the future, I would like to add the following features to enhance user experi
     - Include features like plant care reminders, a plant identification tool, and the ability to purchase products and book services from the app.
 
 
-## Marketing Strategies
+## Marketing Strategies <hr>
 
 ### Social Media Marketing
 I created a dedicated Facebook page for the brand to enhance our social media presence and engage with our audience. This page serves as a platform to share updates, promotions, and interact directly with customers, fostering a community around the brand.
@@ -705,7 +770,7 @@ Implementing SEO strategies including optimized images, meta tags, a semantic HT
 Regularly updating the site with high-quality, relevant content such as gardening tips, tutorials, and user-generated content to attract and retain users.
 
 
-## SEO
+## SEO <hr>
 
 ### Implementing robots.txt
 I implemented a `robots.txt` file to control and optimize the way search engines crawl and index the website. This file helps in directing search engines to important pages while preventing them from indexing irrelevant or sensitive parts of the site, thus improving our site's SEO performance.
@@ -727,7 +792,7 @@ In addition to the above, we have implemented other SEO best practices, includin
 - **High-Quality Content**: I regularly update our site with high-quality, relevant content that provides value to our users and helps attract organic traffic.
 
 
-## Stripe Webhook Integration
+## Stripe Webhook Integration <hr>
 
 My implementation ensures all Stripe webhooks are successfully handled. Here's a brief overview:
 
@@ -746,7 +811,7 @@ My implementation ensures all Stripe webhooks are successfully handled. Here's a
 This setup ensures reliable handling and processing of Stripe events.
 ![Webhooks](./assets/readme_assets/webhooks.png)
 
-## Testing
+## Testing <hr>
 
 * I tested the site, and it works in different web browsers: Chrome, Firefox, and Microsoft Edge.
 * On mobile devices, I tested the my site on a Samsung Galaxy S21 Ultra with the Samsung browser and an iPhone 13 with the Safari browser.
@@ -867,7 +932,7 @@ Added debug statements to the view to trace form validation status and errors, e
 * The Tooltip element on product detail page dissapears too soon after the cursor leaves its space. I have tried adding padding and margins to the tooltip container but it seems to make no significant difference. 
 
 
-## Deployment
+## Deployment <hr>
 
 ### Version Control
 
@@ -931,7 +996,7 @@ The following git commands were used throughout development to push code to the 
 ![lighthouse_forms](./assets/readme_assets/lighthouse_forms.png)
 
 
-## Credits
+## Credits <hr>
 
 ### Content
 * Credit for stripe integration taken from Stripe web documentation and the Boutique-Ado walkthrough project from Code Institute 
