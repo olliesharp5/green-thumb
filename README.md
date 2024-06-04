@@ -763,6 +763,8 @@ To streamline the email marketing efforts and manage our mailing list efficientl
 
 ![Mailchimp](./assets/readme_assets/mailchimp.png)
 
+![Mailchimp Dashboard](./assets/readme_assets/mailchimp_dashboard.png)
+
 ### SEO Best Practices
 Implementing SEO strategies including optimized images, meta tags, a semantic HTML structure, and a well-organized sitemap to improve search engine visibility and drive organic traffic.
 
