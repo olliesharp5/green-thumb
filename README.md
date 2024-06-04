@@ -13,6 +13,7 @@ Additionally, Green Thumb extends its framework to landscaping services, where c
   - [UX](#ux)
   - [User stories](#user-stories)
     - [Strategy](#strategy)
+    - [Business Model](#business-model)
     - [Scope](#scope)
     - [Skeleton](#skeleton)
     - [Planning](#planning)
@@ -83,6 +84,10 @@ The underlying strategy comprised several crucial goals:
 - **For Gardeners/Landscapers**: To offer an open platform for them to gain visibility, interact with potential customers, and easily manage their profiles. 
 
 - **For Potential Service Users**: The platform should offer clear information about the gardener, provide a line of communication for inquiries, and a simple quote request procedure.
+
+### Business Model:
+
+Business Model: Green Thumb operates under a combined B2C (Business-to-Consumer) and B2B (Business-to-Business) model. For B2C, it provides a marketplace for gardening enthusiasts to purchase gardening products. For B2B, it offers a platform for professional gardeners and landscapers to sell their services directly to consumers and businesses.
 
 ### Scope
 
@@ -681,15 +686,24 @@ In the future, I would like to add the following features to enhance user experi
     - Include features like plant care reminders, a plant identification tool, and the ability to purchase products and book services from the app.
 
 
-## Web Marketing
+## Marketing Strategies
 
-### Creating a Facebook Page
+### Social Media Marketing
 I created a dedicated Facebook page for the brand to enhance our social media presence and engage with our audience. This page serves as a platform to share updates, promotions, and interact directly with customers, fostering a community around the brand.
+
 ![Facebook Page](./assets/readme_assets/facebook%20page.png)
 
-### Integrating Mailchimp to Register for the Mail List
+### Email Marketing
 To streamline the email marketing efforts and manage our mailing list efficiently, I integrated Mailchimp into my website. This allows visitors to easily subscribe to our newsletter and ensures that we can send targeted email campaigns to our subscribers, keeping them informed about new products, promotions, and company news.
+
 ![Mailchimp](./assets/readme_assets/mailchimp.png)
+
+### SEO Best Practices
+Implementing SEO strategies including optimized images, meta tags, a semantic HTML structure, and a well-organized sitemap to improve search engine visibility and drive organic traffic.
+
+### Content Marketing
+Regularly updating the site with high-quality, relevant content such as gardening tips, tutorials, and user-generated content to attract and retain users.
+
 
 ## SEO
 
