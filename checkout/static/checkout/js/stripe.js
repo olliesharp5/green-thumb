@@ -33,7 +33,14 @@ var card = elements.create('card', {style: style});
 
 card.mount('#card-element');
 
-// Handle real-time validation errors from the card Element.
+/**
+ * Event listener to handle real-time validation errors from the card Element.
+ * This function listens to any changes in the card element and checks if
+ * there are validation errors. If there are errors, they are displayed 
+ * to the user in the 'card-errors' div.
+ *
+ * @param {object} event - The event object containing validation error details.
+ */
 card.on('change', function(event) {
     var displayError = document.getElementById('card-errors');
     if (event.error) {
@@ -43,10 +50,18 @@ card.on('change', function(event) {
     }
 });
 
-
 // Handle form submit
 var form = document.getElementById('payment-form');
 
+/**
+ * Event listener to handle the form submission for payment.
+ * This function disables the card element and submit button upon form submission,
+ * gathers necessary payment details, sends a POST request to cache the data, 
+ * and then uses Stripe to confirm the card payment. If successful, the form is submitted.
+ * In case of errors, appropriate error messages are displayed to the user.
+ *
+ * @param {Event} ev - The event triggered by form submission.
+ */
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
     card.update({ 'disabled': true});
@@ -64,6 +79,7 @@ form.addEventListener('submit', function(ev) {
     };
     var url = '/checkout/cache_checkout_data/';
 
+    // Send cached payment data to the backend
     $.post(url, postData).done(function () {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -94,6 +110,7 @@ form.addEventListener('submit', function(ev) {
                 }
             },
         }).then(function(result) {
+            // Handle error or success result from Stripe's card payment confirmation
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
@@ -107,13 +124,14 @@ form.addEventListener('submit', function(ev) {
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
+                // If payment is successful, submit the form
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
                 }
             }
         });
     }).fail(function () {
-        // just reload the page, the error will be in django messages
+        // Reload the page if the post request fails; the error will be in Django messages
         location.reload();
     })
 });
